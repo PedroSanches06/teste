@@ -10,7 +10,6 @@
     :root{
       --bg1:#f5f9ff;
       --bg2:#eaf2ff;
-      --card:#ffffffcc;
       --stroke:#e6efff;
       --text:#0a1b3a;
       --muted:#5c6e8a;
@@ -22,15 +21,13 @@
       --shadow: 0 18px 60px rgba(8, 36, 90, .15);
       --shadow2: 0 10px 30px rgba(8, 36, 90, .12);
       --radius: 20px;
-      --radius2: 14px;
       --ease: cubic-bezier(.2,.9,.2,1);
     }
-
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:
         radial-gradient(1200px 700px at 18% 10%, #d8ebff 0%, transparent 60%),
@@ -39,15 +36,13 @@
       overflow-x:hidden;
     }
 
-    /* subtle animated blobs */
     .blob{
       position:fixed;
-      width:420px;
-      height:420px;
+      width:420px;height:420px;
       filter: blur(30px);
       opacity:.55;
       z-index:-1;
-      border-radius: 999px;
+      border-radius:999px;
       animation: floaty 10s var(--ease) infinite;
       pointer-events:none;
     }
@@ -59,11 +54,7 @@
       50%{ transform: translate(18px, -22px) scale(1.03); }
     }
 
-    .container{
-      width:min(1120px, 92vw);
-      margin:0 auto;
-      padding: 22px 0 60px;
-    }
+    .container{ width:min(1120px, 92vw); margin:0 auto; padding: 22px 0 60px; }
 
     .glass{
       background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.62));
@@ -75,19 +66,13 @@
     }
 
     .btn{
-      border:none;
-      outline:none;
-      cursor:pointer;
+      border:none; outline:none; cursor:pointer;
       border-radius: 999px;
       padding: 12px 16px;
       font-weight: 650;
-      transition: transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease), opacity .22s var(--ease);
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      user-select:none;
-      text-decoration:none;
-      white-space: nowrap;
+      transition: transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease);
+      display:inline-flex; align-items:center; gap:10px;
+      user-select:none; text-decoration:none; white-space: nowrap;
     }
     .btn:active{ transform: translateY(1px) scale(.99); }
     .btn-primary{
@@ -127,11 +112,8 @@
       transform: translateY(-1px);
     }
 
-    /* Language switcher pill */
     .lang{
-      display:flex;
-      align-items:center;
-      gap:8px;
+      display:flex; align-items:center; gap:8px;
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid rgba(230,239,255,.9);
@@ -139,8 +121,7 @@
       box-shadow: var(--shadow2);
     }
     .lang select{
-      border:none;
-      background: transparent;
+      border:none; background: transparent;
       padding: 6px 8px;
       border-radius: 999px;
       font-weight: 750;
@@ -148,13 +129,9 @@
       cursor:pointer;
       outline:none;
     }
-    .lang .globe{ width:18px; height:18px; display:grid; place-items:center; }
 
-    /* Topbar (app) */
     .topbar{
-      position:sticky;
-      top:0;
-      z-index:20;
+      position:sticky; top:0; z-index:20;
       background: rgba(245,249,255,.55);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -164,29 +141,19 @@
       width:min(1120px, 92vw);
       margin: 0 auto;
       padding: 14px 0;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
+      display:flex; align-items:center; justify-content: space-between;
       gap: 14px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 240px;
-    }
+    .brand{ display:flex; align-items:center; gap:12px; min-width: 240px; }
     .logo{
       width:40px;height:40px;border-radius: 14px;
       background: linear-gradient(135deg, #0b3d91, #1e88ff 60%, #56c2ff);
       box-shadow: 0 12px 30px rgba(11,61,145,.25);
-      position:relative;
-      overflow:hidden;
+      position:relative; overflow:hidden;
     }
     .logo:before{
-      content:"";
-      position:absolute;
-      width:70px;height:70px;
+      content:""; position:absolute; width:70px;height:70px;
       left:-18px; top:-18px;
       background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.8), transparent 55%);
       transform: rotate(15deg);
@@ -202,8 +169,7 @@
       background: rgba(255,255,255,.75);
       box-shadow: var(--shadow2);
       cursor:pointer;
-      display:grid;
-      place-items:center;
+      display:grid; place-items:center;
       transition: transform .22s var(--ease), background .22s var(--ease);
     }
     .hamburger:hover{ transform: translateY(-2px); background: rgba(255,255,255,.9); }
@@ -221,21 +187,17 @@
     .hamburger[data-open="true"] .ham-lines span:nth-child(2){ opacity:0; }
     .hamburger[data-open="true"] .ham-lines span:nth-child(3){ top:5px; transform: rotate(-45deg); }
 
-    /* Sidebar */
     .overlay{
-      position:fixed;
-      inset:0;
+      position:fixed; inset:0;
       background: rgba(10,27,58,.34);
-      opacity:0;
-      pointer-events:none;
+      opacity:0; pointer-events:none;
       transition: opacity .25s var(--ease);
       z-index: 30;
     }
     .overlay.show{ opacity:1; pointer-events:auto; }
 
     .sidebar{
-      position:fixed;
-      left:0; top:0; bottom:0;
+      position:fixed; left:0; top:0; bottom:0;
       width: 310px;
       transform: translateX(-105%);
       transition: transform .34s var(--ease);
@@ -250,22 +212,14 @@
     .sidebar.open{ transform: translateX(0); }
 
     .sidebar-header{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      padding: 6px 4px 14px;
-      gap: 12px;
+      display:flex; align-items:center; justify-content: space-between;
+      padding: 6px 4px 14px; gap: 12px;
     }
     .sidebar-header .mini{ display:flex; align-items:center; gap:10px; }
     .sidebar-header .mini strong{ font-size: 14px; }
     .sidebar-header .mini span{ display:block; font-size: 12px; color: var(--muted); margin-top:2px; }
 
-    .nav{
-      display:flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 10px;
-    }
+    .nav{ display:flex; flex-direction: column; gap: 8px; margin-top: 10px; }
     .nav button{
       width:100%;
       text-align:left;
@@ -294,17 +248,12 @@
     .nav .meta{ font-size: 12px; color: var(--muted); font-weight: 650; }
 
     .sidebar-footer{
-      position:absolute;
-      left:16px; right:16px; bottom:16px;
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      justify-content: space-between;
+      position:absolute; left:16px; right:16px; bottom:16px;
+      display:flex; gap: 10px; align-items:center; justify-content: space-between;
       padding-top: 14px;
       border-top: 1px solid rgba(230,239,255,.9);
     }
 
-    /* App main */
     .app{ display:none; min-height:100vh; }
     .app.show{ display:block; animation: fadeIn .35s var(--ease) both; }
     @keyframes fadeIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
@@ -389,16 +338,6 @@
       color: var(--brand);
       font-weight: 900;
     }
-    .card:after{
-      content:"";
-      position:absolute;
-      right:-30px; bottom:-30px;
-      width:130px;height:130px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(30,136,255,.18), transparent 60%);
-      filter: blur(6px);
-      opacity:.85;
-    }
 
     .widget{ padding: 18px; }
     .widget h3{ margin:0 0 10px; font-size: 15px; }
@@ -428,7 +367,7 @@
     .page.show{ display:block; }
     @keyframes pageIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
 
-    /* LOGIN (refeito: email + senha) */
+    /* LOGIN */
     .login{
       min-height: 100vh;
       display:grid;
@@ -484,29 +423,11 @@
       gap: 12px;
       margin-bottom: 6px;
     }
-    .login-title .left{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-    }
-    .login-title h1{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.2px;
-    }
-    .login-title small{
-      display:block;
-      color: var(--muted);
-      margin-top: 2px;
-      font-weight: 650;
-    }
+    .login-title .left{ display:flex; align-items:center; gap: 12px; }
+    .login-title h1{ margin:0; font-size: 18px; letter-spacing:.2px; }
+    .login-title small{ display:block; color: var(--muted); margin-top: 2px; font-weight: 650; }
 
-    .hint{
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-top: 6px;
-    }
+    .hint{ font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 6px; }
     .footnote{
       margin-top: 14px;
       color: var(--muted);
@@ -539,7 +460,7 @@
     }
     .toast{
       pointer-events:auto;
-      width:min(360px, 92vw);
+      width:min(380px, 92vw);
       padding: 12px 14px;
       border-radius: 16px;
       border:1px solid rgba(230,239,255,.9);
@@ -561,12 +482,62 @@
     .toast p{ margin:0; font-size: 13px; line-height: 1.45; color: var(--text); }
     .toast p span{ display:block; margin-top:2px; color: var(--muted); font-size: 12px; line-height: 1.35; }
 
-    a.inline-link{
-      color: var(--brand);
-      font-weight: 800;
-      text-decoration: none;
+    /* Journal specific */
+    .month-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
     }
-    a.inline-link:hover{ text-decoration: underline; }
+    @media (max-width: 980px){ .month-grid{ grid-template-columns: repeat(2, 1fr); } }
+    .month-btn{
+      padding: 14px 14px;
+      border-radius: 18px;
+      border:1px solid rgba(230,239,255,.9);
+      background: rgba(255,255,255,.75);
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      transition: transform .2s var(--ease), background .2s var(--ease);
+      font-weight: 800;
+      color: var(--text);
+    }
+    .month-btn:hover{ transform: translateY(-2px); background: rgba(255,255,255,.9); }
+    .month-btn.active{
+      background: linear-gradient(135deg, rgba(11,61,145,.12), rgba(30,136,255,.10));
+      border-color: rgba(30,136,255,.22);
+    }
+    .badge-small{
+      font-size: 11px;
+      font-weight: 850;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(30,136,255,.10);
+      border:1px solid rgba(30,136,255,.12);
+      color: var(--brand);
+      white-space: nowrap;
+    }
+    .file-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(230,239,255,.9);
+      background: rgba(255,255,255,.75);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
   </style>
 </head>
 
@@ -590,17 +561,14 @@
             </p>
           </div>
         </div>
-
         <div class="chiprow" aria-hidden="true">
           <span class="chip" data-i18n="chipModern">Design Moderno</span>
           <span class="chip" data-i18n="chipSmooth">Animações Fluidas</span>
           <span class="chip" data-i18n="chipFast">Acesso Rápido</span>
         </div>
-
         <p style="margin-top:18px; font-size: 12px; opacity:.88;" data-i18n="loginHeroNote">
           Demo local (front-end). Para segurança real, use autenticação no servidor.
         </p>
-
         <div class="bubbles" aria-hidden="true"></div>
         <div class="bubbles2" aria-hidden="true"></div>
       </div>
@@ -616,7 +584,7 @@
           </div>
 
           <div class="lang" title="Language">
-            <span class="globe" aria-hidden="true">🌐</span>
+            <span aria-hidden="true">🌐</span>
             <select id="langSelectLogin" aria-label="Selecionar idioma">
               <option value="pt">PT</option>
               <option value="en">EN</option>
@@ -637,7 +605,8 @@
                  data-i18n-placeholder="passwordPlaceholder"
                  placeholder="••••••••" />
           <div class="hint" data-i18n="demoHint">
-            Demo: <span class="kbd">admin@hyundai.com</span> + <span class="kbd">portal123</span>
+            Admin: <span class="kbd">admin@hyundai.com</span> + <span class="kbd">admin123</span><br/>
+            User: <span class="kbd">user@hyundai.com</span> + <span class="kbd">portal123</span>
           </div>
         </div>
 
@@ -674,11 +643,13 @@
               <p id="welcomeText" data-i18n="welcomeDefault">Bem-vindo(a)!</p>
             </div>
           </div>
+
+          <span class="pill" id="rolePill" style="display:none;"></span>
         </div>
 
         <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
           <div class="lang" title="Language">
-            <span class="globe" aria-hidden="true">🌐</span>
+            <span aria-hidden="true">🌐</span>
             <select id="langSelectApp" aria-label="Selecionar idioma">
               <option value="pt">PT</option>
               <option value="en">EN</option>
@@ -715,7 +686,7 @@
           <span data-i18n="navHome">🏠 Home</span> <span class="meta" data-i18n="navHomeMeta">Visão geral</span>
         </button>
         <button type="button" data-page="newsletter">
-          <span data-i18n="navNewsletter">📰 News Letter</span> <span class="meta" data-i18n="navNewsletterMeta">Comunicação</span>
+          <span data-i18n="navJournal">🗞️ Jornal</span> <span class="meta" data-i18n="navJournalMeta">Arquivos mensais</span>
         </button>
         <button type="button" data-page="expatriacao">
           <span data-i18n="navExpat">✈️ Expatriação</span> <span class="meta" data-i18n="navExpatMeta">Processos</span>
@@ -750,7 +721,7 @@
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
             <button class="btn btn-primary" type="button" data-goto="newsletter">
-              <span aria-hidden="true">📰</span> <span data-i18n="goNewsletter">Ir para News Letter</span>
+              <span aria-hidden="true">🗞️</span> <span data-i18n="goJournal">Abrir Jornal</span>
             </button>
             <button class="btn btn-ghost" type="button" data-goto="documentos">
               <span aria-hidden="true">📁</span> <span data-i18n="goDocs">Ver Documentos</span>
@@ -763,11 +734,11 @@
             <h2 data-i18n="quickFeaturesTitle">Funcionalidades rápidas</h2>
             <p data-i18n="quickFeaturesSub">Escolha uma área para abrir a tela correspondente.</p>
 
-            <div class="cards" role="list" aria-label="Funcionalidades">
+            <div class="cards" role="list">
               <div class="card" role="listitem" data-goto="newsletter" tabindex="0">
-                <div class="icon" aria-hidden="true">NL</div>
-                <h3 data-i18n="cardNLTitle">News Letter</h3>
-                <p data-i18n="cardNLDesc">Cadastre e-mails, publique comunicados e mantenha todos atualizados.</p>
+                <div class="icon" aria-hidden="true">JR</div>
+                <h3 data-i18n="cardJRTitle">Jornal</h3>
+                <p data-i18n="cardJRDesc">Selecione o mês e abra arquivos do jornal interno.</p>
               </div>
 
               <div class="card" role="listitem" data-goto="expatriacao" tabindex="0">
@@ -784,7 +755,7 @@
             </div>
           </section>
 
-          <aside class="widget glass" aria-label="Atualizações">
+          <aside class="widget glass">
             <h3 data-i18n="updatesTitle">Atualizações rápidas</h3>
             <div class="list">
               <div class="item">
@@ -797,8 +768,8 @@
               <div class="item">
                 <span class="dot" aria-hidden="true"></span>
                 <div>
-                  <p class="t" data-i18n="update2Title">Dica de navegação</p>
-                  <p class="d" data-i18n="update2Desc">Clique nos cards para abrir as funcionalidades.</p>
+                  <p class="t" data-i18n="updateJRTitle">Jornal mensal</p>
+                  <p class="d" data-i18n="updateJRDesc">Escolha de janeiro a dezembro para abrir os arquivos.</p>
                 </div>
               </div>
               <div class="item">
@@ -813,42 +784,101 @@
         </div>
       </section>
 
-      <!-- NEWSLETTER -->
-      <section class="page" id="page-newsletter" aria-label="News Letter">
+      <!-- JOURNAL (kept route "newsletter") -->
+      <section class="page" id="page-newsletter" aria-label="Jornal">
         <div class="panel glass">
-          <h2 data-i18n="nlTitle">📰 News Letter</h2>
-          <p data-i18n="nlSub">Gerencie comunicados e uma lista simples de e-mails (armazenada localmente no navegador).</p>
+          <h2 data-i18n="jrTitle">🗞️ Jornal (Janeiro a Dezembro)</h2>
+          <p data-i18n="jrSub">
+            Selecione um mês para ver os arquivos disponíveis. Administradores podem adicionar/remover arquivos.
+          </p>
+
+          <div class="file-actions" style="margin-top:12px;">
+            <span class="pill" id="jrStorageHint"></span>
+            <button class="btn btn-ghost" type="button" id="jrExportBtn">
+              <span aria-hidden="true">⬇</span> <span data-i18n="jrExport">Exportar lista</span>
+            </button>
+            <button class="btn btn-ghost" type="button" id="jrImportBtn">
+              <span aria-hidden="true">⬆</span> <span data-i18n="jrImport">Importar lista</span>
+            </button>
+            <input type="file" id="jrImportFile" accept="application/json" style="display:none;" />
+          </div>
         </div>
 
         <div class="grid">
           <section class="panel glass">
-            <h2 data-i18n="nlAddTitle">Cadastrar e-mail</h2>
-            <form id="newsletterForm" style="margin-top:12px; display:flex; flex-direction:column; gap:12px;">
-              <div class="field">
-                <label for="nlEmail" data-i18n="nlEmailLabel">E-mail</label>
-                <input id="nlEmail" type="email" required data-i18n-placeholder="nlEmailPh" placeholder="nome@empresa.com" />
-              </div>
-              <div class="field">
-                <label for="nlName" data-i18n="nlNameLabel">Nome (opcional)</label>
-                <input id="nlName" type="text" data-i18n-placeholder="nlNamePh" placeholder="Ex: Maria Silva" />
-              </div>
-              <button class="btn btn-primary" type="submit">
-                <span aria-hidden="true">➕</span> <span data-i18n="nlAddBtn">Adicionar à lista</span>
-              </button>
-              <p class="hint" data-i18n="nlHint">Os dados ficam em localStorage (somente para demonstração).</p>
-            </form>
+            <h2 data-i18n="jrPickMonth">Escolha um mês</h2>
+            <div class="month-grid" id="jrMonthGrid"></div>
+
+            <div style="margin-top:16px;">
+              <h2 id="jrMonthTitle">—</h2>
+              <p id="jrMonthSubtitle" style="margin:0; color:var(--muted);"></p>
+
+              <div id="jrFileList" class="list" style="margin-top:12px;"></div>
+            </div>
           </section>
 
           <aside class="widget glass">
-            <h3 data-i18n="nlListTitle">Lista de inscritos</h3>
-            <div id="nlList" class="list" aria-live="polite"></div>
-            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn btn-ghost" type="button" id="nlExportBtn">
-                <span aria-hidden="true">⬇</span> <span data-i18n="nlExport">Exportar CSV</span>
-              </button>
-              <button class="btn btn-danger" type="button" id="nlClearBtn">
-                <span aria-hidden="true">🗑</span> <span data-i18n="nlClear">Limpar</span>
-              </button>
+            <h3 data-i18n="jrAdminTitle">Administração</h3>
+            <p id="jrAdminNote" style="margin:0 0 10px; color:var(--muted); font-size:13px;"></p>
+
+            <div id="jrAdminPanel" style="display:none;">
+              <form id="jrAddForm" style="display:flex; flex-direction:column; gap:12px; margin-top:12px;">
+                <div class="field">
+                  <label for="jrMonthSelect" data-i18n="jrMonthLabel">Mês</label>
+                  <select id="jrMonthSelect"></select>
+                </div>
+
+                <div class="field">
+                  <label for="jrTitleInput" data-i18n="jrFileTitleLabel">Título do arquivo</label>
+                  <input id="jrTitleInput" type="text" required data-i18n-placeholder="jrFileTitlePh" placeholder="Ex: Jornal - Janeiro 2026" />
+                </div>
+
+                <div class="field">
+                  <label for="jrTypeSelect" data-i18n="jrTypeLabel">Tipo</label>
+                  <select id="jrTypeSelect">
+                    <option value="url" data-i18n="jrTypeUrl">Link (URL)</option>
+                    <option value="upload" data-i18n="jrTypeUpload">Upload (salvo no navegador)</option>
+                  </select>
+                </div>
+
+                <div class="field" id="jrUrlWrap">
+                  <label for="jrUrlInput" data-i18n="jrUrlLabel">URL</label>
+                  <input id="jrUrlInput" type="url" data-i18n-placeholder="jrUrlPh" placeholder="https://..." />
+                </div>
+
+                <div class="field" id="jrUploadWrap" style="display:none;">
+                  <label for="jrFileInput" data-i18n="jrUploadLabel">Arquivo</label>
+                  <input id="jrFileInput" type="file" />
+                  <p class="hint" data-i18n="jrUploadHint">
+                    Upload é uma demonstração: o arquivo fica salvo no navegador (localStorage) e pode ter limites de tamanho.
+                  </p>
+                </div>
+
+                <button class="btn btn-primary" type="submit">
+                  <span aria-hidden="true">➕</span> <span data-i18n="jrAddBtn">Adicionar</span>
+                </button>
+
+                <button class="btn btn-danger" type="button" id="jrClearAllBtn">
+                  <span aria-hidden="true">🗑</span> <span data-i18n="jrClearAll">Limpar todos (admin)</span>
+                </button>
+              </form>
+            </div>
+
+            <div class="list" style="margin-top:12px;">
+              <div class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p class="t" data-i18n="jrTip1T">Dica</p>
+                  <p class="d" data-i18n="jrTip1D">Para “hospedar” de verdade, use links do SharePoint/Drive e cadastre aqui.</p>
+                </div>
+              </div>
+              <div class="item">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p class="t" data-i18n="jrTip2T">Permissões</p>
+                  <p class="d" data-i18n="jrTip2D">Somente admin vê o painel de adicionar/remover.</p>
+                </div>
+              </div>
             </div>
           </aside>
         </div>
@@ -995,16 +1025,45 @@
 
   <script>
     /* ===============================
-       i18n (PT/EN) + App Logic
+       Utils
        =============================== */
-
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-
     const year = $("#year");
     year.textContent = new Date().getFullYear();
 
-    // --- i18n dictionary
+    function escapeHtml(str){
+      return (str ?? "").toString()
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    /* ===============================
+       Toasts
+       =============================== */
+    const toastWrap = $("#toastWrap");
+    function toast(message, detail="", type="info", ttl=2600){
+      const el = document.createElement("div");
+      el.className = `toast ${type}`;
+      el.innerHTML = `
+        <div class="badge" aria-hidden="true"></div>
+        <p><b>${escapeHtml(message)}</b>${detail ? `<span>${escapeHtml(detail)}</span>` : ""}</p>
+      `;
+      toastWrap.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(10px)";
+        el.style.transition = "all .25s ease";
+      }, ttl - 250);
+      setTimeout(() => el.remove(), ttl);
+    }
+
+    /* ===============================
+       i18n (PT/EN)
+       =============================== */
     const I18N = {
       pt: {
         portalName: "Hyundai Portal",
@@ -1013,22 +1072,19 @@
         chipModern: "Design Moderno",
         chipSmooth: "Animações Fluidas",
         chipFast: "Acesso Rápido",
-
         signInTitle: "Entrar",
         signInSubtitle: "Use suas credenciais para acessar",
         emailLabel: "E-mail",
         emailPlaceholder: "ex: nome@empresa.com",
         passwordLabel: "Senha",
         passwordPlaceholder: "••••••••",
-        demoHint: "Demo: admin@hyundai.com + portal123",
+        demoHint: "Admin: admin@hyundai.com + admin123 | User: user@hyundai.com + portal123",
         accessBtn: "Acessar",
         fillDemoBtn: "Preencher demo",
         kbdTip: "Dica: Alt + M abre o menu",
-
         welcomeDefault: "Bem-vindo(a)!",
         homeBtn: "Início",
         logoutBtn: "Sair",
-
         menuTitle: "Menu",
         sessionActive: "Sessão ativa",
         shortcuts: "Atalhos",
@@ -1036,8 +1092,8 @@
 
         navHome: "🏠 Home",
         navHomeMeta: "Visão geral",
-        navNewsletter: "📰 News Letter",
-        navNewsletterMeta: "Comunicação",
+        navJournal: "🗞️ Jornal",
+        navJournalMeta: "Arquivos mensais",
         navExpat: "✈️ Expatriação",
         navExpatMeta: "Processos",
         navDocs: "📁 Documentos",
@@ -1051,13 +1107,13 @@
         chipSidebar: "Menu lateral",
         chipTransitions: "Transições suaves",
         chipSPA: "SPA (telas internas)",
-        goNewsletter: "Ir para News Letter",
+        goJournal: "Abrir Jornal",
         goDocs: "Ver Documentos",
 
         quickFeaturesTitle: "Funcionalidades rápidas",
         quickFeaturesSub: "Escolha uma área para abrir a tela correspondente.",
-        cardNLTitle: "News Letter",
-        cardNLDesc: "Cadastre e-mails, publique comunicados e mantenha todos atualizados.",
+        cardJRTitle: "Jornal",
+        cardJRDesc: "Selecione o mês e abra arquivos do jornal interno.",
         cardEXTitle: "Expatriação",
         cardEXDesc: "Checklist de etapas, prazos e anexos para processos de expatriação.",
         cardDOCTitle: "Documentos",
@@ -1066,23 +1122,38 @@
         updatesTitle: "Atualizações rápidas",
         update1Title: "Bem-vindo ao Hyundai Portal",
         update1Desc: "Use o menu hambúrguer para navegar entre as telas.",
-        update2Title: "Dica de navegação",
-        update2Desc: "Clique nos cards para abrir as funcionalidades.",
+        updateJRTitle: "Jornal mensal",
+        updateJRDesc: "Escolha de janeiro a dezembro para abrir os arquivos.",
         update3Title: "Idiomas",
         update3Desc: "Você pode alternar entre Português e Inglês no topo.",
 
-        nlTitle: "📰 News Letter",
-        nlSub: "Gerencie comunicados e uma lista simples de e-mails (armazenada localmente no navegador).",
-        nlAddTitle: "Cadastrar e-mail",
-        nlEmailLabel: "E-mail",
-        nlEmailPh: "nome@empresa.com",
-        nlNameLabel: "Nome (opcional)",
-        nlNamePh: "Ex: Maria Silva",
-        nlAddBtn: "Adicionar à lista",
-        nlHint: "Os dados ficam em localStorage (somente para demonstração).",
-        nlListTitle: "Lista de inscritos",
-        nlExport: "Exportar CSV",
-        nlClear: "Limpar",
+        // Journal strings
+        jrTitle: "🗞️ Jornal (Janeiro a Dezembro)",
+        jrSub: "Selecione um mês para ver os arquivos disponíveis. Administradores podem adicionar/remover arquivos.",
+        jrPickMonth: "Escolha um mês",
+        jrAdminTitle: "Administração",
+        jrMonthLabel: "Mês",
+        jrFileTitleLabel: "Título do arquivo",
+        jrFileTitlePh: "Ex: Jornal - Janeiro 2026",
+        jrTypeLabel: "Tipo",
+        jrTypeUrl: "Link (URL)",
+        jrTypeUpload: "Upload (salvo no navegador)",
+        jrUrlLabel: "URL",
+        jrUrlPh: "https://...",
+        jrUploadLabel: "Arquivo",
+        jrUploadHint: "Upload é uma demonstração: o arquivo fica salvo no navegador (localStorage) e pode ter limites de tamanho.",
+        jrAddBtn: "Adicionar",
+        jrClearAll: "Limpar todos (admin)",
+        jrExport: "Exportar lista",
+        jrImport: "Importar lista",
+        jrTip1T: "Dica",
+        jrTip1D: "Para “hospedar” de verdade, use links do SharePoint/Drive e cadastre aqui.",
+        jrTip2T: "Permissões",
+        jrTip2D: "Somente admin vê o painel de adicionar/remover.",
+        jrNoFiles: "Nenhum arquivo neste mês ainda.",
+        jrOpen: "Abrir",
+        jrDownload: "Baixar",
+        jrRemove: "Remover",
 
         exTitle: "✈️ Expatriação",
         exSub: "Checklist com etapas e status (exemplo). Marque o que já foi concluído.",
@@ -1107,6 +1178,9 @@
         docsS2D: "Modelos prontos para solicitações e processos.",
         docsS3T: "Manuais",
         docsS3D: "Guias de uso e instruções operacionais.",
+        docsOpen: "Abrir",
+        docsNoResultsTitle: "Nenhum resultado",
+        docsNoResultsDesc: "Tente outro termo de busca.",
 
         supTitle: "🛟 Suporte",
         supSub: "Abra uma solicitação (demo) ou registre uma dúvida. Ideal para integrar com Service Desk.",
@@ -1123,12 +1197,11 @@
         supB2T: "Informe seu usuário e setor",
         supB2D: "Facilita a validação de permissões e acessos.",
 
-        // Toasts / system strings
         toastOpened: "Tela aberta",
         toastLoginOk: "Login realizado",
         toastLoginOkD: "Acesso liberado ao Hyundai Portal.",
         toastLoginBad: "Credenciais inválidas",
-        toastLoginBadD: "Use admin@hyundai.com / portal123 (demo).",
+        toastLoginBadD: "Use admin@hyundai.com/admin123 ou user@hyundai.com/portal123 (demo).",
         toastRequired: "Campos obrigatórios",
         toastRequiredD: "Preencha e-mail e senha.",
         toastEmailInvalid: "E-mail inválido",
@@ -1138,42 +1211,12 @@
         toastLoggedOut: "Sessão encerrada",
         toastLoggedOutD: "Você saiu do portal.",
         toastAdded: "Adicionado",
-        toastAddedD: "E-mail incluído na News Letter.",
-        toastAlready: "Já existe",
-        toastAlreadyD: "Esse e-mail já está cadastrado.",
-        toastExportNone: "Nada para exportar",
-        toastExportNoneD: "A lista está vazia.",
+        toastRemoved: "Removido",
+        toastSaved: "Salvo",
+        toastImported: "Importado",
         toastExported: "Exportado",
-        toastExportedD: "Arquivo newsletter.csv baixado.",
-        toastCleared: "Lista limpa",
-        toastClearedD: "Todos os inscritos foram removidos.",
-        toastNoFile: "Nenhum arquivo",
-        toastNoFileD: "Selecione um arquivo para anexar (demo).",
-        toastAttached: "Anexo adicionado",
-        toastAttachedD: "Arquivo listado (não enviado).",
-        toastReset: "Reset concluído",
-        toastResetD: "Checklist e anexos (demo) foram limpos.",
-        toastDocOpen: "Documento (demo)",
-        toastDocOpenD: "Abrir item:",
-        toastSupportSent: "Enviado (demo)",
-        toastSupportSentD: "Sua solicitação foi registrada localmente (simulação).",
-
-        // Checklist statuses
-        statusPending: "Pendente",
-        statusDone: "Concluído",
-        statusLabel: "Status",
-        mark: "Marcar",
-
-        // Docs open label
-        docsOpen: "Abrir",
-
-        // Newsletter empty
-        nlEmptyTitle: "Nenhum inscrito ainda",
-        nlEmptyDesc: "Adicione e-mails para aparecerem aqui.",
-
-        // Docs empty
-        docsNoResultsTitle: "Nenhum resultado",
-        docsNoResultsDesc: "Tente outro termo de busca."
+        toastDenied: "Acesso negado",
+        toastDeniedD: "Apenas administradores podem alterar os arquivos.",
       },
 
       en: {
@@ -1183,22 +1226,19 @@
         chipModern: "Modern Design",
         chipSmooth: "Smooth Animations",
         chipFast: "Quick Access",
-
         signInTitle: "Sign in",
         signInSubtitle: "Use your credentials to access",
         emailLabel: "Email",
         emailPlaceholder: "e.g., name@company.com",
         passwordLabel: "Password",
         passwordPlaceholder: "••••••••",
-        demoHint: "Demo: admin@hyundai.com + portal123",
+        demoHint: "Admin: admin@hyundai.com + admin123 | User: user@hyundai.com + portal123",
         accessBtn: "Access",
         fillDemoBtn: "Fill demo",
         kbdTip: "Tip: Alt + M opens the menu",
-
         welcomeDefault: "Welcome!",
         homeBtn: "Home",
         logoutBtn: "Logout",
-
         menuTitle: "Menu",
         sessionActive: "Active session",
         shortcuts: "Shortcuts",
@@ -1206,8 +1246,8 @@
 
         navHome: "🏠 Home",
         navHomeMeta: "Overview",
-        navNewsletter: "📰 Newsletter",
-        navNewsletterMeta: "Communication",
+        navJournal: "🗞️ Journal",
+        navJournalMeta: "Monthly files",
         navExpat: "✈️ Expatriation",
         navExpatMeta: "Processes",
         navDocs: "📁 Documents",
@@ -1221,13 +1261,13 @@
         chipSidebar: "Sidebar menu",
         chipTransitions: "Smooth transitions",
         chipSPA: "SPA (internal screens)",
-        goNewsletter: "Go to Newsletter",
+        goJournal: "Open Journal",
         goDocs: "View Documents",
 
         quickFeaturesTitle: "Quick features",
         quickFeaturesSub: "Choose an area to open the corresponding screen.",
-        cardNLTitle: "Newsletter",
-        cardNLDesc: "Register emails, publish announcements, and keep everyone updated.",
+        cardJRTitle: "Journal",
+        cardJRDesc: "Pick a month and open internal journal files.",
         cardEXTitle: "Expatriation",
         cardEXDesc: "Checklist of steps, deadlines, and attachments for expatriation processes.",
         cardDOCTitle: "Documents",
@@ -1236,23 +1276,37 @@
         updatesTitle: "Quick updates",
         update1Title: "Welcome to Hyundai Portal",
         update1Desc: "Use the hamburger menu to navigate between screens.",
-        update2Title: "Navigation tip",
-        update2Desc: "Click the cards to open features.",
+        updateJRTitle: "Monthly Journal",
+        updateJRDesc: "Choose from January to December to open files.",
         update3Title: "Languages",
         update3Desc: "You can switch between Portuguese and English at the top.",
 
-        nlTitle: "📰 Newsletter",
-        nlSub: "Manage announcements and a simple email list (stored locally in your browser).",
-        nlAddTitle: "Add email",
-        nlEmailLabel: "Email",
-        nlEmailPh: "name@company.com",
-        nlNameLabel: "Name (optional)",
-        nlNamePh: "e.g., Maria Silva",
-        nlAddBtn: "Add to list",
-        nlHint: "Data is stored in localStorage (demo only).",
-        nlListTitle: "Subscribers",
-        nlExport: "Export CSV",
-        nlClear: "Clear",
+        jrTitle: "🗞️ Journal (January to December)",
+        jrSub: "Select a month to see available files. Admins can add/remove files.",
+        jrPickMonth: "Choose a month",
+        jrAdminTitle: "Administration",
+        jrMonthLabel: "Month",
+        jrFileTitleLabel: "File title",
+        jrFileTitlePh: "e.g., Journal - January 2026",
+        jrTypeLabel: "Type",
+        jrTypeUrl: "Link (URL)",
+        jrTypeUpload: "Upload (saved in browser)",
+        jrUrlLabel: "URL",
+        jrUrlPh: "https://...",
+        jrUploadLabel: "File",
+        jrUploadHint: "Upload is a demo: the file is stored in your browser (localStorage) and may hit size limits.",
+        jrAddBtn: "Add",
+        jrClearAll: "Clear all (admin)",
+        jrExport: "Export list",
+        jrImport: "Import list",
+        jrTip1T: "Tip",
+        jrTip1D: "To truly “host”, use SharePoint/Drive links and register them here.",
+        jrTip2T: "Permissions",
+        jrTip2D: "Only admins see the add/remove panel.",
+        jrNoFiles: "No files for this month yet.",
+        jrOpen: "Open",
+        jrDownload: "Download",
+        jrRemove: "Remove",
 
         exTitle: "✈️ Expatriation",
         exSub: "Checklist with steps and status (example). Mark what’s completed.",
@@ -1277,6 +1331,9 @@
         docsS2D: "Ready-made templates for requests and processes.",
         docsS3T: "Manuals",
         docsS3D: "Usage guides and operational instructions.",
+        docsOpen: "Open",
+        docsNoResultsTitle: "No results",
+        docsNoResultsDesc: "Try another search term.",
 
         supTitle: "🛟 Support",
         supSub: "Open a request (demo) or ask a question. Great to integrate with a Service Desk.",
@@ -1297,7 +1354,7 @@
         toastLoginOk: "Login successful",
         toastLoginOkD: "Access granted to Hyundai Portal.",
         toastLoginBad: "Invalid credentials",
-        toastLoginBadD: "Use admin@hyundai.com / portal123 (demo).",
+        toastLoginBadD: "Use admin@hyundai.com/admin123 or user@hyundai.com/portal123 (demo).",
         toastRequired: "Required fields",
         toastRequiredD: "Fill in email and password.",
         toastEmailInvalid: "Invalid email",
@@ -1307,111 +1364,48 @@
         toastLoggedOut: "Session ended",
         toastLoggedOutD: "You logged out.",
         toastAdded: "Added",
-        toastAddedD: "Email added to the Newsletter.",
-        toastAlready: "Already exists",
-        toastAlreadyD: "This email is already registered.",
-        toastExportNone: "Nothing to export",
-        toastExportNoneD: "The list is empty.",
+        toastRemoved: "Removed",
+        toastSaved: "Saved",
+        toastImported: "Imported",
         toastExported: "Exported",
-        toastExportedD: "newsletter.csv downloaded.",
-        toastCleared: "List cleared",
-        toastClearedD: "All subscribers were removed.",
-        toastNoFile: "No file",
-        toastNoFileD: "Choose a file to attach (demo).",
-        toastAttached: "Attachment added",
-        toastAttachedD: "File listed (not uploaded).",
-        toastReset: "Reset done",
-        toastResetD: "Checklist and attachments (demo) were cleared.",
-        toastDocOpen: "Document (demo)",
-        toastDocOpenD: "Open item:",
-        toastSupportSent: "Sent (demo)",
-        toastSupportSentD: "Your request was saved locally (simulation).",
-
-        statusPending: "Pending",
-        statusDone: "Done",
-        statusLabel: "Status",
-        mark: "Mark",
-
-        docsOpen: "Open",
-
-        nlEmptyTitle: "No subscribers yet",
-        nlEmptyDesc: "Add emails to see them here.",
-
-        docsNoResultsTitle: "No results",
-        docsNoResultsDesc: "Try another search term."
+        toastDenied: "Access denied",
+        toastDeniedD: "Only administrators can modify the files.",
       }
     };
 
     const LANG_KEY = "hyundai_portal_lang";
     let currentLang = localStorage.getItem(LANG_KEY) || "pt";
-
     function t(key){
       return (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : (I18N.pt[key] || key);
     }
-
     function applyI18n(){
-      // Text nodes
-      $$("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        // Keep emoji already in text? We already store emoji in strings for nav. Use textContent.
-        el.textContent = t(key);
-      });
-
-      // Placeholders
-      $$("[data-i18n-placeholder]").forEach(el => {
-        const key = el.getAttribute("data-i18n-placeholder");
-        el.setAttribute("placeholder", t(key));
-      });
-
-      // Update <html lang>
+      $$("[data-i18n]").forEach(el => el.textContent = t(el.getAttribute("data-i18n")));
+      $$("[data-i18n-placeholder]").forEach(el => el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder"))));
       document.documentElement.lang = (currentLang === "en") ? "en" : "pt-BR";
-
-      // Update selects
       const lsLogin = $("#langSelectLogin");
       const lsApp = $("#langSelectApp");
       if (lsLogin) lsLogin.value = currentLang;
       if (lsApp) lsApp.value = currentLang;
-
-      // Re-render dynamic content using i18n strings
-      renderNl();
-      renderExp();
+      renderJournal(); // refresh dynamic
       renderDocs($("#docSearch")?.value || "");
+      renderExp();
     }
-
     function setLang(lang){
       currentLang = (lang === "en") ? "en" : "pt";
       localStorage.setItem(LANG_KEY, currentLang);
       applyI18n();
-      toast(t("toastOpened"), currentLang === "en" ? "English" : "Português", "success", 1600);
     }
+    $("#langSelectLogin")?.addEventListener("change", (e) => setLang(e.target.value));
+    $("#langSelectApp")?.addEventListener("change", (e) => setLang(e.target.value));
 
-    // Hook selects
-    $("#langSelectLogin").addEventListener("change", (e) => setLang(e.target.value));
-    $("#langSelectApp").addEventListener("change", (e) => setLang(e.target.value));
-
-    // --- Toasts
-    const toastWrap = $("#toastWrap");
-    function toast(message, detail="", type="info", ttl=2800){
-      const el = document.createElement("div");
-      el.className = `toast ${type}`;
-      el.innerHTML = `
-        <div class="badge" aria-hidden="true"></div>
-        <p><b>${escapeHtml(message)}</b>${detail ? `<span>${escapeHtml(detail)}</span>` : ""}</p>
-      `;
-      toastWrap.appendChild(el);
-      setTimeout(() => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(10px)";
-        el.style.transition = "all .25s ease";
-      }, ttl - 250);
-      setTimeout(() => el.remove(), ttl);
-    }
-
-    // --- Sidebar
+    /* ===============================
+       Sidebar
+       =============================== */
     const hamburger = $("#hamburger");
     const sidebar = $("#sidebar");
     const overlay = $("#overlay");
     const closeSidebarBtn = $("#closeSidebarBtn");
+
     function openSidebar(){
       sidebar.classList.add("open");
       overlay.classList.add("show");
@@ -1426,9 +1420,10 @@
       hamburger.setAttribute("aria-expanded", "false");
       overlay.setAttribute("aria-hidden", "true");
     }
-    hamburger.addEventListener("click", () => sidebar.classList.contains("open") ? closeSidebar() : openSidebar());
-    overlay.addEventListener("click", closeSidebar);
-    closeSidebarBtn.addEventListener("click", closeSidebar);
+
+    hamburger?.addEventListener("click", () => sidebar.classList.contains("open") ? closeSidebar() : openSidebar());
+    overlay?.addEventListener("click", closeSidebar);
+    closeSidebarBtn?.addEventListener("click", closeSidebar);
 
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeSidebar();
@@ -1438,7 +1433,9 @@
       }
     });
 
-    // --- SPA routing
+    /* ===============================
+       SPA routing
+       =============================== */
     const pages = ["home","newsletter","expatriacao","documentos","suporte"];
     function showPage(page){
       pages.forEach(p => $("#page-" + p)?.classList.toggle("show", p === page));
@@ -1450,27 +1447,24 @@
     function pageLabel(page){
       const map = {
         home: currentLang === "en" ? "Home" : "Home",
-        newsletter: currentLang === "en" ? "Newsletter" : "News Letter",
+        newsletter: currentLang === "en" ? "Journal" : "Jornal",
         expatriacao: currentLang === "en" ? "Expatriation" : "Expatriação",
         documentos: currentLang === "en" ? "Documents" : "Documentos",
         suporte: currentLang === "en" ? "Support" : "Suporte"
       };
       return map[page] || page;
     }
-
-    $("#nav").addEventListener("click", (e) => {
+    $("#nav")?.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-page]");
       if (!btn) return;
       showPage(btn.dataset.page);
     });
-
     document.addEventListener("click", (e) => {
       const go = e.target.closest("[data-goto]");
       if (!go) return;
       const page = go.dataset.goto;
       if (pages.includes(page)) showPage(page);
     });
-
     document.addEventListener("keydown", (e) => {
       const card = e.target.closest(".card[data-goto]");
       if (!card) return;
@@ -1479,10 +1473,11 @@
         showPage(card.dataset.goto);
       }
     });
+    $("#goHomeBtn")?.addEventListener("click", () => showPage("home"));
 
-    $("#goHomeBtn").addEventListener("click", () => showPage("home"));
-
-    // --- Login (email + senha)
+    /* ===============================
+       Auth (User/Admin)
+       =============================== */
     const loginView = $("#loginView");
     const appView = $("#appView");
     const loginForm = $("#loginForm");
@@ -1490,13 +1485,17 @@
     const welcomeText = $("#welcomeText");
     const userMeta = $("#userMeta");
     const logoutBtn = $("#logoutBtn");
+    const rolePill = $("#rolePill");
 
     const AUTH_KEY = "hyundai_portal_session";
-    const DEMO_EMAIL = "admin@hyundai.com";
-    const DEMO_PASS = "portal123";
 
-    function setSession(email){
-      localStorage.setItem(AUTH_KEY, JSON.stringify({ email, at: Date.now() }));
+    const DEMO = {
+      admin: { email:"admin@hyundai.com", pass:"admin123", role:"admin" },
+      user:  { email:"user@hyundai.com",  pass:"portal123", role:"user"  }
+    };
+
+    function setSession(email, role){
+      localStorage.setItem(AUTH_KEY, JSON.stringify({ email, role, at: Date.now() }));
     }
     function getSession(){
       try { return JSON.parse(localStorage.getItem(AUTH_KEY) || "null"); }
@@ -1505,23 +1504,28 @@
     function clearSession(){ localStorage.removeItem(AUTH_KEY); }
 
     function isValidEmail(email){
-      // simples e suficiente para UI
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    function enterApp(session){
+    let session = null;
+
+    function enterApp(sess){
+      session = sess;
       loginView.style.display = "none";
       appView.classList.add("show");
       appView.setAttribute("aria-hidden", "false");
 
-      const email = session.email || "";
-      welcomeText.textContent = (currentLang === "en")
-        ? `Welcome, ${email}!`
-        : `Bem-vindo(a), ${email}!`;
+      const email = sess.email || "";
+      welcomeText.textContent = (currentLang === "en") ? `Welcome, ${email}!` : `Bem-vindo(a), ${email}!`;
+      userMeta.textContent = (currentLang === "en") ? `User: ${email}` : `Usuário: ${email}`;
 
-      userMeta.textContent = (currentLang === "en")
-        ? `User: ${email}`
-        : `Usuário: ${email}`;
+      rolePill.style.display = "inline-flex";
+      rolePill.textContent = (sess.role === "admin")
+        ? (currentLang === "en" ? "👑 ADMIN" : "👑 ADMIN")
+        : (currentLang === "en" ? "👤 USER" : "👤 USUÁRIO");
+
+      // Update Journal admin panel visibility
+      updateJournalAdminUI();
 
       showPage("home");
       toast(t("toastLoginOk"), t("toastLoginOkD"), "success");
@@ -1529,6 +1533,7 @@
 
     function exitApp(){
       clearSession();
+      session = null;
       appView.classList.remove("show");
       appView.setAttribute("aria-hidden", "true");
       loginView.style.display = "grid";
@@ -1536,13 +1541,14 @@
       toast(t("toastLoggedOut"), t("toastLoggedOutD"), "info");
     }
 
-    fillDemoBtn.addEventListener("click", () => {
-      $("#email").value = DEMO_EMAIL;
-      $("#pass").value = DEMO_PASS;
+    fillDemoBtn?.addEventListener("click", () => {
+      // Default fill as USER (you can change to admin if desired)
+      $("#email").value = DEMO.user.email;
+      $("#pass").value = DEMO.user.pass;
       toast(t("toastDemoFilled"), t("toastDemoFilledD"), "info", 2200);
     });
 
-    loginForm.addEventListener("submit", (e) => {
+    loginForm?.addEventListener("submit", (e) => {
       e.preventDefault();
       const email = ($("#email").value || "").trim().toLowerCase();
       const pass  = ($("#pass").value || "");
@@ -1556,126 +1562,342 @@
         return;
       }
 
-      if (email === DEMO_EMAIL && pass === DEMO_PASS){
-        setSession(email);
-        enterApp({ email });
+      const isAdmin = (email === DEMO.admin.email && pass === DEMO.admin.pass);
+      const isUser  = (email === DEMO.user.email  && pass === DEMO.user.pass);
+
+      if (isAdmin){
+        setSession(email, "admin");
+        enterApp({ email, role:"admin" });
+      } else if (isUser){
+        setSession(email, "user");
+        enterApp({ email, role:"user" });
       } else {
         toast(t("toastLoginBad"), t("toastLoginBadD"), "danger");
       }
     });
 
-    logoutBtn.addEventListener("click", exitApp);
+    logoutBtn?.addEventListener("click", exitApp);
 
-    // auto-session
-    const existing = getSession();
-    if (existing?.email){
-      // show app after i18n applied so labels are correct
-      // we'll enter after applyI18n below
+    /* ===============================
+       Journal (Monthly files) — Admin CRUD
+       =============================== */
+    const JR_KEY = "hyundai_portal_journal_files";
+
+    const months = [
+      { key:"jan", pt:"Janeiro",   en:"January" },
+      { key:"feb", pt:"Fevereiro", en:"February" },
+      { key:"mar", pt:"Março",     en:"March" },
+      { key:"apr", pt:"Abril",     en:"April" },
+      { key:"may", pt:"Maio",      en:"May" },
+      { key:"jun", pt:"Junho",     en:"June" },
+      { key:"jul", pt:"Julho",     en:"July" },
+      { key:"aug", pt:"Agosto",    en:"August" },
+      { key:"sep", pt:"Setembro",  en:"September" },
+      { key:"oct", pt:"Outubro",   en:"October" },
+      { key:"nov", pt:"Novembro",  en:"November" },
+      { key:"dec", pt:"Dezembro",  en:"December" },
+    ];
+
+    // Elements
+    const jrMonthGrid = $("#jrMonthGrid");
+    const jrFileList = $("#jrFileList");
+    const jrMonthTitle = $("#jrMonthTitle");
+    const jrMonthSubtitle = $("#jrMonthSubtitle");
+    const jrAdminPanel = $("#jrAdminPanel");
+    const jrAdminNote = $("#jrAdminNote");
+    const jrMonthSelect = $("#jrMonthSelect");
+    const jrAddForm = $("#jrAddForm");
+    const jrTitleInput = $("#jrTitleInput");
+    const jrTypeSelect = $("#jrTypeSelect");
+    const jrUrlWrap = $("#jrUrlWrap");
+    const jrUrlInput = $("#jrUrlInput");
+    const jrUploadWrap = $("#jrUploadWrap");
+    const jrFileInput = $("#jrFileInput");
+    const jrClearAllBtn = $("#jrClearAllBtn");
+    const jrStorageHint = $("#jrStorageHint");
+    const jrExportBtn = $("#jrExportBtn");
+    const jrImportBtn = $("#jrImportBtn");
+    const jrImportFile = $("#jrImportFile");
+
+    let activeMonthKey = "jan";
+
+    function jrGet(){
+      try{
+        const raw = JSON.parse(localStorage.getItem(JR_KEY) || "{}");
+        // ensure all months exist
+        months.forEach(m => { if (!raw[m.key]) raw[m.key] = []; });
+        return raw;
+      }catch{
+        const init = {};
+        months.forEach(m => init[m.key] = []);
+        return init;
+      }
+    }
+    function jrSet(data){
+      localStorage.setItem(JR_KEY, JSON.stringify(data));
     }
 
-    /* ---------------------------
-       NEWSLETTER (localStorage)
-       --------------------------- */
-    const NL_KEY = "hyundai_portal_newsletter";
-    const newsletterForm = $("#newsletterForm");
-    const nlList = $("#nlList");
-    const nlExportBtn = $("#nlExportBtn");
-    const nlClearBtn = $("#nlClearBtn");
-
-    function nlGet(){
-      try { return JSON.parse(localStorage.getItem(NL_KEY) || "[]"); }
-      catch { return []; }
+    function monthName(key){
+      const m = months.find(x => x.key === key);
+      if (!m) return key;
+      return currentLang === "en" ? m.en : m.pt;
     }
-    function nlSet(list){ localStorage.setItem(NL_KEY, JSON.stringify(list)); }
 
-    function renderNl(){
-      const data = nlGet();
-      nlList.innerHTML = "";
-      if (!data.length){
-        nlList.innerHTML = `
+    function updateJournalAdminUI(){
+      const isAdmin = session?.role === "admin";
+      jrAdminPanel.style.display = isAdmin ? "block" : "none";
+      jrAdminNote.textContent = isAdmin
+        ? (currentLang === "en" ? "You are logged in as admin. You can add/remove files." : "Você está logado como admin. Você pode adicionar/remover arquivos.")
+        : (currentLang === "en" ? "Login as admin to manage files." : "Faça login como admin para gerenciar arquivos.");
+
+      jrStorageHint.textContent = (currentLang === "en")
+        ? "Storage: URL links recommended • Upload = browser localStorage (size-limited)"
+        : "Armazenamento: Links URL recomendado • Upload = localStorage do navegador (limitado)";
+    }
+
+    function renderJournalMonthGrid(){
+      const data = jrGet();
+      jrMonthGrid.innerHTML = "";
+      months.forEach(m => {
+        const count = (data[m.key] || []).length;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "month-btn" + (m.key === activeMonthKey ? " active" : "");
+        btn.innerHTML = `
+          <span>${escapeHtml(monthName(m.key))}</span>
+          <span class="badge-small">${count} ${count === 1 ? "file" : "files"}</span>
+        `;
+        btn.addEventListener("click", () => {
+          activeMonthKey = m.key;
+          renderJournal();
+        });
+        jrMonthGrid.appendChild(btn);
+      });
+    }
+
+    function fileRow(item, isAdmin){
+      // item: {id,title,type,url?,dataUrl?,fileName?,mime?,addedAt}
+      const date = new Date(item.addedAt || Date.now()).toLocaleString();
+      const safeTitle = escapeHtml(item.title || "—");
+      const sub = item.type === "url"
+        ? (currentLang === "en" ? `Link • ${date}` : `Link • ${date}`)
+        : (currentLang === "en" ? `Upload • ${escapeHtml(item.fileName || "")} • ${date}` : `Upload • ${escapeHtml(item.fileName || "")} • ${date}`);
+
+      const openHref = item.type === "url" ? item.url : item.dataUrl;
+
+      const actions = `
+        <div class="file-actions">
+          <a class="btn btn-ghost" href="${openHref}" target="_blank" rel="noopener">
+            🔎 ${escapeHtml(t("jrOpen"))}
+          </a>
+          ${item.type === "upload" ? `
+            <a class="btn btn-ghost" href="${openHref}" download="${escapeHtml(item.fileName || item.title || "arquivo")}">
+              ⬇ ${escapeHtml(t("jrDownload"))}
+            </a>` : ""}
+          ${isAdmin ? `
+            <button class="btn btn-danger" type="button" data-jr-remove="${escapeHtml(item.id)}">
+              🗑 ${escapeHtml(t("jrRemove"))}
+            </button>` : ""}
+        </div>
+      `;
+
+      return `
+        <div class="item">
+          <span class="dot" aria-hidden="true"></span>
+          <div style="width:100%;">
+            <p class="t">${safeTitle}</p>
+            <p class="d">${sub}</p>
+            ${actions}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderJournalFileList(){
+      const data = jrGet();
+      const isAdmin = session?.role === "admin";
+      const list = data[activeMonthKey] || [];
+
+      jrMonthTitle.textContent = monthName(activeMonthKey);
+      jrMonthSubtitle.textContent = (currentLang === "en")
+        ? `Files available: ${list.length}`
+        : `Arquivos disponíveis: ${list.length}`;
+
+      if (!list.length){
+        jrFileList.innerHTML = `
           <div class="item">
             <span class="dot" aria-hidden="true"></span>
             <div>
-              <p class="t">${escapeHtml(t("nlEmptyTitle"))}</p>
-              <p class="d">${escapeHtml(t("nlEmptyDesc"))}</p>
+              <p class="t">${escapeHtml(t("jrNoFiles"))}</p>
+              <p class="d">${escapeHtml(currentLang==="en" ? "Ask an admin to add files for this month." : "Peça para um admin adicionar arquivos para este mês.")}</p>
             </div>
           </div>`;
         return;
       }
-      data.slice().reverse().forEach(entry => {
-        const el = document.createElement("div");
-        el.className = "item";
-        const name = entry.name ? `<p class="t">${escapeHtml(entry.name)}</p>` : `<p class="t">${escapeHtml(currentLang==="en" ? "Subscriber" : "Inscrito")}</p>`;
-        el.innerHTML = `
-          <span class="dot" aria-hidden="true"></span>
-          <div>
-            ${name}
-            <p class="d">${escapeHtml(entry.email)} • ${new Date(entry.at).toLocaleString()}</p>
-          </div>`;
-        nlList.appendChild(el);
+
+      jrFileList.innerHTML = list
+        .slice()
+        .sort((a,b) => (b.addedAt||0) - (a.addedAt||0))
+        .map(it => fileRow(it, isAdmin))
+        .join("");
+
+      // bind remove buttons
+      $$("[data-jr-remove]", jrFileList).forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (session?.role !== "admin"){
+            toast(t("toastDenied"), t("toastDeniedD"), "danger");
+            return;
+          }
+          const id = btn.getAttribute("data-jr-remove");
+          const d = jrGet();
+          d[activeMonthKey] = (d[activeMonthKey] || []).filter(x => x.id !== id);
+          jrSet(d);
+          toast(t("toastRemoved"), monthName(activeMonthKey), "info");
+          renderJournal();
+        });
       });
     }
 
-    newsletterForm.addEventListener("submit", (e) => {
+    function populateMonthSelect(){
+      jrMonthSelect.innerHTML = months.map(m => {
+        const label = monthName(m.key);
+        return `<option value="${m.key}">${escapeHtml(label)}</option>`;
+      }).join("");
+      jrMonthSelect.value = activeMonthKey;
+    }
+
+    function renderJournal(){
+      // Ensure some elements exist (if user hasn't navigated yet)
+      if (!jrMonthGrid || !jrFileList) return;
+      populateMonthSelect();
+      renderJournalMonthGrid();
+      renderJournalFileList();
+      updateJournalAdminUI();
+    }
+
+    // Type select toggles URL vs Upload
+    jrTypeSelect?.addEventListener("change", () => {
+      const v = jrTypeSelect.value;
+      jrUrlWrap.style.display = (v === "url") ? "block" : "none";
+      jrUploadWrap.style.display = (v === "upload") ? "block" : "none";
+    });
+
+    jrAddForm?.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = ($("#nlEmail").value || "").trim().toLowerCase();
-      const name = ($("#nlName").value || "").trim();
-
-      if (!isValidEmail(email)){
-        toast(t("toastEmailInvalid"), t("toastEmailInvalidD"), "danger");
+      if (session?.role !== "admin"){
+        toast(t("toastDenied"), t("toastDeniedD"), "danger");
         return;
       }
 
-      const list = nlGet();
-      if (list.some(x => x.email === email)){
-        toast(t("toastAlready"), t("toastAlreadyD"), "info");
+      const mKey = jrMonthSelect.value;
+      const title = (jrTitleInput.value || "").trim();
+      const type = jrTypeSelect.value;
+
+      if (!title){
+        toast(t("toastRequired"), currentLang==="en" ? "Please provide a title." : "Informe um título.", "danger");
         return;
       }
 
-      list.push({ email, name, at: Date.now() });
-      nlSet(list);
-      $("#nlEmail").value = "";
-      $("#nlName").value = "";
-      renderNl();
-      toast(t("toastAdded"), t("toastAddedD"), "success");
+      const data = jrGet();
+      const item = {
+        id: crypto?.randomUUID ? crypto.randomUUID() : ("id_" + Math.random().toString(16).slice(2)),
+        title,
+        type,
+        addedAt: Date.now(),
+      };
+
+      if (type === "url"){
+        const url = (jrUrlInput.value || "").trim();
+        if (!url){
+          toast(t("toastRequired"), currentLang==="en" ? "Please provide a URL." : "Informe uma URL.", "danger");
+          return;
+        }
+        item.url = url;
+      } else {
+        const f = jrFileInput.files && jrFileInput.files[0];
+        if (!f){
+          toast(t("toastRequired"), currentLang==="en" ? "Please choose a file." : "Selecione um arquivo.", "danger");
+          return;
+        }
+        item.fileName = f.name;
+        item.mime = f.type || "application/octet-stream";
+        item.dataUrl = await readFileAsDataURL(f); // stores in localStorage (size-limited)
+      }
+
+      data[mKey] = data[mKey] || [];
+      data[mKey].push(item);
+      jrSet(data);
+
+      // reset form
+      jrTitleInput.value = "";
+      jrUrlInput.value = "";
+      jrFileInput.value = "";
+      activeMonthKey = mKey;
+
+      toast(t("toastAdded"), monthName(mKey), "success");
+      renderJournal();
     });
 
-    nlClearBtn.addEventListener("click", () => {
-      nlSet([]);
-      renderNl();
-      toast(t("toastCleared"), t("toastClearedD"), "info");
-    });
-
-    nlExportBtn.addEventListener("click", () => {
-      const list = nlGet();
-      if (!list.length){
-        toast(t("toastExportNone"), t("toastExportNoneD"), "info");
+    jrClearAllBtn?.addEventListener("click", () => {
+      if (session?.role !== "admin"){
+        toast(t("toastDenied"), t("toastDeniedD"), "danger");
         return;
       }
-      const header = "email,name,date\n";
-      const rows = list.map(x => {
-        const date = new Date(x.at).toISOString();
-        const safeName = (x.name || "").replaceAll('"','""');
-        return `"${x.email}","${safeName}","${date}"`;
-      }).join("\n");
-      const csv = header + rows;
+      const cleared = {};
+      months.forEach(m => cleared[m.key] = []);
+      jrSet(cleared);
+      toast(t("toastSaved"), currentLang==="en" ? "Journal cleared." : "Jornal limpo.", "info");
+      renderJournal();
+    });
 
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    function readFileAsDataURL(file){
+      return new Promise((resolve, reject) => {
+        const fr = new FileReader();
+        fr.onload = () => resolve(fr.result);
+        fr.onerror = reject;
+        fr.readAsDataURL(file);
+      });
+    }
+
+    // Export/Import list (JSON)
+    jrExportBtn?.addEventListener("click", () => {
+      const data = jrGet();
+      const json = JSON.stringify(data, null, 2);
+      const blob = new Blob([json], { type: "application/json;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "newsletter.csv";
+      a.download = "journal_files.json";
       document.body.appendChild(a);
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
-
-      toast(t("toastExported"), t("toastExportedD"), "success");
+      toast(t("toastExported"), "journal_files.json", "success");
     });
 
-    /* ---------------------------
-       EXPATRIACAO (checklist)
-       --------------------------- */
+    jrImportBtn?.addEventListener("click", () => jrImportFile?.click());
+    jrImportFile?.addEventListener("change", async () => {
+      if (!jrImportFile.files?.[0]) return;
+      try{
+        const text = await jrImportFile.files[0].text();
+        const parsed = JSON.parse(text);
+        // minimal validation
+        if (typeof parsed !== "object") throw new Error("Invalid");
+        months.forEach(m => { if (!parsed[m.key]) parsed[m.key] = []; });
+        jrSet(parsed);
+        toast(t("toastImported"), currentLang==="en" ? "Journal list imported." : "Lista do jornal importada.", "success");
+        renderJournal();
+      }catch{
+        toast(currentLang==="en" ? "Import failed" : "Falha ao importar",
+              currentLang==="en" ? "Invalid JSON file." : "Arquivo JSON inválido.", "danger");
+      }finally{
+        jrImportFile.value = "";
+      }
+    });
+
+    /* ===============================
+       Expat (unchanged demo)
+       =============================== */
     const EXP_KEY = "hyundai_portal_expatriacao";
     const expChecklistEl = $("#expChecklist");
     const expSaveBtn = $("#expSaveBtn");
@@ -1692,20 +1914,17 @@
       { id:"saude", pt:"Seguro saúde e orientações", en:"Health insurance and guidance" },
       { id:"onboarding", pt:"Onboarding na unidade destino", en:"Onboarding at destination unit" },
     ];
-
-    function expGet(){
-      try { return JSON.parse(localStorage.getItem(EXP_KEY) || "{}"); }
-      catch { return {}; }
-    }
+    function expGet(){ try { return JSON.parse(localStorage.getItem(EXP_KEY) || "{}"); } catch { return {}; } }
     function expSet(obj){ localStorage.setItem(EXP_KEY, JSON.stringify(obj)); }
 
     function renderExp(){
+      if (!expChecklistEl) return;
       const state = expGet();
       expChecklistEl.innerHTML = "";
       expSteps.forEach(step => {
         const label = currentLang === "en" ? step.en : step.pt;
         const done = !!state[step.id];
-        const statusText = done ? t("statusDone") : t("statusPending");
+        const statusText = done ? (currentLang==="en" ? "Done" : "Concluído") : (currentLang==="en" ? "Pending" : "Pendente");
 
         const wrap = document.createElement("div");
         wrap.className = "item";
@@ -1714,10 +1933,10 @@
           <div style="width:100%;">
             <p class="t">${escapeHtml(label)}</p>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:8px;">
-              <span class="d" style="margin:0;">${escapeHtml(t("statusLabel"))}: <b>${escapeHtml(statusText)}</b></span>
+              <span class="d" style="margin:0;">${escapeHtml(currentLang==="en" ? "Status" : "Status")}: <b>${escapeHtml(statusText)}</b></span>
               <label style="display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none; text-transform:none; font-size:12px; letter-spacing:0; color:var(--muted); font-weight:800;">
                 <input type="checkbox" data-exp-check="${step.id}" ${done ? "checked" : ""} />
-                ${escapeHtml(t("mark"))}
+                ${escapeHtml(currentLang==="en" ? "Mark" : "Marcar")}
               </label>
             </div>
           </div>
@@ -1726,7 +1945,7 @@
       });
     }
 
-    expChecklistEl.addEventListener("change", (e) => {
+    expChecklistEl?.addEventListener("change", (e) => {
       const cb = e.target.closest("input[type='checkbox'][data-exp-check]");
       if (!cb) return;
       const id = cb.dataset.expCheck;
@@ -1736,24 +1955,20 @@
       renderExp();
     });
 
-    expSaveBtn.addEventListener("click", () => {
-      toast(currentLang==="en" ? "Progress saved" : "Progresso salvo",
-            currentLang==="en" ? "Checklist updated in the browser." : "Checklist atualizado no navegador.",
-            "success");
-    });
-
-    expResetBtn.addEventListener("click", () => {
+    expSaveBtn?.addEventListener("click", () => toast(currentLang==="en" ? "Progress saved" : "Progresso salvo", "", "success"));
+    expResetBtn?.addEventListener("click", () => {
       expSet({});
       renderExp();
       expAttachList.innerHTML = "";
       expFile.value = "";
-      toast(t("toastReset"), t("toastResetD"), "info");
+      toast(currentLang==="en" ? "Reset done" : "Reset concluído", "", "info");
     });
 
-    expAttachBtn.addEventListener("click", () => {
+    expAttachBtn?.addEventListener("click", () => {
       const f = expFile.files && expFile.files[0];
       if (!f){
-        toast(t("toastNoFile"), t("toastNoFileD"), "danger");
+        toast(currentLang==="en" ? "No file" : "Nenhum arquivo",
+              currentLang==="en" ? "Choose a file to attach (demo)." : "Selecione um arquivo para anexar (demo).", "danger");
         return;
       }
       const el = document.createElement("div");
@@ -1767,12 +1982,12 @@
       `;
       expAttachList.prepend(el);
       expFile.value = "";
-      toast(t("toastAttached"), t("toastAttachedD"), "success");
+      toast(currentLang==="en" ? "Attached" : "Anexo adicionado", "", "success");
     });
 
-    /* ---------------------------
-       DOCUMENTOS (search/filter)
-       --------------------------- */
+    /* ===============================
+       Documents (fix included)
+       =============================== */
     const docSearch = $("#docSearch");
     const docCards = $("#docCards");
 
@@ -1786,6 +2001,7 @@
     ];
 
     function renderDocs(query=""){
+      if (!docCards) return;
       const q = (query || "").trim().toLowerCase();
       const filtered = documents.filter(d => {
         const title = (currentLang==="en" ? d.title.en : d.title.pt).toLowerCase();
@@ -1819,7 +2035,7 @@
           <p>${escapeHtml(desc)}</p>
           <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; position:relative; z-index:1;">
             <span class="chip">${escapeHtml(tag)}</span>
-            <a class="btn btn-ghost inline-link" href="javascript:void(0)" data-doc-open="${escapeHtml(d.id)}">
+            <a class="btn btn-ghost" href="javascript:void(0)" data-doc-open="${escapeHtml(d.id)}">
               <span aria-hidden="true">🔎</span> ${escapeHtml(t("docsOpen"))}
             </a>
           </div>
@@ -1832,14 +2048,16 @@
       const a = e.target.closest("[data-doc-open]");
       if (!a) return;
       const id = a.dataset.docOpen;
-      toast(t("toastDocOpen"), `${t("toastDocOpenD")} ${id}`, "info", 2600);
+      toast(currentLang==="en" ? "Document (demo)" : "Documento (demo)",
+            (currentLang==="en" ? "Open item: " : "Abrir item: ") + id,
+            "info", 2600);
     });
 
-    docSearch.addEventListener("input", () => renderDocs(docSearch.value));
+    docSearch?.addEventListener("input", () => renderDocs(docSearch.value));
 
-    /* ---------------------------
-       SUPORTE (demo)
-       --------------------------- */
+    /* ===============================
+       Support (demo)
+       =============================== */
     const supportForm = $("#supportForm");
     supportForm?.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -1851,37 +2069,30 @@
       }
       $("#supTitleInput").value = "";
       $("#supDesc").value = "";
-      toast(t("toastSupportSent"), t("toastSupportSentD"), "success", 3200);
+      toast(currentLang==="en" ? "Sent (demo)" : "Enviado (demo)",
+            currentLang==="en" ? "Your request was saved locally (simulation)." : "Sua solicitação foi registrada localmente (simulação).",
+            "success", 3200);
     });
 
-    // Utility
-    function escapeHtml(str){
-      return (str ?? "").toString()
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    // Apply language on load
+    /* ===============================
+       Init
+       =============================== */
     applyI18n();
 
-    // Enter app if session exists
-    const existing2 = getSession();
-    if (existing2?.email){
-      enterApp(existing2);
+    // Restore session
+    const existing = getSession();
+    if (existing?.email){
+      enterApp(existing);
     } else {
-      // ensure login language select reflects saved value
       $("#langSelectLogin").value = currentLang;
       $("#langSelectApp").value = currentLang;
+      // Still render journal for login state? not needed.
     }
 
-    // Initial renders
-    renderNl();
+    // Initial renders for pages
+    renderJournal();
     renderExp();
     renderDocs("");
-
   </script>
 </body>
 </html>
