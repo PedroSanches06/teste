@@ -23,6 +23,7 @@
       --radius: 20px;
       --ease: cubic-bezier(.2,.9,.2,1);
     }
+
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
     body{
@@ -36,6 +37,7 @@
       overflow-x:hidden;
     }
 
+    /* Subtle animated blobs */
     .blob{
       position:fixed;
       width:420px;height:420px;
@@ -65,6 +67,7 @@
       -webkit-backdrop-filter: blur(14px);
     }
 
+    /* Buttons */
     .btn{
       border:none; outline:none; cursor:pointer;
       border-radius: 999px;
@@ -95,6 +98,7 @@
     }
     .btn-danger:hover{ transform: translateY(-2px); background: rgba(229,57,53,.14); }
 
+    /* Inputs */
     .field{ display:flex; flex-direction:column; gap:8px; }
     label{ font-size: 12px; letter-spacing:.4px; color: var(--muted); font-weight:700; text-transform: uppercase;}
     input, select, textarea{
@@ -112,6 +116,7 @@
       transform: translateY(-1px);
     }
 
+    /* Language pill */
     .lang{
       display:flex; align-items:center; gap:8px;
       padding: 8px 10px;
@@ -130,6 +135,7 @@
       outline:none;
     }
 
+    /* Topbar */
     .topbar{
       position:sticky; top:0; z-index:20;
       background: rgba(245,249,255,.55);
@@ -162,6 +168,22 @@
     .brand h1{ margin:0; font-size: 16px; letter-spacing: .2px; }
     .brand p{ margin:0; font-size: 12px; color: var(--muted); margin-top: 2px; }
 
+    /* Role pill */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(230,239,255,.9);
+      background: rgba(255,255,255,.75);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: var(--shadow2);
+    }
+
+    /* Hamburger */
     .hamburger{
       width:44px;height:44px;
       border-radius: 14px;
@@ -187,6 +209,7 @@
     .hamburger[data-open="true"] .ham-lines span:nth-child(2){ opacity:0; }
     .hamburger[data-open="true"] .ham-lines span:nth-child(3){ top:5px; transform: rotate(-45deg); }
 
+    /* Sidebar */
     .overlay{
       position:fixed; inset:0;
       background: rgba(10,27,58,.34);
@@ -233,7 +256,7 @@
       justify-content: space-between;
       gap: 12px;
       transition: background .2s var(--ease), transform .2s var(--ease), border-color .2s var(--ease);
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text);
     }
     .nav button:hover{
@@ -245,7 +268,7 @@
       background: linear-gradient(135deg, rgba(11,61,145,.12), rgba(30,136,255,.10));
       border-color: rgba(30,136,255,.20);
     }
-    .nav .meta{ font-size: 12px; color: var(--muted); font-weight: 650; }
+    .nav .meta{ font-size: 12px; color: var(--muted); font-weight: 700; }
 
     .sidebar-footer{
       position:absolute; left:16px; right:16px; bottom:16px;
@@ -254,9 +277,15 @@
       border-top: 1px solid rgba(230,239,255,.9);
     }
 
+    /* App fade in */
     .app{ display:none; min-height:100vh; }
     .app.show{ display:block; animation: fadeIn .35s var(--ease) both; }
     @keyframes fadeIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
+
+    /* Pages */
+    .page{ display:none; animation: pageIn .35s var(--ease) both; }
+    .page.show{ display:block; }
+    @keyframes pageIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
 
     .grid{
       display:grid;
@@ -300,7 +329,7 @@
       background: rgba(30,136,255,.10);
       border: 1px solid rgba(30,136,255,.12);
       color: var(--brand);
-      font-weight: 750;
+      font-weight: 800;
       font-size: 12px;
     }
 
@@ -360,14 +389,10 @@
       box-shadow: 0 6px 16px rgba(30,136,255,.25);
       flex: 0 0 auto;
     }
-    .item .t{ font-weight: 800; font-size: 13px; margin:0; }
+    .item .t{ font-weight: 900; font-size: 13px; margin:0; }
     .item .d{ margin:3px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 
-    .page{ display:none; animation: pageIn .35s var(--ease) both; }
-    .page.show{ display:block; }
-    @keyframes pageIn{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform: translateY(0); } }
-
-    /* LOGIN */
+    /* Login */
     .login{
       min-height: 100vh;
       display:grid;
@@ -425,7 +450,7 @@
     }
     .login-title .left{ display:flex; align-items:center; gap: 12px; }
     .login-title h1{ margin:0; font-size: 18px; letter-spacing:.2px; }
-    .login-title small{ display:block; color: var(--muted); margin-top: 2px; font-weight: 650; }
+    .login-title small{ display:block; color: var(--muted); margin-top: 2px; font-weight: 750; }
 
     .hint{ font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 6px; }
     .footnote{
@@ -482,7 +507,23 @@
     .toast p{ margin:0; font-size: 13px; line-height: 1.45; color: var(--text); }
     .toast p span{ display:block; margin-top:2px; color: var(--muted); font-size: 12px; line-height: 1.35; }
 
-    /* Journal specific */
+    /* Journal */
+    .badge-small{
+      font-size: 11px;
+      font-weight: 900;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(30,136,255,.10);
+      border:1px solid rgba(30,136,255,.12);
+      color: var(--brand);
+      white-space: nowrap;
+    }
+    .file-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
     .month-grid{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -502,7 +543,7 @@
       justify-content: space-between;
       gap: 10px;
       transition: transform .2s var(--ease), background .2s var(--ease);
-      font-weight: 800;
+      font-weight: 900;
       color: var(--text);
     }
     .month-btn:hover{ transform: translateY(-2px); background: rgba(255,255,255,.9); }
@@ -510,33 +551,195 @@
       background: linear-gradient(135deg, rgba(11,61,145,.12), rgba(30,136,255,.10));
       border-color: rgba(30,136,255,.22);
     }
-    .badge-small{
-      font-size: 11px;
-      font-weight: 850;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: rgba(30,136,255,.10);
-      border:1px solid rgba(30,136,255,.12);
-      color: var(--brand);
-      white-space: nowrap;
+
+    /* ===== Expatriação Profiles (social layout) ===== */
+    .exp-layout{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap: 18px;
+      margin-top: 20px;
     }
-    .file-actions{
+    @media (max-width: 980px){
+      .exp-layout{ grid-template-columns: 1fr; }
+    }
+
+    .exp-side{
+      padding: 16px;
+      position: sticky;
+      top: 84px;
+      height: calc(100vh - 110px);
+      overflow:auto;
+      transition: width .28s var(--ease), transform .28s var(--ease);
+    }
+    .exp-side.collapsed{ width: 96px; }
+    .exp-side.collapsed .exp-block,
+    .exp-side.collapsed .muted,
+    .exp-side.collapsed .field,
+    .exp-side.collapsed .exp-mini-form,
+    .exp-side.collapsed .exp-block-title strong,
+    .exp-side.collapsed .side-label{
+      display:none !important;
+    }
+    .exp-side-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .muted{ color: var(--muted); font-size: 13px; line-height: 1.45; margin: 4px 0 0; }
+
+    .exp-block{
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(230,239,255,.9);
+    }
+    .exp-block-title{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .exp-list{ display:flex; flex-direction:column; gap:10px; }
+    .exp-entry{
       display:flex;
       gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .pill{
-      display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(230,239,255,.9);
-      background: rgba(255,255,255,.75);
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(230,239,255,.9);
+      background: rgba(255,255,255,.7);
+      cursor:pointer;
+      transition: transform .2s var(--ease), background .2s var(--ease);
+    }
+    .exp-entry:hover{ transform: translateY(-2px); background: rgba(255,255,255,.9); }
+    .exp-entry.active{
+      background: linear-gradient(135deg, rgba(11,61,145,.12), rgba(30,136,255,.10));
+      border-color: rgba(30,136,255,.22);
+    }
+    .exp-entry .mini-avatar{
+      width:34px; height:34px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(11,61,145,.12), rgba(30,136,255,.12));
+      border: 1px solid rgba(30,136,255,.14);
+      display:grid; place-items:center;
+      overflow:hidden;
+      flex: 0 0 auto;
+      font-weight:900;
+      color: var(--brand);
+    }
+    .exp-entry .mini-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .exp-entry .txt{ min-width:0; }
+    .exp-entry .txt b{ display:block; font-size: 13px; }
+    .exp-entry .txt small{
+      display:block;
       color: var(--muted);
       font-size: 12px;
-      font-weight: 800;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 190px;
+    }
+
+    .exp-mini-form{ margin-top: 10px; display:flex; flex-direction:column; gap:10px; }
+    .row-2{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    @media (max-width: 980px){ .row-2{ grid-template-columns: 1fr; } }
+
+    .exp-main{ min-width:0; }
+    .exp-profile{ overflow:hidden; }
+    .exp-cover{
+      height: 120px;
+      background: linear-gradient(135deg, rgba(11,61,145,.92), rgba(30,136,255,.88));
+      position:relative;
+    }
+    .exp-cover-glow{
+      position:absolute;
+      right:-60px; top:-60px;
+      width:220px; height:220px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(86,194,255,.7), transparent 60%);
+      filter: blur(8px);
+      opacity:.9;
+    }
+
+    .exp-header{
+      display:flex;
+      gap: 16px;
+      padding: 0 18px 18px;
+      margin-top: -34px;
+      align-items:flex-end;
+    }
+    @media (max-width: 980px){
+      .exp-header{ flex-direction: column; align-items:flex-start; margin-top:-44px; }
+    }
+    .exp-avatar-wrap{
+      width: 92px; height: 92px;
+      border-radius: 26px;
+      border: 4px solid rgba(255,255,255,.85);
+      background: rgba(255,255,255,.75);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      position:relative;
+    }
+    .exp-avatar{ width:100%; height:100%; object-fit:cover; display:none; }
+    .exp-avatar-fallback{
+      width:100%; height:100%;
+      display:grid; place-items:center;
+      font-size: 28px;
+      color: var(--brand);
+      font-weight: 900;
+    }
+    .exp-header-info{ flex:1; min-width:0; }
+    .exp-header-info h2{ margin:0; font-size: 20px; }
+    .exp-header-info p{ margin: 6px 0 0; }
+    .exp-header-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+
+    .exp-tabs{
+      display:flex;
+      gap: 10px;
+      padding: 0 18px 18px;
+    }
+    .exp-tab{
+      border:none;
+      cursor:pointer;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border:1px solid rgba(230,239,255,.9);
+      font-weight: 900;
+      transition: transform .2s var(--ease), background .2s var(--ease);
+    }
+    .exp-tab:hover{ transform: translateY(-2px); background: rgba(255,255,255,.92); }
+    .exp-tab.active{
+      background: linear-gradient(135deg, rgba(11,61,145,.12), rgba(30,136,255,.10));
+      border-color: rgba(30,136,255,.22);
+      color: var(--brand);
+    }
+
+    .exp-body{ padding: 0 18px 18px; }
+    .exp-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+    @media (max-width: 980px){ .exp-grid{ grid-template-columns: 1fr; } }
+
+    .exp-box{ padding: 16px; border-radius: var(--radius); }
+    .exp-box h3{ margin: 0 0 10px; font-size: 15px; }
+
+    .exp-form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 980px){ .exp-form{ grid-template-columns: 1fr; } }
+
+    .exp-save-row{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
     }
   </style>
 </head>
@@ -604,9 +807,12 @@
           <input id="pass" name="pass" type="password" required
                  data-i18n-placeholder="passwordPlaceholder"
                  placeholder="••••••••" />
-          <div class="hint" data-i18n="demoHint">
-            Admin: <span class="kbd">admin@hyundai.com</span> + <span class="kbd">admin123</span><br/>
-            User: <span class="kbd">user@hyundai.com</span> + <span class="kbd">portal123</span>
+          <div class="hint">
+            <span data-i18n="demoHintTitle">Contas demo</span>:
+            <br/>
+            <b>Admin</b>: <span class="kbd">admin@hyundai.com</span> + <span class="kbd">admin123</span>
+            <br/>
+            <b>User</b>: <span class="kbd">user@hyundai.com</span> + <span class="kbd">portal123</span>
           </div>
         </div>
 
@@ -685,11 +891,11 @@
         <button type="button" data-page="home" class="active">
           <span data-i18n="navHome">🏠 Home</span> <span class="meta" data-i18n="navHomeMeta">Visão geral</span>
         </button>
-        <button type="button" data-page="newsletter">
+        <button type="button" data-page="journal">
           <span data-i18n="navJournal">🗞️ Jornal</span> <span class="meta" data-i18n="navJournalMeta">Arquivos mensais</span>
         </button>
-        <button type="button" data-page="expatriacao">
-          <span data-i18n="navExpat">✈️ Expatriação</span> <span class="meta" data-i18n="navExpatMeta">Processos</span>
+        <button type="button" data-page="expatriacao" id="navExpatBtn">
+          <span data-i18n="navExpat">✈️ Expatriação</span> <span class="meta" data-i18n="navExpatMeta">Admin</span>
         </button>
         <button type="button" data-page="documentos">
           <span data-i18n="navDocs">📁 Documentos</span> <span class="meta" data-i18n="navDocsMeta">Arquivos</span>
@@ -720,7 +926,7 @@
             <span class="chip" data-i18n="chipSPA">SPA (telas internas)</span>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
-            <button class="btn btn-primary" type="button" data-goto="newsletter">
+            <button class="btn btn-primary" type="button" data-goto="journal">
               <span aria-hidden="true">🗞️</span> <span data-i18n="goJournal">Abrir Jornal</span>
             </button>
             <button class="btn btn-ghost" type="button" data-goto="documentos">
@@ -735,7 +941,7 @@
             <p data-i18n="quickFeaturesSub">Escolha uma área para abrir a tela correspondente.</p>
 
             <div class="cards" role="list">
-              <div class="card" role="listitem" data-goto="newsletter" tabindex="0">
+              <div class="card" role="listitem" data-goto="journal" tabindex="0">
                 <div class="icon" aria-hidden="true">JR</div>
                 <h3 data-i18n="cardJRTitle">Jornal</h3>
                 <p data-i18n="cardJRDesc">Selecione o mês e abra arquivos do jornal interno.</p>
@@ -744,7 +950,7 @@
               <div class="card" role="listitem" data-goto="expatriacao" tabindex="0">
                 <div class="icon" aria-hidden="true">EX</div>
                 <h3 data-i18n="cardEXTitle">Expatriação</h3>
-                <p data-i18n="cardEXDesc">Checklist de etapas, prazos e anexos para processos de expatriação.</p>
+                <p data-i18n="cardEXDesc">Módulo de perfis e familiares (somente admin).</p>
               </div>
 
               <div class="card" role="listitem" data-goto="documentos" tabindex="0">
@@ -775,8 +981,8 @@
               <div class="item">
                 <span class="dot" aria-hidden="true"></span>
                 <div>
-                  <p class="t" data-i18n="update3Title">Idiomas</p>
-                  <p class="d" data-i18n="update3Desc">Você pode alternar entre Português e Inglês no topo.</p>
+                  <p class="t" data-i18n="updateLangTitle">Idiomas</p>
+                  <p class="d" data-i18n="updateLangDesc">Você pode alternar entre Português e Inglês no topo.</p>
                 </div>
               </div>
             </div>
@@ -784,8 +990,8 @@
         </div>
       </section>
 
-      <!-- JOURNAL (kept route "newsletter") -->
-      <section class="page" id="page-newsletter" aria-label="Jornal">
+      <!-- JOURNAL -->
+      <section class="page" id="page-journal" aria-label="Jornal">
         <div class="panel glass">
           <h2 data-i18n="jrTitle">🗞️ Jornal (Janeiro a Dezembro)</h2>
           <p data-i18n="jrSub">
@@ -794,6 +1000,7 @@
 
           <div class="file-actions" style="margin-top:12px;">
             <span class="pill" id="jrStorageHint"></span>
+
             <button class="btn btn-ghost" type="button" id="jrExportBtn">
               <span aria-hidden="true">⬇</span> <span data-i18n="jrExport">Exportar lista</span>
             </button>
@@ -884,48 +1091,184 @@
         </div>
       </section>
 
-      <!-- EXPAT -->
+      <!-- EXPAT (ADMIN ONLY) -->
       <section class="page" id="page-expatriacao" aria-label="Expatriação">
         <div class="panel glass">
-          <h2 data-i18n="exTitle">✈️ Expatriação</h2>
-          <p data-i18n="exSub">Checklist com etapas e status (exemplo). Marque o que já foi concluído.</p>
+          <h2 data-i18n="exNewTitle">✈️ Expatriação — Perfis</h2>
+          <p data-i18n="exNewSub">
+            Módulo de perfis (admin). Gerencie dados do usuário e familiares com layout moderno.
+          </p>
         </div>
 
-        <div class="grid">
-          <section class="panel glass">
-            <h2 data-i18n="exChecklistTitle">Checklist</h2>
-            <div id="expChecklist" style="margin-top:12px; display:flex; flex-direction:column; gap:10px;"></div>
-
-            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn btn-primary" type="button" id="expSaveBtn">
-                <span aria-hidden="true">💾</span> <span data-i18n="exSave">Salvar progresso</span>
-              </button>
-              <button class="btn btn-ghost" type="button" id="expResetBtn">
-                <span aria-hidden="true">↺</span> <span data-i18n="exReset">Resetar</span>
+        <div class="exp-layout">
+          <!-- Left expandable panel -->
+          <aside class="exp-side glass" id="expSide">
+            <div class="exp-side-head">
+              <div>
+                <h3 data-i18n="exDirectoryTitle">Diretório</h3>
+                <p class="muted" data-i18n="exDirectorySub">Usuários e familiares</p>
+              </div>
+              <button class="btn btn-ghost" type="button" id="expToggleSideBtn" style="padding:10px 12px;">
+                <span aria-hidden="true">⫶</span>
+                <span class="side-label" data-i18n="exCollapse">Recolher</span>
               </button>
             </div>
 
-            <p class="hint" data-i18n="exHint">Salva no navegador (localStorage). Para uso real, integrar com banco/servidor.</p>
-          </section>
+            <!-- Users -->
+            <div class="exp-block">
+              <div class="exp-block-title">
+                <strong data-i18n="exUsersTitle">Usuários</strong>
+                <span class="badge-small" id="expUsersCount">0</span>
+              </div>
 
-          <aside class="widget glass">
-            <h3 data-i18n="exAttachTitle">Anexos (demo)</h3>
-            <p style="margin:0 0 10px; color:var(--muted); font-size:13px;" data-i18n="exAttachSub">
-              Simulação de upload (não envia para servidor).
-            </p>
-            <div class="field">
-              <label for="expFile" data-i18n="exChooseFile">Selecionar arquivo</label>
-              <input id="expFile" type="file" />
+              <div class="field" style="margin-top:10px;">
+                <label for="expUserSearch" data-i18n="exSearchLabel">Buscar</label>
+                <input id="expUserSearch" type="text" data-i18n-placeholder="exSearchPh" placeholder="Nome ou e-mail..." />
+              </div>
+
+              <div class="exp-list" id="expUserList" style="margin-top:10px;"></div>
+
+              <form id="expAddUserForm" class="exp-mini-form">
+                <div class="row-2">
+                  <input id="expNewUserName" type="text" required data-i18n-placeholder="exUserNamePh" placeholder="Nome" />
+                  <input id="expNewUserEmail" type="email" required data-i18n-placeholder="exUserEmailPh" placeholder="email@empresa.com" />
+                </div>
+                <button class="btn btn-primary" type="submit" style="width:100%;">
+                  <span aria-hidden="true">➕</span> <span data-i18n="exAddUser">Adicionar usuário</span>
+                </button>
+              </form>
             </div>
-            <button class="btn btn-ghost" type="button" id="expAttachBtn" style="margin-top:12px;">
-              <span aria-hidden="true">📎</span> <span data-i18n="exAttachBtn">Anexar (demo)</span>
-            </button>
-            <div id="expAttachList" class="list" style="margin-top:12px;"></div>
+
+            <!-- Family -->
+            <div class="exp-block" style="margin-top:12px;">
+              <div class="exp-block-title">
+                <strong data-i18n="exFamilyTitle">Família</strong>
+                <span class="badge-small" id="expFamilyCount">0</span>
+              </div>
+
+              <div class="exp-list" id="expFamilyList" style="margin-top:10px;"></div>
+
+              <form id="expAddFamilyForm" class="exp-mini-form">
+                <div class="row-2">
+                  <input id="expNewFamilyName" type="text" required data-i18n-placeholder="exFamilyNamePh" placeholder="Nome" />
+                  <input id="expNewFamilyRelation" type="text" required data-i18n-placeholder="exFamilyRelationPh" placeholder="Parentesco" />
+                </div>
+                <button class="btn btn-ghost" type="submit" style="width:100%;">
+                  <span aria-hidden="true">👪</span> <span data-i18n="exAddFamily">Adicionar familiar</span>
+                </button>
+                <p class="hint" data-i18n="exFamilyHint">Selecione um usuário antes de adicionar familiares.</p>
+              </form>
+            </div>
           </aside>
+
+          <!-- Main profile area -->
+          <section class="exp-main">
+            <div class="exp-profile glass" id="expProfileCard">
+              <div class="exp-cover">
+                <div class="exp-cover-glow"></div>
+              </div>
+
+              <div class="exp-header">
+                <div class="exp-avatar-wrap">
+                  <img id="expAvatarImg" class="exp-avatar" alt="Avatar" />
+                  <div class="exp-avatar-fallback" id="expAvatarFallback">👤</div>
+                  <input id="expPhotoInput" type="file" accept="image/*" hidden />
+                </div>
+
+                <div class="exp-header-info">
+                  <h2 id="expDisplayName">—</h2>
+                  <p class="muted" id="expDisplayMeta">—</p>
+                  <div class="exp-header-actions">
+                    <button class="btn btn-ghost" type="button" id="expAddPhotoBtn">
+                      <span aria-hidden="true">📷</span> <span data-i18n="exAddPhoto">Adicionar foto</span>
+                    </button>
+                    <button class="btn btn-danger" type="button" id="expRemovePhotoBtn">
+                      <span aria-hidden="true">🗑</span> <span data-i18n="exRemovePhoto">Remover foto</span>
+                    </button>
+                    <button class="btn btn-danger" type="button" id="expDeleteProfileBtn">
+                      <span aria-hidden="true">🧹</span> <span data-i18n="exDeleteProfile">Excluir perfil</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="exp-tabs">
+                <button class="exp-tab active" type="button" data-exp-tab="dados">
+                  <span aria-hidden="true">🪪</span> <span data-i18n="exTabData">Dados</span>
+                </button>
+                <button class="exp-tab" type="button" data-exp-tab="atividade">
+                  <span aria-hidden="true">🫧</span> <span data-i18n="exTabFeed">Atividade</span>
+                </button>
+              </div>
+
+              <!-- DATA TAB -->
+              <div class="exp-body" id="expTab-dados">
+                <div class="exp-grid">
+                  <div class="glass exp-box">
+                    <h3 data-i18n="exDocTitle">Documentos / Dados</h3>
+
+                    <div class="exp-form">
+                      <div class="field">
+                        <label data-i18n="exCpf">CPF</label>
+                        <input id="expCpf" type="text" placeholder="000.000.000-00" />
+                      </div>
+                      <div class="field">
+                        <label data-i18n="exRne">RNE</label>
+                        <input id="expRne" type="text" placeholder="RNE..." />
+                      </div>
+                      <div class="field">
+                        <label data-i18n="exCnh">CNH</label>
+                        <input id="expCnh" type="text" placeholder="CNH..." />
+                      </div>
+                      <div class="field">
+                        <label data-i18n="exHouse">Casa</label>
+                        <input id="expHouse" type="text" placeholder="Endereço / residência" />
+                      </div>
+                      <div class="field">
+                        <label data-i18n="exPassport">Passaporte</label>
+                        <input id="expPassport" type="text" placeholder="Passaporte..." />
+                      </div>
+                    </div>
+
+                    <div class="exp-save-row">
+                      <button class="btn btn-primary" type="button" id="expSaveBtnNew">
+                        <span aria-hidden="true">💾</span> <span data-i18n="exSaveNew">Salvar alterações</span>
+                      </button>
+                      <span class="pill" id="expLastUpdated">—</span>
+                    </div>
+
+                    <p class="hint" data-i18n="exPrivacy">
+                      Demo: dados são salvos no navegador (localStorage). Em produção, use backend seguro.
+                    </p>
+                  </div>
+
+                  <aside class="glass exp-box">
+                    <h3 data-i18n="exSelected">Selecionado</h3>
+                    <div class="list" id="expSelectedInfo"></div>
+                  </aside>
+                </div>
+              </div>
+
+              <!-- FEED TAB -->
+              <div class="exp-body" id="expTab-atividade" style="display:none;">
+                <div class="glass exp-box">
+                  <h3 data-i18n="exFeedTitle">Atividade</h3>
+                  <div class="list" id="expFeed"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel glass" style="margin-top:18px;">
+              <h2 data-i18n="exTipsTitle">Boas práticas</h2>
+              <p class="muted" data-i18n="exTipsSub">
+                Para “acesso real”, salve arquivos/documentos em SharePoint/Drive e referencie links aqui.
+              </p>
+            </div>
+          </section>
         </div>
       </section>
 
-      <!-- DOCS -->
+      <!-- DOCUMENTOS -->
       <section class="page" id="page-documentos" aria-label="Documentos">
         <div class="panel glass">
           <h2 data-i18n="docsTitle">📁 Documentos</h2>
@@ -971,7 +1314,7 @@
         </div>
       </section>
 
-      <!-- SUPPORT -->
+      <!-- SUPORTE -->
       <section class="page" id="page-suporte" aria-label="Suporte">
         <div class="panel glass">
           <h2 data-i18n="supTitle">🛟 Suporte</h2>
@@ -1041,6 +1384,15 @@
         .replaceAll("'","&#039;");
     }
 
+    function readFileAsDataURL(file){
+      return new Promise((resolve, reject) => {
+        const fr = new FileReader();
+        fr.onload = () => resolve(fr.result);
+        fr.onerror = reject;
+        fr.readAsDataURL(file);
+      });
+    }
+
     /* ===============================
        Toasts
        =============================== */
@@ -1078,7 +1430,7 @@
         emailPlaceholder: "ex: nome@empresa.com",
         passwordLabel: "Senha",
         passwordPlaceholder: "••••••••",
-        demoHint: "Admin: admin@hyundai.com + admin123 | User: user@hyundai.com + portal123",
+        demoHintTitle: "Contas demo",
         accessBtn: "Acessar",
         fillDemoBtn: "Preencher demo",
         kbdTip: "Dica: Alt + M abre o menu",
@@ -1095,7 +1447,7 @@
         navJournal: "🗞️ Jornal",
         navJournalMeta: "Arquivos mensais",
         navExpat: "✈️ Expatriação",
-        navExpatMeta: "Processos",
+        navExpatMeta: "Admin",
         navDocs: "📁 Documentos",
         navDocsMeta: "Arquivos",
         navSupport: "🛟 Suporte",
@@ -1115,7 +1467,7 @@
         cardJRTitle: "Jornal",
         cardJRDesc: "Selecione o mês e abra arquivos do jornal interno.",
         cardEXTitle: "Expatriação",
-        cardEXDesc: "Checklist de etapas, prazos e anexos para processos de expatriação.",
+        cardEXDesc: "Módulo de perfis e familiares (somente admin).",
         cardDOCTitle: "Documentos",
         cardDOCDesc: "Catálogo de arquivos, políticas, formulários e downloads essenciais.",
 
@@ -1124,10 +1476,10 @@
         update1Desc: "Use o menu hambúrguer para navegar entre as telas.",
         updateJRTitle: "Jornal mensal",
         updateJRDesc: "Escolha de janeiro a dezembro para abrir os arquivos.",
-        update3Title: "Idiomas",
-        update3Desc: "Você pode alternar entre Português e Inglês no topo.",
+        updateLangTitle: "Idiomas",
+        updateLangDesc: "Você pode alternar entre Português e Inglês no topo.",
 
-        // Journal strings
+        // Journal
         jrTitle: "🗞️ Jornal (Janeiro a Dezembro)",
         jrSub: "Selecione um mês para ver os arquivos disponíveis. Administradores podem adicionar/remover arquivos.",
         jrPickMonth: "Escolha um mês",
@@ -1154,18 +1506,44 @@
         jrOpen: "Abrir",
         jrDownload: "Baixar",
         jrRemove: "Remover",
+        jrFilesAvailable: "Arquivos disponíveis",
 
-        exTitle: "✈️ Expatriação",
-        exSub: "Checklist com etapas e status (exemplo). Marque o que já foi concluído.",
-        exChecklistTitle: "Checklist",
-        exSave: "Salvar progresso",
-        exReset: "Resetar",
-        exHint: "Salva no navegador (localStorage). Para uso real, integrar com banco/servidor.",
-        exAttachTitle: "Anexos (demo)",
-        exAttachSub: "Simulação de upload (não envia para servidor).",
-        exChooseFile: "Selecionar arquivo",
-        exAttachBtn: "Anexar (demo)",
+        // Expat (profiles)
+        exNewTitle: "✈️ Expatriação — Perfis",
+        exNewSub: "Módulo de perfis (admin). Gerencie dados do usuário e familiares com layout moderno.",
+        exDirectoryTitle: "Diretório",
+        exDirectorySub: "Usuários e familiares",
+        exCollapse: "Recolher",
+        exUsersTitle: "Usuários",
+        exFamilyTitle: "Família",
+        exSearchLabel: "Buscar",
+        exSearchPh: "Nome ou e-mail...",
+        exUserNamePh: "Nome",
+        exUserEmailPh: "email@empresa.com",
+        exAddUser: "Adicionar usuário",
+        exFamilyNamePh: "Nome",
+        exFamilyRelationPh: "Parentesco",
+        exAddFamily: "Adicionar familiar",
+        exFamilyHint: "Selecione um usuário antes de adicionar familiares.",
+        exAddPhoto: "Adicionar foto",
+        exRemovePhoto: "Remover foto",
+        exDeleteProfile: "Excluir perfil",
+        exTabData: "Dados",
+        exTabFeed: "Atividade",
+        exDocTitle: "Documentos / Dados",
+        exCpf: "CPF",
+        exRne: "RNE",
+        exCnh: "CNH",
+        exHouse: "Casa",
+        exPassport: "Passaporte",
+        exSaveNew: "Salvar alterações",
+        exPrivacy: "Demo: dados são salvos no navegador (localStorage). Em produção, use backend seguro.",
+        exSelected: "Selecionado",
+        exFeedTitle: "Atividade",
+        exTipsTitle: "Boas práticas",
+        exTipsSub: "Para “acesso real”, salve arquivos/documentos em SharePoint/Drive e referencie links aqui.",
 
+        // Docs
         docsTitle: "📁 Documentos",
         docsSub: "Catálogo de documentos (exemplo). Você pode trocar por links reais ou integrações.",
         docsSearchTitle: "Buscar",
@@ -1182,6 +1560,7 @@
         docsNoResultsTitle: "Nenhum resultado",
         docsNoResultsDesc: "Tente outro termo de busca.",
 
+        // Support
         supTitle: "🛟 Suporte",
         supSub: "Abra uma solicitação (demo) ou registre uma dúvida. Ideal para integrar com Service Desk.",
         supNew: "Nova solicitação",
@@ -1197,6 +1576,7 @@
         supB2T: "Informe seu usuário e setor",
         supB2D: "Facilita a validação de permissões e acessos.",
 
+        // Toasts/system
         toastOpened: "Tela aberta",
         toastLoginOk: "Login realizado",
         toastLoginOkD: "Acesso liberado ao Hyundai Portal.",
@@ -1216,7 +1596,7 @@
         toastImported: "Importado",
         toastExported: "Exportado",
         toastDenied: "Acesso negado",
-        toastDeniedD: "Apenas administradores podem alterar os arquivos.",
+        toastDeniedD: "Apenas administradores podem acessar/alterar esta seção."
       },
 
       en: {
@@ -1232,7 +1612,7 @@
         emailPlaceholder: "e.g., name@company.com",
         passwordLabel: "Password",
         passwordPlaceholder: "••••••••",
-        demoHint: "Admin: admin@hyundai.com + admin123 | User: user@hyundai.com + portal123",
+        demoHintTitle: "Demo accounts",
         accessBtn: "Access",
         fillDemoBtn: "Fill demo",
         kbdTip: "Tip: Alt + M opens the menu",
@@ -1249,7 +1629,7 @@
         navJournal: "🗞️ Journal",
         navJournalMeta: "Monthly files",
         navExpat: "✈️ Expatriation",
-        navExpatMeta: "Processes",
+        navExpatMeta: "Admin",
         navDocs: "📁 Documents",
         navDocsMeta: "Files",
         navSupport: "🛟 Support",
@@ -1269,17 +1649,17 @@
         cardJRTitle: "Journal",
         cardJRDesc: "Pick a month and open internal journal files.",
         cardEXTitle: "Expatriation",
-        cardEXDesc: "Checklist of steps, deadlines, and attachments for expatriation processes.",
+        cardEXDesc: "Profiles and family module (admin only).",
         cardDOCTitle: "Documents",
         cardDOCDesc: "Catalog of files, policies, forms, and essential downloads.",
 
         updatesTitle: "Quick updates",
         update1Title: "Welcome to Hyundai Portal",
         update1Desc: "Use the hamburger menu to navigate between screens.",
-        updateJRTitle: "Monthly Journal",
+        updateJRTitle: "Monthly journal",
         updateJRDesc: "Choose from January to December to open files.",
-        update3Title: "Languages",
-        update3Desc: "You can switch between Portuguese and English at the top.",
+        updateLangTitle: "Languages",
+        updateLangDesc: "You can switch between Portuguese and English at the top.",
 
         jrTitle: "🗞️ Journal (January to December)",
         jrSub: "Select a month to see available files. Admins can add/remove files.",
@@ -1300,24 +1680,48 @@
         jrExport: "Export list",
         jrImport: "Import list",
         jrTip1T: "Tip",
-        jrTip1D: "To truly “host”, use SharePoint/Drive links and register them here.",
+        jrTip1D: "To truly host files, use SharePoint/Drive links and register them here.",
         jrTip2T: "Permissions",
         jrTip2D: "Only admins see the add/remove panel.",
         jrNoFiles: "No files for this month yet.",
         jrOpen: "Open",
         jrDownload: "Download",
         jrRemove: "Remove",
+        jrFilesAvailable: "Files available",
 
-        exTitle: "✈️ Expatriation",
-        exSub: "Checklist with steps and status (example). Mark what’s completed.",
-        exChecklistTitle: "Checklist",
-        exSave: "Save progress",
-        exReset: "Reset",
-        exHint: "Saved in the browser (localStorage). For real use, integrate with a server/database.",
-        exAttachTitle: "Attachments (demo)",
-        exAttachSub: "Upload simulation (does not send to a server).",
-        exChooseFile: "Choose file",
-        exAttachBtn: "Attach (demo)",
+        exNewTitle: "✈️ Expatriation — Profiles",
+        exNewSub: "Profiles module (admin). Manage user and family data with a modern layout.",
+        exDirectoryTitle: "Directory",
+        exDirectorySub: "Users and family",
+        exCollapse: "Collapse",
+        exUsersTitle: "Users",
+        exFamilyTitle: "Family",
+        exSearchLabel: "Search",
+        exSearchPh: "Name or email...",
+        exUserNamePh: "Name",
+        exUserEmailPh: "email@company.com",
+        exAddUser: "Add user",
+        exFamilyNamePh: "Name",
+        exFamilyRelationPh: "Relation",
+        exAddFamily: "Add family member",
+        exFamilyHint: "Select a user before adding family members.",
+        exAddPhoto: "Add photo",
+        exRemovePhoto: "Remove photo",
+        exDeleteProfile: "Delete profile",
+        exTabData: "Data",
+        exTabFeed: "Activity",
+        exDocTitle: "Documents / Data",
+        exCpf: "CPF",
+        exRne: "RNE",
+        exCnh: "Driver's License",
+        exHouse: "Home",
+        exPassport: "Passport",
+        exSaveNew: "Save changes",
+        exPrivacy: "Demo: data is stored in your browser (localStorage). In production, use a secure backend.",
+        exSelected: "Selected",
+        exFeedTitle: "Activity",
+        exTipsTitle: "Best practices",
+        exTipsSub: "For real access, store documents in SharePoint/Drive and reference links here.",
 
         docsTitle: "📁 Documents",
         docsSub: "Document catalog (example). Replace with real links or integrations.",
@@ -1369,7 +1773,7 @@
         toastImported: "Imported",
         toastExported: "Exported",
         toastDenied: "Access denied",
-        toastDeniedD: "Only administrators can modify the files.",
+        toastDeniedD: "Only administrators can access/modify this section."
       }
     };
 
@@ -1378,25 +1782,30 @@
     function t(key){
       return (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : (I18N.pt[key] || key);
     }
+
     function applyI18n(){
       $$("[data-i18n]").forEach(el => el.textContent = t(el.getAttribute("data-i18n")));
       $$("[data-i18n-placeholder]").forEach(el => el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder"))));
       document.documentElement.lang = (currentLang === "en") ? "en" : "pt-BR";
-      const lsLogin = $("#langSelectLogin");
-      const lsApp = $("#langSelectApp");
-      if (lsLogin) lsLogin.value = currentLang;
-      if (lsApp) lsApp.value = currentLang;
-      renderJournal(); // refresh dynamic
+      $("#langSelectLogin").value = currentLang;
+      $("#langSelectApp").value = currentLang;
+
+      // Refresh dynamic views
+      renderJournal();
       renderDocs($("#docSearch")?.value || "");
-      renderExp();
+      expRender();
+      syncNavPermissions();
+      syncRolePill();
     }
+
     function setLang(lang){
       currentLang = (lang === "en") ? "en" : "pt";
       localStorage.setItem(LANG_KEY, currentLang);
       applyI18n();
     }
-    $("#langSelectLogin")?.addEventListener("change", (e) => setLang(e.target.value));
-    $("#langSelectApp")?.addEventListener("change", (e) => setLang(e.target.value));
+
+    $("#langSelectLogin")?.addEventListener("change", e => setLang(e.target.value));
+    $("#langSelectApp")?.addEventListener("change", e => setLang(e.target.value));
 
     /* ===============================
        Sidebar
@@ -1434,49 +1843,7 @@
     });
 
     /* ===============================
-       SPA routing
-       =============================== */
-    const pages = ["home","newsletter","expatriacao","documentos","suporte"];
-    function showPage(page){
-      pages.forEach(p => $("#page-" + p)?.classList.toggle("show", p === page));
-      $$("#nav button").forEach(btn => btn.classList.toggle("active", btn.dataset.page === page));
-      closeSidebar();
-      toast(t("toastOpened"), pageLabel(page), "success", 1700);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    function pageLabel(page){
-      const map = {
-        home: currentLang === "en" ? "Home" : "Home",
-        newsletter: currentLang === "en" ? "Journal" : "Jornal",
-        expatriacao: currentLang === "en" ? "Expatriation" : "Expatriação",
-        documentos: currentLang === "en" ? "Documents" : "Documentos",
-        suporte: currentLang === "en" ? "Support" : "Suporte"
-      };
-      return map[page] || page;
-    }
-    $("#nav")?.addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-page]");
-      if (!btn) return;
-      showPage(btn.dataset.page);
-    });
-    document.addEventListener("click", (e) => {
-      const go = e.target.closest("[data-goto]");
-      if (!go) return;
-      const page = go.dataset.goto;
-      if (pages.includes(page)) showPage(page);
-    });
-    document.addEventListener("keydown", (e) => {
-      const card = e.target.closest(".card[data-goto]");
-      if (!card) return;
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        showPage(card.dataset.goto);
-      }
-    });
-    $("#goHomeBtn")?.addEventListener("click", () => showPage("home"));
-
-    /* ===============================
-       Auth (User/Admin)
+       Auth (Admin/User)
        =============================== */
     const loginView = $("#loginView");
     const appView = $("#appView");
@@ -1488,7 +1855,6 @@
     const rolePill = $("#rolePill");
 
     const AUTH_KEY = "hyundai_portal_session";
-
     const DEMO = {
       admin: { email:"admin@hyundai.com", pass:"admin123", role:"admin" },
       user:  { email:"user@hyundai.com",  pass:"portal123", role:"user"  }
@@ -1509,6 +1875,27 @@
 
     let session = null;
 
+    function syncRolePill(){
+      if (!rolePill) return;
+      if (!session?.role){
+        rolePill.style.display = "none";
+        return;
+      }
+      rolePill.style.display = "inline-flex";
+      rolePill.textContent = (session.role === "admin")
+        ? (currentLang==="en" ? "👑 ADMIN" : "👑 ADMIN")
+        : (currentLang==="en" ? "👤 USER" : "👤 USUÁRIO");
+    }
+
+    function syncNavPermissions(){
+      const expBtn = $("#navExpatBtn");
+      if (!expBtn) return;
+
+      const isAdmin = session?.role === "admin";
+      expBtn.style.opacity = isAdmin ? "1" : "0.55";
+      expBtn.title = isAdmin ? "" : (currentLang==="en" ? "Admins only" : "Apenas admin");
+    }
+
     function enterApp(sess){
       session = sess;
       loginView.style.display = "none";
@@ -1519,13 +1906,15 @@
       welcomeText.textContent = (currentLang === "en") ? `Welcome, ${email}!` : `Bem-vindo(a), ${email}!`;
       userMeta.textContent = (currentLang === "en") ? `User: ${email}` : `Usuário: ${email}`;
 
-      rolePill.style.display = "inline-flex";
-      rolePill.textContent = (sess.role === "admin")
-        ? (currentLang === "en" ? "👑 ADMIN" : "👑 ADMIN")
-        : (currentLang === "en" ? "👤 USER" : "👤 USUÁRIO");
-
-      // Update Journal admin panel visibility
+      syncRolePill();
+      syncNavPermissions();
       updateJournalAdminUI();
+
+      // bind expat once (admin only)
+      if (session?.role === "admin" && !window.__expBound){
+        window.__expBound = true;
+        expBind();
+      }
 
       showPage("home");
       toast(t("toastLoginOk"), t("toastLoginOkD"), "success");
@@ -1542,7 +1931,6 @@
     }
 
     fillDemoBtn?.addEventListener("click", () => {
-      // Default fill as USER (you can change to admin if desired)
       $("#email").value = DEMO.user.email;
       $("#pass").value = DEMO.user.pass;
       toast(t("toastDemoFilled"), t("toastDemoFilledD"), "info", 2200);
@@ -1579,10 +1967,74 @@
     logoutBtn?.addEventListener("click", exitApp);
 
     /* ===============================
-       Journal (Monthly files) — Admin CRUD
+       SPA routing (with admin guard)
        =============================== */
-    const JR_KEY = "hyundai_portal_journal_files";
+    const pages = ["home","journal","expatriacao","documentos","suporte"];
 
+    function pageLabel(page){
+      const map = {
+        home: currentLang==="en" ? "Home" : "Home",
+        journal: currentLang==="en" ? "Journal" : "Jornal",
+        expatriacao: currentLang==="en" ? "Expatriation" : "Expatriação",
+        documentos: currentLang==="en" ? "Documents" : "Documentos",
+        suporte: currentLang==="en" ? "Support" : "Suporte"
+      };
+      return map[page] || page;
+    }
+
+    function showPage(page){
+      // 🔒 Admin-only guard for Expatriação
+      if (page === "expatriacao" && session?.role !== "admin") {
+        toast(t("toastDenied"), t("toastDeniedD"), "danger");
+        page = "home";
+      }
+
+      pages.forEach(p => $("#page-" + p)?.classList.toggle("show", p === page));
+      $$("#nav button").forEach(btn => btn.classList.toggle("active", btn.dataset.page === page));
+      closeSidebar();
+      toast(t("toastOpened"), pageLabel(page), "success", 1400);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // refresh dynamic when entering specific pages
+      if (page === "journal") renderJournal();
+      if (page === "expatriacao") expRender();
+      if (page === "documentos") renderDocs($("#docSearch")?.value || "");
+    }
+
+    $("#nav")?.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-page]");
+      if (!btn) return;
+
+      // block directly
+      if (btn.dataset.page === "expatriacao" && session?.role !== "admin") {
+        toast(t("toastDenied"), t("toastDeniedD"), "danger");
+        return;
+      }
+      showPage(btn.dataset.page);
+    });
+
+    document.addEventListener("click", (e) => {
+      const go = e.target.closest("[data-goto]");
+      if (!go) return;
+      const page = go.dataset.goto;
+      if (pages.includes(page)) showPage(page);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      const card = e.target.closest(".card[data-goto]");
+      if (!card) return;
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        showPage(card.dataset.goto);
+      }
+    });
+
+    $("#goHomeBtn")?.addEventListener("click", () => showPage("home"));
+
+    /* ===============================
+       JOURNAL (Monthly files) — Admin CRUD
+       =============================== */
+    const JR_KEY = "hyundai_portal_journal_files_v1";
     const months = [
       { key:"jan", pt:"Janeiro",   en:"January" },
       { key:"feb", pt:"Fevereiro", en:"February" },
@@ -1598,7 +2050,6 @@
       { key:"dec", pt:"Dezembro",  en:"December" },
     ];
 
-    // Elements
     const jrMonthGrid = $("#jrMonthGrid");
     const jrFileList = $("#jrFileList");
     const jrMonthTitle = $("#jrMonthTitle");
@@ -1624,7 +2075,6 @@
     function jrGet(){
       try{
         const raw = JSON.parse(localStorage.getItem(JR_KEY) || "{}");
-        // ensure all months exist
         months.forEach(m => { if (!raw[m.key]) raw[m.key] = []; });
         return raw;
       }catch{
@@ -1645,6 +2095,8 @@
 
     function updateJournalAdminUI(){
       const isAdmin = session?.role === "admin";
+      if (!jrAdminPanel) return;
+
       jrAdminPanel.style.display = isAdmin ? "block" : "none";
       jrAdminNote.textContent = isAdmin
         ? (currentLang === "en" ? "You are logged in as admin. You can add/remove files." : "Você está logado como admin. Você pode adicionar/remover arquivos.")
@@ -1665,7 +2117,7 @@
         btn.className = "month-btn" + (m.key === activeMonthKey ? " active" : "");
         btn.innerHTML = `
           <span>${escapeHtml(monthName(m.key))}</span>
-          <span class="badge-small">${count} ${count === 1 ? "file" : "files"}</span>
+          <span class="badge-small">${count}</span>
         `;
         btn.addEventListener("click", () => {
           activeMonthKey = m.key;
@@ -1675,53 +2127,64 @@
       });
     }
 
-    function fileRow(item, isAdmin){
-      // item: {id,title,type,url?,dataUrl?,fileName?,mime?,addedAt}
+    function journalFileRow(item, isAdmin){
       const date = new Date(item.addedAt || Date.now()).toLocaleString();
-      const safeTitle = escapeHtml(item.title || "—");
+      const title = escapeHtml(item.title || "—");
       const sub = item.type === "url"
-        ? (currentLang === "en" ? `Link • ${date}` : `Link • ${date}`)
-        : (currentLang === "en" ? `Upload • ${escapeHtml(item.fileName || "")} • ${date}` : `Upload • ${escapeHtml(item.fileName || "")} • ${date}`);
+        ? `${currentLang==="en" ? "Link" : "Link"} • ${date}`
+        : `${currentLang==="en" ? "Upload" : "Upload"} • ${escapeHtml(item.fileName || "")} • ${date}`;
 
       const openHref = item.type === "url" ? item.url : item.dataUrl;
 
-      const actions = `
-        <div class="file-actions">
-          <a class="btn btn-ghost" href="${openHref}" target="_blank" rel="noopener">
-            🔎 ${escapeHtml(t("jrOpen"))}
-          </a>
-          ${item.type === "upload" ? `
-            <a class="btn btn-ghost" href="${openHref}" download="${escapeHtml(item.fileName || item.title || "arquivo")}">
-              ⬇ ${escapeHtml(t("jrDownload"))}
-            </a>` : ""}
-          ${isAdmin ? `
-            <button class="btn btn-danger" type="button" data-jr-remove="${escapeHtml(item.id)}">
-              🗑 ${escapeHtml(t("jrRemove"))}
-            </button>` : ""}
-        </div>
+      const openBtn = `
+        <a class="btn btn-ghost" href="${escapeHtml(openHref)}" target="_blank" rel="noopener">
+          <span aria-hidden="true">🔎</span> ${escapeHtml(t("jrOpen"))}
+        </a>
       `;
+
+      const dlBtn = (item.type === "upload")
+        ? `<a class="btn btn-ghost" href="${escapeHtml(openHref)}" download="${escapeHtml(item.fileName || "file")}">
+             <span aria-hidden="true">⬇</span> ${escapeHtml(t("jrDownload"))}
+           </a>`
+        : "";
+
+      const removeBtn = isAdmin
+        ? `<button class="btn btn-danger" type="button" data-jr-remove="${escapeHtml(item.id)}">
+             <span aria-hidden="true">🗑</span> ${escapeHtml(t("jrRemove"))}
+           </button>`
+        : "";
 
       return `
         <div class="item">
           <span class="dot" aria-hidden="true"></span>
           <div style="width:100%;">
-            <p class="t">${safeTitle}</p>
+            <p class="t">${title}</p>
             <p class="d">${sub}</p>
-            ${actions}
+            <div class="file-actions">
+              ${openBtn}
+              ${dlBtn}
+              ${removeBtn}
+            </div>
           </div>
         </div>
       `;
     }
 
+    function populateMonthSelect(){
+      jrMonthSelect.innerHTML = months.map(m => {
+        const label = monthName(m.key);
+        return `<option value="${m.key}">${escapeHtml(label)}</option>`;
+      }).join("");
+      jrMonthSelect.value = activeMonthKey;
+    }
+
     function renderJournalFileList(){
       const data = jrGet();
       const isAdmin = session?.role === "admin";
-      const list = data[activeMonthKey] || [];
+      const list = (data[activeMonthKey] || []).slice().sort((a,b) => (b.addedAt||0) - (a.addedAt||0));
 
       jrMonthTitle.textContent = monthName(activeMonthKey);
-      jrMonthSubtitle.textContent = (currentLang === "en")
-        ? `Files available: ${list.length}`
-        : `Arquivos disponíveis: ${list.length}`;
+      jrMonthSubtitle.textContent = `${t("jrFilesAvailable")}: ${list.length}`;
 
       if (!list.length){
         jrFileList.innerHTML = `
@@ -1735,13 +2198,9 @@
         return;
       }
 
-      jrFileList.innerHTML = list
-        .slice()
-        .sort((a,b) => (b.addedAt||0) - (a.addedAt||0))
-        .map(it => fileRow(it, isAdmin))
-        .join("");
+      jrFileList.innerHTML = list.map(it => journalFileRow(it, isAdmin)).join("");
 
-      // bind remove buttons
+      // Remove bindings
       $$("[data-jr-remove]", jrFileList).forEach(btn => {
         btn.addEventListener("click", () => {
           if (session?.role !== "admin"){
@@ -1758,16 +2217,7 @@
       });
     }
 
-    function populateMonthSelect(){
-      jrMonthSelect.innerHTML = months.map(m => {
-        const label = monthName(m.key);
-        return `<option value="${m.key}">${escapeHtml(label)}</option>`;
-      }).join("");
-      jrMonthSelect.value = activeMonthKey;
-    }
-
     function renderJournal(){
-      // Ensure some elements exist (if user hasn't navigated yet)
       if (!jrMonthGrid || !jrFileList) return;
       populateMonthSelect();
       renderJournalMonthGrid();
@@ -1775,7 +2225,6 @@
       updateJournalAdminUI();
     }
 
-    // Type select toggles URL vs Upload
     jrTypeSelect?.addEventListener("change", () => {
       const v = jrTypeSelect.value;
       jrUrlWrap.style.display = (v === "url") ? "block" : "none";
@@ -1794,7 +2243,7 @@
       const type = jrTypeSelect.value;
 
       if (!title){
-        toast(t("toastRequired"), currentLang==="en" ? "Please provide a title." : "Informe um título.", "danger");
+        toast(t("toastRequired"), currentLang==="en" ? "Provide a title." : "Informe um título.", "danger");
         return;
       }
 
@@ -1809,31 +2258,30 @@
       if (type === "url"){
         const url = (jrUrlInput.value || "").trim();
         if (!url){
-          toast(t("toastRequired"), currentLang==="en" ? "Please provide a URL." : "Informe uma URL.", "danger");
+          toast(t("toastRequired"), currentLang==="en" ? "Provide a URL." : "Informe uma URL.", "danger");
           return;
         }
         item.url = url;
       } else {
         const f = jrFileInput.files && jrFileInput.files[0];
         if (!f){
-          toast(t("toastRequired"), currentLang==="en" ? "Please choose a file." : "Selecione um arquivo.", "danger");
+          toast(t("toastRequired"), currentLang==="en" ? "Choose a file." : "Selecione um arquivo.", "danger");
           return;
         }
         item.fileName = f.name;
         item.mime = f.type || "application/octet-stream";
-        item.dataUrl = await readFileAsDataURL(f); // stores in localStorage (size-limited)
+        item.dataUrl = await readFileAsDataURL(f);
       }
 
       data[mKey] = data[mKey] || [];
       data[mKey].push(item);
       jrSet(data);
 
-      // reset form
       jrTitleInput.value = "";
       jrUrlInput.value = "";
       jrFileInput.value = "";
-      activeMonthKey = mKey;
 
+      activeMonthKey = mKey;
       toast(t("toastAdded"), monthName(mKey), "success");
       renderJournal();
     });
@@ -1850,16 +2298,6 @@
       renderJournal();
     });
 
-    function readFileAsDataURL(file){
-      return new Promise((resolve, reject) => {
-        const fr = new FileReader();
-        fr.onload = () => resolve(fr.result);
-        fr.onerror = reject;
-        fr.readAsDataURL(file);
-      });
-    }
-
-    // Export/Import list (JSON)
     jrExportBtn?.addEventListener("click", () => {
       const data = jrGet();
       const json = JSON.stringify(data, null, 2);
@@ -1881,11 +2319,9 @@
       try{
         const text = await jrImportFile.files[0].text();
         const parsed = JSON.parse(text);
-        // minimal validation
-        if (typeof parsed !== "object") throw new Error("Invalid");
         months.forEach(m => { if (!parsed[m.key]) parsed[m.key] = []; });
         jrSet(parsed);
-        toast(t("toastImported"), currentLang==="en" ? "Journal list imported." : "Lista do jornal importada.", "success");
+        toast(t("toastImported"), currentLang==="en" ? "Imported list." : "Lista importada.", "success");
         renderJournal();
       }catch{
         toast(currentLang==="en" ? "Import failed" : "Falha ao importar",
@@ -1896,97 +2332,436 @@
     });
 
     /* ===============================
-       Expat (unchanged demo)
+       EXPAT Profiles (ADMIN ONLY)
        =============================== */
-    const EXP_KEY = "hyundai_portal_expatriacao";
-    const expChecklistEl = $("#expChecklist");
-    const expSaveBtn = $("#expSaveBtn");
-    const expResetBtn = $("#expResetBtn");
-    const expFile = $("#expFile");
-    const expAttachBtn = $("#expAttachBtn");
-    const expAttachList = $("#expAttachList");
+    const EXP_PROFILES_KEY = "hyundai_portal_expat_profiles_v1";
 
-    const expSteps = [
-      { id:"doc_pessoal", pt:"Reunir documentos pessoais", en:"Gather personal documents" },
-      { id:"contrato", pt:"Validar contrato e aditivos", en:"Validate contract and addendums" },
-      { id:"visto", pt:"Processo de visto / permissão", en:"Visa / permit process" },
-      { id:"moradia", pt:"Planejar moradia e deslocamento", en:"Plan housing and relocation" },
-      { id:"saude", pt:"Seguro saúde e orientações", en:"Health insurance and guidance" },
-      { id:"onboarding", pt:"Onboarding na unidade destino", en:"Onboarding at destination unit" },
-    ];
-    function expGet(){ try { return JSON.parse(localStorage.getItem(EXP_KEY) || "{}"); } catch { return {}; } }
-    function expSet(obj){ localStorage.setItem(EXP_KEY, JSON.stringify(obj)); }
+    function expLoad(){
+      try{
+        return JSON.parse(localStorage.getItem(EXP_PROFILES_KEY) || '{"users":[],"activity":[]}');
+      } catch {
+        return { users: [], activity: [] };
+      }
+    }
+    function expSave(db){
+      localStorage.setItem(EXP_PROFILES_KEY, JSON.stringify(db));
+    }
 
-    function renderExp(){
-      if (!expChecklistEl) return;
-      const state = expGet();
-      expChecklistEl.innerHTML = "";
-      expSteps.forEach(step => {
-        const label = currentLang === "en" ? step.en : step.pt;
-        const done = !!state[step.id];
-        const statusText = done ? (currentLang==="en" ? "Done" : "Concluído") : (currentLang==="en" ? "Pending" : "Pendente");
+    let expState = {
+      selectedUserId: null,
+      selectedMemberId: null,
+      mode: "user"
+    };
 
-        const wrap = document.createElement("div");
-        wrap.className = "item";
-        wrap.innerHTML = `
-          <span class="dot" aria-hidden="true"></span>
-          <div style="width:100%;">
-            <p class="t">${escapeHtml(label)}</p>
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:8px;">
-              <span class="d" style="margin:0;">${escapeHtml(currentLang==="en" ? "Status" : "Status")}: <b>${escapeHtml(statusText)}</b></span>
-              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none; text-transform:none; font-size:12px; letter-spacing:0; color:var(--muted); font-weight:800;">
-                <input type="checkbox" data-exp-check="${step.id}" ${done ? "checked" : ""} />
-                ${escapeHtml(currentLang==="en" ? "Mark" : "Marcar")}
-              </label>
+    function expIsAdmin(){
+      return session?.role === "admin";
+    }
+
+    function expLog(action, who){
+      const db = expLoad();
+      db.activity = db.activity || [];
+      db.activity.unshift({
+        id: crypto?.randomUUID ? crypto.randomUUID() : ("a_" + Math.random().toString(16).slice(2)),
+        at: Date.now(),
+        action,
+        who
+      });
+      db.activity = db.activity.slice(0, 30);
+      expSave(db);
+    }
+
+    function expGetSelected(db){
+      const user = db.users.find(u => u.id === expState.selectedUserId) || null;
+      if (!user) return { user:null, member:null };
+      if (expState.mode === "family"){
+        const member = (user.family || []).find(m => m.id === expState.selectedMemberId) || null;
+        return { user, member };
+      }
+      return { user, member:null };
+    }
+
+    function expUserDisplay(u){
+      const name = u?.name || "—";
+      const email = u?.email || "";
+      return { name, meta: email ? email : (currentLang==="en" ? "Employee" : "Colaborador") };
+    }
+
+    function expMemberDisplay(m){
+      const name = m?.name || "—";
+      const rel = m?.relation || "";
+      return { name, meta: rel ? rel : (currentLang==="en" ? "Family member" : "Familiar") };
+    }
+
+    function expRender(){
+      if (!$("#page-expatriacao")) return;
+
+      // If not admin, don't render (guard already in routing)
+      if (!expIsAdmin()) return;
+
+      const db = expLoad();
+
+      const userList = $("#expUserList");
+      const familyList = $("#expFamilyList");
+      const usersCount = $("#expUsersCount");
+      const famCount = $("#expFamilyCount");
+      const search = $("#expUserSearch");
+
+      const avatarImg = $("#expAvatarImg");
+      const avatarFallback = $("#expAvatarFallback");
+      const displayName = $("#expDisplayName");
+      const displayMeta = $("#expDisplayMeta");
+      const lastUpdated = $("#expLastUpdated");
+      const selectedInfo = $("#expSelectedInfo");
+      const feed = $("#expFeed");
+
+      if (db.users.length && !expState.selectedUserId){
+        expState.selectedUserId = db.users[0].id;
+        expState.mode = "user";
+        expState.selectedMemberId = null;
+      }
+      if (!db.users.length){
+        expState.selectedUserId = null;
+        expState.mode = "user";
+        expState.selectedMemberId = null;
+      }
+
+      // Users list
+      const q = (search?.value || "").trim().toLowerCase();
+      const usersFiltered = db.users.filter(u =>
+        !q ||
+        (u.name||"").toLowerCase().includes(q) ||
+        (u.email||"").toLowerCase().includes(q)
+      );
+
+      usersCount.textContent = String(db.users.length);
+
+      userList.innerHTML = usersFiltered.length
+        ? usersFiltered.map(u => {
+            const active = (u.id === expState.selectedUserId) && expState.mode==="user";
+            const mini = u.photoDataUrl
+              ? `<img src="${escapeHtml(u.photoDataUrl)}" alt="photo"/>`
+              : `👤`;
+            return `
+              <div class="exp-entry ${active ? "active":""}" data-exp-user="${escapeHtml(u.id)}">
+                <div class="mini-avatar">${mini}</div>
+                <div class="txt">
+                  <b>${escapeHtml(u.name || "—")}</b>
+                  <small>${escapeHtml(u.email || "")}</small>
+                </div>
+              </div>
+            `;
+          }).join("")
+        : `<div class="item"><span class="dot"></span><div><p class="t">${escapeHtml(currentLang==="en"?"No users":"Nenhum usuário")}</p><p class="d">${escapeHtml(currentLang==="en"?"Add a user to start.":"Adicione um usuário para começar.")}</p></div></div>`;
+
+      // Family list
+      const selectedUser = db.users.find(u => u.id === expState.selectedUserId) || null;
+      const fam = selectedUser?.family || [];
+      famCount.textContent = String(fam.length);
+
+      familyList.innerHTML = selectedUser
+        ? (fam.length
+          ? fam.map(m => {
+              const active = (m.id === expState.selectedMemberId) && expState.mode==="family";
+              const mini = m.photoDataUrl ? `<img src="${escapeHtml(m.photoDataUrl)}" alt="photo"/>` : `👪`;
+              return `
+                <div class="exp-entry ${active ? "active":""}" data-exp-family="${escapeHtml(m.id)}">
+                  <div class="mini-avatar">${mini}</div>
+                  <div class="txt">
+                    <b>${escapeHtml(m.name || "—")}</b>
+                    <small>${escapeHtml(m.relation || "")}</small>
+                  </div>
+                </div>
+              `;
+            }).join("")
+          : `<div class="item"><span class="dot"></span><div><p class="t">${escapeHtml(currentLang==="en"?"No family profiles":"Sem perfis de família")}</p><p class="d">${escapeHtml(currentLang==="en"?"Add family members for this user.":"Adicione familiares para este usuário.")}</p></div></div>`
+        )
+        : `<div class="item"><span class="dot"></span><div><p class="t">${escapeHtml(currentLang==="en"?"Select a user":"Selecione um usuário")}</p><p class="d">${escapeHtml(currentLang==="en"?"Family profiles will show here.":"Os familiares aparecerão aqui.")}</p></div></div>`;
+
+      // Selected entity
+      const { user, member } = expGetSelected(db);
+      const entity = (expState.mode === "family") ? member : user;
+
+      const disp = (expState.mode === "family") ? expMemberDisplay(entity) : expUserDisplay(entity);
+      displayName.textContent = disp.name;
+      displayMeta.textContent = disp.meta;
+
+      const updatedAt = entity?.updatedAt ? new Date(entity.updatedAt).toLocaleString() : "—";
+      lastUpdated.textContent = (currentLang==="en" ? "Updated: " : "Atualizado: ") + updatedAt;
+
+      // Avatar
+      const photo = entity?.photoDataUrl || "";
+      if (photo){
+        avatarImg.src = photo;
+        avatarImg.style.display = "block";
+        avatarFallback.style.display = "none";
+      } else {
+        avatarImg.removeAttribute("src");
+        avatarImg.style.display = "none";
+        avatarFallback.style.display = "grid";
+        avatarFallback.textContent = expState.mode === "family" ? "👪" : "👤";
+      }
+
+      // Selected info
+      selectedInfo.innerHTML = `
+        <div class="item">
+          <span class="dot"></span>
+          <div>
+            <p class="t">${escapeHtml(currentLang==="en" ? "Mode" : "Modo")}</p>
+            <p class="d">${escapeHtml(expState.mode === "family" ? (currentLang==="en" ? "Family profile" : "Perfil de familiar") : (currentLang==="en" ? "User profile" : "Perfil de usuário"))}</p>
+          </div>
+        </div>
+        <div class="item">
+          <span class="dot"></span>
+          <div>
+            <p class="t">${escapeHtml(currentLang==="en" ? "Selected user" : "Usuário selecionado")}</p>
+            <p class="d">${escapeHtml(user?.name || "—")} ${user?.email ? "• " + escapeHtml(user.email) : ""}</p>
+          </div>
+        </div>
+      `;
+
+      // Fill docs
+      const docs = entity?.docs || {};
+      $("#expCpf").value = docs.cpf || "";
+      $("#expRne").value = docs.rne || "";
+      $("#expCnh").value = docs.cnh || "";
+      $("#expHouse").value = docs.house || "";
+      $("#expPassport").value = docs.passport || "";
+
+      // Feed
+      const act = (db.activity || []).slice(0, 12);
+      feed.innerHTML = act.length ? act.map(a => {
+        const when = new Date(a.at).toLocaleString();
+        return `
+          <div class="item">
+            <span class="dot"></span>
+            <div>
+              <p class="t">${escapeHtml(a.action)}</p>
+              <p class="d">${escapeHtml(a.who || "")} • ${escapeHtml(when)}</p>
             </div>
           </div>
         `;
-        expChecklistEl.appendChild(wrap);
-      });
-    }
-
-    expChecklistEl?.addEventListener("change", (e) => {
-      const cb = e.target.closest("input[type='checkbox'][data-exp-check]");
-      if (!cb) return;
-      const id = cb.dataset.expCheck;
-      const state = expGet();
-      state[id] = cb.checked;
-      expSet(state);
-      renderExp();
-    });
-
-    expSaveBtn?.addEventListener("click", () => toast(currentLang==="en" ? "Progress saved" : "Progresso salvo", "", "success"));
-    expResetBtn?.addEventListener("click", () => {
-      expSet({});
-      renderExp();
-      expAttachList.innerHTML = "";
-      expFile.value = "";
-      toast(currentLang==="en" ? "Reset done" : "Reset concluído", "", "info");
-    });
-
-    expAttachBtn?.addEventListener("click", () => {
-      const f = expFile.files && expFile.files[0];
-      if (!f){
-        toast(currentLang==="en" ? "No file" : "Nenhum arquivo",
-              currentLang==="en" ? "Choose a file to attach (demo)." : "Selecione um arquivo para anexar (demo).", "danger");
-        return;
-      }
-      const el = document.createElement("div");
-      el.className = "item";
-      el.innerHTML = `
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <p class="t">${escapeHtml(f.name)}</p>
-          <p class="d">${Math.round(f.size/1024)} KB • (demo local)</p>
+      }).join("") : `
+        <div class="item"><span class="dot"></span>
+          <div><p class="t">${escapeHtml(currentLang==="en"?"No activity yet":"Sem atividade ainda")}</p>
+          <p class="d">${escapeHtml(currentLang==="en"?"Changes will appear here.":"As alterações aparecerão aqui.")}</p></div>
         </div>
       `;
-      expAttachList.prepend(el);
-      expFile.value = "";
-      toast(currentLang==="en" ? "Attached" : "Anexo adicionado", "", "success");
-    });
+    }
+
+    function expBind(){
+      // Sidebar collapse
+      $("#expToggleSideBtn")?.addEventListener("click", () => {
+        $("#expSide")?.classList.toggle("collapsed");
+      });
+
+      // Tabs
+      document.querySelectorAll(".exp-tab").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".exp-tab").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const tab = btn.getAttribute("data-exp-tab");
+          $("#expTab-dados").style.display = (tab === "dados") ? "block" : "none";
+          $("#expTab-atividade").style.display = (tab === "atividade") ? "block" : "none";
+        });
+      });
+
+      // Select user/family
+      document.addEventListener("click", (e) => {
+        const u = e.target.closest("[data-exp-user]");
+        if (u){
+          expState.selectedUserId = u.getAttribute("data-exp-user");
+          expState.mode = "user";
+          expState.selectedMemberId = null;
+          expRender();
+        }
+        const m = e.target.closest("[data-exp-family]");
+        if (m){
+          expState.selectedMemberId = m.getAttribute("data-exp-family");
+          expState.mode = "family";
+          expRender();
+        }
+      });
+
+      // Add user
+      $("#expAddUserForm")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!expIsAdmin()) return;
+
+        const name = ($("#expNewUserName").value || "").trim();
+        const email = ($("#expNewUserEmail").value || "").trim().toLowerCase();
+        if (!name || !email) return;
+
+        const db = expLoad();
+        const exists = db.users.some(u => (u.email||"").toLowerCase() === email);
+        if (exists){
+          toast(currentLang==="en" ? "Already exists" : "Já existe", email, "info");
+          return;
+        }
+
+        const id = crypto?.randomUUID ? crypto.randomUUID() : ("u_" + Math.random().toString(16).slice(2));
+        db.users.push({ id, name, email, photoDataUrl:"", docs:{}, family:[], updatedAt: Date.now() });
+        expSave(db);
+
+        expState.selectedUserId = id;
+        expState.mode = "user";
+        expState.selectedMemberId = null;
+
+        $("#expNewUserName").value = "";
+        $("#expNewUserEmail").value = "";
+
+        expLog(currentLang==="en" ? "User profile created" : "Perfil de usuário criado", name);
+        toast(t("toastAdded"), name, "success");
+        expRender();
+      });
+
+      // Add family
+      $("#expAddFamilyForm")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!expIsAdmin()) return;
+
+        const userId = expState.selectedUserId;
+        if (!userId){
+          toast(currentLang==="en" ? "Select a user first" : "Selecione um usuário", "", "danger");
+          return;
+        }
+
+        const name = ($("#expNewFamilyName").value || "").trim();
+        const relation = ($("#expNewFamilyRelation").value || "").trim();
+        if (!name || !relation) return;
+
+        const db = expLoad();
+        const user = db.users.find(u => u.id === userId);
+        if (!user) return;
+
+        const id = crypto?.randomUUID ? crypto.randomUUID() : ("f_" + Math.random().toString(16).slice(2));
+        user.family = user.family || [];
+        user.family.push({ id, name, relation, photoDataUrl:"", docs:{}, updatedAt: Date.now() });
+        user.updatedAt = Date.now();
+        expSave(db);
+
+        expState.mode = "family";
+        expState.selectedMemberId = id;
+
+        $("#expNewFamilyName").value = "";
+        $("#expNewFamilyRelation").value = "";
+
+        expLog(currentLang==="en" ? "Family profile added" : "Perfil de familiar adicionado", name);
+        toast(t("toastAdded"), name, "success");
+        expRender();
+      });
+
+      // Save docs
+      $("#expSaveBtnNew")?.addEventListener("click", () => {
+        if (!expIsAdmin()) return;
+
+        const db = expLoad();
+        const { user, member } = expGetSelected(db);
+        const entity = (expState.mode === "family") ? member : user;
+        if (!entity){
+          toast(currentLang==="en" ? "Nothing selected" : "Nada selecionado", "", "info");
+          return;
+        }
+
+        entity.docs = entity.docs || {};
+        entity.docs.cpf = ($("#expCpf").value || "").trim();
+        entity.docs.rne = ($("#expRne").value || "").trim();
+        entity.docs.cnh = ($("#expCnh").value || "").trim();
+        entity.docs.house = ($("#expHouse").value || "").trim();
+        entity.docs.passport = ($("#expPassport").value || "").trim();
+        entity.updatedAt = Date.now();
+        if (expState.mode === "family" && user) user.updatedAt = Date.now();
+
+        expSave(db);
+        expLog(currentLang==="en" ? "Profile updated" : "Perfil atualizado", entity.name || "");
+        toast(t("toastSaved"), currentLang==="en" ? "Changes saved" : "Alterações salvas", "success");
+        expRender();
+      });
+
+      // Photo add/remove
+      $("#expAddPhotoBtn")?.addEventListener("click", () => $("#expPhotoInput").click());
+
+      $("#expPhotoInput")?.addEventListener("change", async () => {
+        const f = $("#expPhotoInput").files?.[0];
+        if (!f) return;
+
+        const dataUrl = await readFileAsDataURL(f);
+
+        const db = expLoad();
+        const { user, member } = expGetSelected(db);
+        const entity = (expState.mode === "family") ? member : user;
+        if (!entity) return;
+
+        entity.photoDataUrl = dataUrl;
+        entity.updatedAt = Date.now();
+        if (expState.mode === "family" && user) user.updatedAt = Date.now();
+
+        expSave(db);
+        expLog(currentLang==="en" ? "Photo updated" : "Foto atualizada", entity.name || "");
+        toast(t("toastSaved"), currentLang==="en" ? "Photo saved" : "Foto salva", "success");
+        expRender();
+      });
+
+      $("#expRemovePhotoBtn")?.addEventListener("click", () => {
+        const db = expLoad();
+        const { user, member } = expGetSelected(db);
+        const entity = (expState.mode === "family") ? member : user;
+        if (!entity) return;
+
+        entity.photoDataUrl = "";
+        entity.updatedAt = Date.now();
+        if (expState.mode === "family" && user) user.updatedAt = Date.now();
+
+        expSave(db);
+        expLog(currentLang==="en" ? "Photo removed" : "Foto removida", entity.name || "");
+        toast(t("toastRemoved"), currentLang==="en" ? "Photo removed" : "Foto removida", "info");
+        expRender();
+      });
+
+      // Delete profile (user or family)
+      $("#expDeleteProfileBtn")?.addEventListener("click", () => {
+        if (!expIsAdmin()) return;
+
+        const db = expLoad();
+
+        if (expState.mode === "family"){
+          const { user, member } = expGetSelected(db);
+          if (!user || !member) return;
+
+          user.family = (user.family || []).filter(m => m.id !== member.id);
+          user.updatedAt = Date.now();
+          expSave(db);
+
+          expLog(currentLang==="en" ? "Family profile removed" : "Perfil de familiar removido", member.name || "");
+          toast(t("toastRemoved"), member.name || "", "info");
+
+          expState.mode = "user";
+          expState.selectedMemberId = null;
+          expRender();
+          return;
+        }
+
+        const userId = expState.selectedUserId;
+        const user = db.users.find(u => u.id === userId);
+        if (!user) return;
+
+        db.users = db.users.filter(u => u.id !== userId);
+        expSave(db);
+
+        expLog(currentLang==="en" ? "User profile removed" : "Perfil de usuário removido", user.name || "");
+        toast(t("toastRemoved"), user.name || "", "info");
+
+        expState.selectedUserId = db.users[0]?.id || null;
+        expState.mode = "user";
+        expState.selectedMemberId = null;
+        expRender();
+      });
+
+      $("#expUserSearch")?.addEventListener("input", () => expRender());
+    }
 
     /* ===============================
-       Documents (fix included)
+       DOCUMENTS (fixed - no white screen)
        =============================== */
     const docSearch = $("#docSearch");
     const docCards = $("#docCards");
@@ -2003,6 +2778,7 @@
     function renderDocs(query=""){
       if (!docCards) return;
       const q = (query || "").trim().toLowerCase();
+
       const filtered = documents.filter(d => {
         const title = (currentLang==="en" ? d.title.en : d.title.pt).toLowerCase();
         const desc  = (currentLang==="en" ? d.desc.en : d.desc.pt).toLowerCase();
@@ -2050,13 +2826,13 @@
       const id = a.dataset.docOpen;
       toast(currentLang==="en" ? "Document (demo)" : "Documento (demo)",
             (currentLang==="en" ? "Open item: " : "Abrir item: ") + id,
-            "info", 2600);
+            "info", 2400);
     });
 
     docSearch?.addEventListener("input", () => renderDocs(docSearch.value));
 
     /* ===============================
-       Support (demo)
+       SUPPORT (demo)
        =============================== */
     const supportForm = $("#supportForm");
     supportForm?.addEventListener("submit", (e) => {
@@ -2079,19 +2855,16 @@
        =============================== */
     applyI18n();
 
-    // Restore session
     const existing = getSession();
     if (existing?.email){
       enterApp(existing);
     } else {
       $("#langSelectLogin").value = currentLang;
       $("#langSelectApp").value = currentLang;
-      // Still render journal for login state? not needed.
     }
 
-    // Initial renders for pages
+    // Default initial renders
     renderJournal();
-    renderExp();
     renderDocs("");
   </script>
 </body>
