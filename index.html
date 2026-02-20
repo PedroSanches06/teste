@@ -3,295 +3,302 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Need Support?</title>
-  <meta name="description" content="Modern support page with quick categories, newsletter, and FAQ." />
+  <title>Support Center • Modern</title>
+  <meta name="description" content="Modern cream & dark-blue support page with expandable launcher, ticket form, newsletter downloads, and FAQ." />
   <style>
-    :root {
-      --cream: #f6f1e9;
-      --cream-2: #fbf8f4;
-      --navy: #0f2742;
-      --navy-2: #133a5a;
-      --muted: #5e6b7a;
-      --accent: #2f6f95;
-      --card: #ffffff;
-      --ring: rgba(19, 58, 90, 0.15);
-      --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 8px 24px rgba(15,39,66,0.08);
-      --radius: 16px;
+    /* ===================== THEME ===================== */
+    :root{
+      --cream:#f6f1e9;       /* background base */
+      --cream-2:#fdfbf7;     /* background subtle */
+      --navy:#0f2742;        /* primary text */
+      --navy-2:#153a5a;      /* accents */
+      --muted:#5e6b7a;       /* secondary text */
+      --ring:rgba(21,58,90,.14);
+      --card:#ffffff;
+      --accent:#2f6f95;
+      --radius:20px;
+      --shadow:0 1px 3px rgba(0,0,0,.06), 0 12px 30px rgba(15,39,66,.12);
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 10% -10%, var(--cream), var(--cream-2));
-      color: var(--navy);
-      line-height: 1.55;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--navy);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, var(--cream), var(--cream-2));
+      line-height:1.58;
+      letter-spacing:.01em;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 20px 64px;
+    .container{max-width:1120px;margin:0 auto;padding:28px 18px 80px}
+
+    /* ===================== SUPPORT LAUNCHER ===================== */
+    .launcher-wrap{position:relative;margin:24px auto 18px;display:grid;place-items:center}
+
+    .launcher-btn{
+      display:inline-grid;place-items:center;
+      width:84px;height:84px;border-radius:999px;border:1px solid var(--ring);
+      background:linear-gradient(180deg,#ffffffbd,#ffffff8a);
+      box-shadow:var(--shadow);
+      color:var(--navy-2);
+      cursor:pointer;user-select:none;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .launcher-btn:hover{ transform:translateY(-2px); box-shadow:0 2px 10px rgba(0,0,0,.08), 0 16px 40px rgba(21,58,90,.18) }
+
+    .launcher-btn svg{width:36px;height:36px}
+
+    /* Balloon */
+    .balloon{
+      position:absolute; top:92px; /* below the button */
+      width:min(780px, 92vw);
+      padding:14px 14px 6px; 
+      background:var(--card);
+      border:1px solid var(--ring);
+      border-radius:24px; box-shadow:var(--shadow);
+      display:grid; gap:10px; opacity:0; pointer-events:none;
+      transform:translateY(-10px) scale(.98);
+      transition:opacity .22s ease, transform .22s ease;
     }
 
-    header.hero {
-      padding: 48px 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.4));
-      border-radius: calc(var(--radius) * 1.25);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--ring);
-      position: relative;
-      overflow: hidden;
+    .balloon::before{ /* little tail */
+      content:""; position:absolute; top:-10px; left:calc(50% - 10px);
+      width:20px; height:20px; background:var(--card);
+      border-left:1px solid var(--ring); border-top:1px solid var(--ring);
+      transform:rotate(45deg);
     }
 
-    header.hero::after {
-      /* detalhe geométrico sutil */
-      content: "";
-      position: absolute;
-      inset: -40px -40px auto auto;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle at 30% 30%, rgba(47,111,149,0.12), transparent 60%);
-      filter: blur(2px);
-      pointer-events: none;
+    .launcher-wrap.open .balloon{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto }
+
+    .options{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+
+    .opt{
+      display:grid; place-items:center; gap:8px; text-decoration:none; color:inherit;
+      border:1px solid var(--ring); background:linear-gradient(180deg,#fff,#fafafa);
+      border-radius:16px; padding:14px 8px; transition:transform .18s ease,border-color .18s ease, box-shadow .18s ease;
+    }
+    .opt:hover{ transform:translateY(-2px); border-color:rgba(21,58,90,.28); box-shadow:0 6px 22px rgba(21,58,90,.12) }
+    .opt svg{ width:28px; height:28px; color:var(--navy-2) }
+    .opt span{ font-weight:600 }
+
+    @media (max-width:760px){ .options{ grid-template-columns:repeat(3,1fr) } }
+    @media (max-width:480px){ .options{ grid-template-columns:repeat(2,1fr) } }
+
+    /* ===================== TICKET PANEL ===================== */
+    .ticket-panel{
+      margin-top:24px; background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+      box-shadow:var(--shadow); overflow:hidden; display:none;
+    }
+    .ticket-panel.active{ display:block; animation:slideIn .28s ease both }
+    @keyframes slideIn{ from{ opacity:0; transform:translateY(-6px) } to{ opacity:1; transform:translateY(0) } }
+
+    .ticket-head{ display:flex; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--ring); background:#ffffffb3; backdrop-filter:saturate(110%) blur(4px) }
+    .ticket-head .ico{ width:22px; height:22px; color:var(--navy-2) }
+    .ticket-head h2{ margin:0; font-size:1.15rem }
+
+    form.ticket{ display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:16px 18px }
+    form.ticket .full{ grid-column:1 / -1 }
+    label{ font-size:.92rem; color:var(--muted); display:block; margin:4px 0 6px }
+    input[type=text], input[type=email], select, textarea{
+      width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--ring);
+      background:#fff; color:var(--navy); outline:none; transition:border-color .15s ease, box-shadow .15s ease
+    }
+    textarea{ min-height:120px; resize:vertical }
+    input:focus, select:focus, textarea:focus{ border-color:rgba(47,111,149,.6); box-shadow:0 0 0 4px rgba(47,111,149,.12) }
+
+    .actions{ display:flex; gap:10px; align-items:center; margin-top:4px }
+    .btn{ appearance:none; border:1px solid transparent; background:var(--navy-2); color:#fff; padding:12px 16px; border-radius:12px; cursor:pointer; font-weight:600; box-shadow:var(--shadow); transition:background .15s ease, transform .15s ease }
+    .btn:hover{ background:#0e3a5c; transform:translateY(-1px) }
+    .btn.subtle{ background:#eaf2f8; color:var(--navy-2); border-color:rgba(21,58,90,.18) }
+    .btn.subtle:hover{ background:#dfeaf2 }
+
+    /* ===================== NEWSLETTER ===================== */
+    .newsletter{ margin-top:42px }
+    .newsletter h2{
+      margin:0 0 12px; font-weight:800; font-size:clamp(1.6rem, 2vw + 1rem, 2.4rem);
+      letter-spacing:.04em; text-transform:uppercase; color:var(--navy-2);
+      text-shadow:0 2px 0 rgba(15,39,66,.06), 0 12px 24px rgba(15,39,66,.16);
     }
 
-    h1.title {
-      font-size: clamp(2.4rem, 4vw + 1rem, 4rem);
-      margin: 0 0 12px;
-      letter-spacing: -0.02em;
+    .news-card{
+      background:linear-gradient(180deg,#ffffff,#fbfbfb); border:1px solid var(--ring);
+      border-radius:22px; box-shadow:var(--shadow); padding:14px 16px 8px
     }
+    .news-list{ list-style:none; padding:0; margin:0; display:grid; gap:8px }
+    .news-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 10px; border-radius:14px; transition:background .15s ease, transform .15s ease }
+    .news-row:hover{ background:#f3f7fb; transform:translateY(-1px) }
+    .news-row .title{ font-weight:600 }
+    .news-row .meta{ color:var(--muted); font-size:.92rem }
 
-    p.subtitle { color: var(--muted); margin: 0; font-size: 1.05rem; }
+    .download-link{ color:var(--accent); text-decoration:none; font-weight:700 }
+    .download-link:hover{ text-decoration:underline }
 
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .quick-card {
-      background: var(--card);
-      border: 1px solid var(--ring);
-      border-radius: var(--radius);
-      padding: 18px 16px;
-      display: grid;
-      place-items: center;
-      gap: 10px;
-      box-shadow: var(--shadow);
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .quick-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 14px 30px rgba(19,58,90,0.18);
-      border-color: rgba(19,58,90,0.25);
-    }
-
-    .quick-card svg { width: 34px; height: 34px; color: var(--navy-2); }
-    .quick-card span { font-weight: 600; }
-
-    .section {
-      margin-top: 44px;
-      background: var(--card);
-      border: 1px solid var(--ring);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .section header { padding: 18px 20px; border-bottom: 1px solid var(--ring); background: #ffffffb8; backdrop-filter: saturate(110%) blur(4px); }
-    .section header h2 { margin: 0; font-size: 1.4rem; letter-spacing: -0.01em; }
-
-    /* Newsletter */
-    .newsletter-list { list-style: none; margin: 0; padding: 6px 10px 14px; }
-
-    .news-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      padding: 14px 10px;
-      margin: 6px 8px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      transition: background .15s ease, border-color .15s ease;
-    }
-
-    .news-item:hover { background: #f3f7fb; border-color: rgba(19,58,90,0.18); }
-
-    .news-title { font-weight: 600; }
-    .news-meta { color: var(--muted); font-size: .92rem; }
-
-    .chip {
-      align-self: start;
-      background: #e7f0f6;
-      color: var(--accent);
-      border: 1px solid rgba(47,111,149,0.25);
-      padding: 6px 10px; border-radius: 999px; font-weight: 600; font-size: .8rem; letter-spacing: .02em;
-    }
-
-    /* FAQ */
-    .faq { padding: 10px 8px 6px; }
-
-    details.faq-item {
-      border-bottom: 1px dashed rgba(19,58,90,0.25);
-      padding: 14px 12px;
-    }
-
-    details.faq-item:last-child { border-bottom: none; }
-
-    details.faq-item > summary {
-      cursor: pointer;
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-    }
-
-    details.faq-item[open] summary .chev { transform: rotate(180deg); }
-
-    details.faq-item p { margin: 10px 0 0; color: var(--muted); }
-
-    .chev { transition: transform .2s ease; color: var(--navy-2); }
-
-    /* Footer */
-    footer { text-align: center; color: var(--muted); font-size: .92rem; margin: 28px 0 0; }
-
-    /* Responsive */
-    @media (max-width: 860px) {
-      .quick-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 480px) {
-      header.hero { padding: 32px 20px; }
-    }
+    /* ===================== FOOTER ===================== */
+    footer{ text-align:center; color:var(--muted); font-size:.92rem; margin:28px 0 0 }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- HERO / CATEGORIAS RÁPIDAS -->
-    <header class="hero" aria-label="Need support hero section">
-      <h1 class="title">Need support?</h1>
-      <p class="subtitle">Choose a category to get help faster</p>
 
-      <nav class="quick-grid" aria-label="Support categories">
-        <a class="quick-card" href="#home" aria-label="Home support">
-          <!-- Ícone Casa -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 10.5L12 3l9 7.5" />
-            <path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9" />
-            <path d="M9 20v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6" />
-          </svg>
-          <span>Home</span>
-        </a>
+    <!-- ============== SUPPORT LAUNCHER ============== -->
+    <section aria-label="Support launcher">
+      <div class="launcher-wrap" id="launcher">
+        <button class="launcher-btn" id="launcherBtn" aria-expanded="false" aria-controls="balloon" title="Need support?">
+          <!-- life-buoy icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+        </button>
 
-        <a class="quick-card" href="#health" aria-label="Health support">
-          <!-- Ícone Saúde (coração + cruz) -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 1 0-7.1 7.1l8.1 8.1a1 1 0 0 0 1.4 0l8.1-8.1a5 5 0 0 0 0-7.1z" />
-            <path d="M12 7v6" />
-            <path d="M9 10h6" />
-          </svg>
-          <span>Health</span>
-        </a>
-
-        <a class="quick-card" href="#documents" aria-label="Documents support">
-          <!-- Ícone Documentos -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z" />
-            <path d="M14 2v7h7" />
-            <path d="M9 13h6" />
-            <path d="M9 17h6" />
-          </svg>
-          <span>Documents</span>
-        </a>
-
-        <a class="quick-card" href="#auto" aria-label="Car support">
-          <!-- Ícone Carro -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 13l2.5-6A2 2 0 0 1 7.3 6h9.4a2 2 0 0 1 1.8 1l2.5 6" />
-            <rect x="2.5" y="13" width="19" height="6" rx="2" />
-            <path d="M7 19v2" />
-            <path d="M17 19v2" />
-            <circle cx="7.5" cy="16.5" r="1.2" />
-            <circle cx="16.5" cy="16.5" r="1.2" />
-          </svg>
-          <span>Car</span>
-        </a>
-      </nav>
-    </header>
-
-    <!-- NEWSLETTER -->
-    <section id="newsletter" class="section" aria-label="Newsletter">
-      <header>
-        <h2>Newsletter</h2>
-      </header>
-
-      <ul class="newsletter-list" aria-live="polite">
-        <li class="news-item">
-          <div>
-            <div class="news-title">Community Services Update</div>
-            <div class="news-meta">Apr 12, 2026 • 3 min read</div>
+        <div class="balloon" id="balloon" role="region" aria-label="Need support options">
+          <div style="padding:0 8px 6px 8px;color:var(--muted);font-size:.95rem">Need support? Choose a category below.</div>
+          <div class="options">
+            <a href="#" class="opt" data-category="House" aria-label="House support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11L12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+              <span>House</span>
+            </a>
+            <a href="#" class="opt" data-category="Car" aria-label="Car support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2.5-6A2 2 0 0 1 7.3 6h9.4a2 2 0 0 1 1.8 1L21 13"/><rect x="2.5" y="13" width="19" height="6" rx="2"/><circle cx="7.5" cy="16.5" r="1.2"/><circle cx="16.5" cy="16.5" r="1.2"/></svg>
+              <span>Car</span>
+            </a>
+            <a href="#" class="opt" data-category="Health" aria-label="Health support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 1 0-7.1 7.1l8.1 8.1a1 1 0 0 0 1.4 0l8.1-8.1a5 5 0 0 0 0-7.1z"/><path d="M12 7v6"/><path d="M9 10h6"/></svg>
+              <span>Health</span>
+            </a>
+            <a href="#" class="opt" data-category="Documents" aria-label="Documents support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z"/><path d="M14 2v7h7"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+              <span>Documents</span>
+            </a>
+            <a href="#" class="opt" data-category="Other support" aria-label="Other support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M8 12h8"/><circle cx="12" cy="12" r="10"/></svg>
+              <span>Other support</span>
+            </a>
           </div>
-          <span class="chip">New</span>
-        </li>
-        <li class="news-item">
-          <div>
-            <div class="news-title">Tips for Homeowners</div>
-            <div class="news-meta">Mar 28, 2026 • 4 min read</div>
-          </div>
-          <span class="chip">Guide</span>
-        </li>
-        <li class="news-item">
-          <div>
-            <div class="news-title">Healthcare Benefits Explained</div>
-            <div class="news-meta">Mar 02, 2026 • 2 min read</div>
-          </div>
-          <span class="chip">Health</span>
-        </li>
-      </ul>
-    </section>
+        </div>
+      </div>
 
-    <!-- FAQ -->
-    <section id="faq" class="section" aria-label="Frequently Asked Questions">
-      <header>
-        <h2>FAQ</h2>
-      </header>
-      <div class="faq">
-        <details class="faq-item">
-          <summary>
-            How can I contact support?
-            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <p>You can reach us via the category links above or by email at support@example.com. We reply within 1 business day.</p>
-        </details>
-        <details class="faq-item">
-          <summary>
-            Can I subscribe to the newsletter?
-            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <p>Yes—scroll to the Newsletter section and click any item to learn more. A subscription form can be added here if you need one.</p>
-        </details>
-        <details class="faq-item">
-          <summary>
-            Where can I find documents?
-            <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <p>Use the <strong>Documents</strong> shortcut in the header. You can organize files by category and date.</p>
-        </details>
+      <!-- Ticket panel (hidden until a category is chosen) -->
+      <div class="ticket-panel" id="ticketPanel">
+        <div class="ticket-head">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M8 12h8"/><circle cx="12" cy="12" r="10"/></svg>
+          <h2 id="ticketTitle">Open a ticket</h2>
+        </div>
+        <form class="ticket" id="ticketForm" onsubmit="event.preventDefault(); alert('Ticket submitted!');">
+          <div class="full">
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category" readonly />
+          </div>
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your full name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option>Normal</option>
+              <option>High</option>
+              <option>Urgent</option>
+            </select>
+          </div>
+          <div>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Short summary" />
+          </div>
+          <div class="full">
+            <label for="desc">Description</label>
+            <textarea id="desc" placeholder="Describe the request..."></textarea>
+          </div>
+          <div>
+            <label for="file">Attachment</label>
+            <input type="file" id="file" />
+          </div>
+          <div class="actions">
+            <button class="btn" type="submit">Submit ticket</button>
+            <button class="btn subtle" type="button" id="resetTicket">Clear</button>
+          </div>
+        </form>
       </div>
     </section>
 
-    <footer>
-      Built with ❤️ in a clean cream & dark-blue theme.
-    </footer>
+    <!-- ============== NEWSLETTER (BOTTOM) ============== -->
+    <section class="newsletter" aria-label="Newsletter downloads">
+      <h2 style="font-family: 'Trebuchet MS', 'Gill Sans', Inter, system-ui, sans-serif; letter-spacing:.12em">Newsletter</h2>
+      <div class="news-card">
+        <ul class="news-list">
+          <li class="news-row">
+            <div>
+              <div class="title">Community Services Update</div>
+              <div class="meta">Apr 12, 2026 • PDF</div>
+            </div>
+            <a class="download-link" href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAyIDAgUj4+CmVuZG9iagoyIDAgb2JqCjw8L1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgMzAwIDE0NF0gL0NvbnRlbnRzIDQgMCBSIC9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNTU+PnN0cmVhbQpCVCAvRjEgMjQgVGYgNzIgMTAwIFRqIChOZXdzbGV0dGVyKSBFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2E+PgplbmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDExNiAwMDAwMCBuIAowMDAwMDAwMjc0IDAwMDAwIG4gCjAwMDAwMDAzOTAgMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDYgL1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKNDUzCgolJUVPRgo=" download="Community-Services-Update.pdf">Download</a>
+          </li>
+          <li class="news-row">
+            <div>
+              <div class="title">Tips for Homeowners</div>
+              <div class="meta">Mar 28, 2026 • PDF</div>
+            </div>
+            <a class="download-link" href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAyIDAgUj4+CmVuZG9iagoyIDAgb2JqCjw8L1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgMzAwIDE0NF0gL0NvbnRlbnRzIDQgMCBSIC9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNjA+PnN0cmVhbQpCVCAvRjEgMjQgVGYgNTAgMTAwIFRqIChIb21lb3duZXJzIFRpcHMpIEVUCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYT4+CmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDExNiAwMDAwMCBuIAowMDAwMDAwMzI4IDAwMDAwIG4gCjAwMDAwMDA0NDQgMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDYgL1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKNDUzCgolJUVPRgo=" download="Tips-for-Homeowners.pdf">Download</a>
+          </li>
+          <li class="news-row">
+            <div>
+              <div class="title">Healthcare Benefits Explained</div>
+              <div class="meta">Mar 02, 2026 • PDF</div>
+            </div>
+            <a class="download-link" href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAyIDAgUj4+CmVuZG9iagoyIDAgb2JqCjw8L1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgMzAwIDE0NF0gL0NvbnRlbnRzIDQgMCBSIC9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNzAgPj5zdHJlYW0KQlQgL0YxIDI0IFRmIDQwIDEwMCBUaiAoSGVhbHRoY2FyZSBCZW5lZml0cykgRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8L1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhPj4KZW5kb2JqCnhyZWYKMCA2CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAxMCAwMDAwMCBuIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTYgMDAwMDAgbiAKMDAwMDAwMDM1MyAwMDAwMCBuIAowMDAwMDAwNDY5IDAwMDAwIG4gCnRyYWlsZXIKPDwvU2l6ZSA2IC9Sb290IDEgMCBSPj4Kc3RhcnR4cmVmCjQ1MwoKJSVFT0Y=" download="Healthcare-Benefits-Explained.pdf">Download</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>Built with ❤️ — cream & dark-blue modern UI.</footer>
   </div>
+
+  <script>
+    // Toggle balloon
+    const launcher = document.getElementById('launcher');
+    const btn = document.getElementById('launcherBtn');
+    const balloon = document.getElementById('balloon');
+    const panel = document.getElementById('ticketPanel');
+    const ticketTitle = document.getElementById('ticketTitle');
+    const categoryInput = document.getElementById('category');
+    const resetBtn = document.getElementById('resetTicket');
+
+    btn.addEventListener('click', () => {
+      const open = launcher.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      // When opening, bring attention to the top
+      if(open){ window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    });
+
+    // Handle category selection
+    balloon.querySelectorAll('.opt').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = opt.dataset.category || 'General';
+        ticketTitle.textContent = `Open a ticket — ${cat}`;
+        categoryInput.value = cat;
+        panel.classList.add('active');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Clear form
+    resetBtn.addEventListener('click', () => {
+      document.getElementById('ticketForm').reset();
+      categoryInput.value = '';
+    });
+
+    // Close balloon if user clicks outside
+    document.addEventListener('click', (e) => {
+      if(!launcher.contains(e.target)){
+        launcher.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
 </body>
 </html>
