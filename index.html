@@ -1,304 +1,380 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Support Center • Modern</title>
-  <meta name="description" content="Modern cream & dark-blue support page with expandable launcher, ticket form, newsletter downloads, and FAQ." />
+  <title>Portal - Suporte & NewsLetter</title>
   <style>
-    /* ===================== THEME ===================== */
     :root{
-      --cream:#f6f1e9;       /* background base */
-      --cream-2:#fdfbf7;     /* background subtle */
-      --navy:#0f2742;        /* primary text */
-      --navy-2:#153a5a;      /* accents */
-      --muted:#5e6b7a;       /* secondary text */
-      --ring:rgba(21,58,90,.14);
-      --card:#ffffff;
-      --accent:#2f6f95;
-      --radius:20px;
-      --shadow:0 1px 3px rgba(0,0,0,.06), 0 12px 30px rgba(15,39,66,.12);
+      --bg:#e9e9e9; 
+      --card:#ffffff; 
+      --ink:#1f1f1f; 
+      --muted:#6b6b6b; 
+      --brand:#2f6df6; 
+      --brand-2:#111827; 
+      --radius:20px; 
+      --shadow:0 6px 24px rgba(0,0,0,.08);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--navy);
-      background:
-        radial-gradient(1200px 700px at 10% -10%, var(--cream), var(--cream-2));
-      line-height:1.58;
-      letter-spacing:.01em;
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--ink); background:var(--bg);
     }
-
-    .container{max-width:1120px;margin:0 auto;padding:28px 18px 80px}
-
-    /* ===================== SUPPORT LAUNCHER ===================== */
-    .launcher-wrap{position:relative;margin:24px auto 18px;display:grid;place-items:center}
-
-    .launcher-btn{
-      display:inline-grid;place-items:center;
-      width:84px;height:84px;border-radius:999px;border:1px solid var(--ring);
-      background:linear-gradient(180deg,#ffffffbd,#ffffff8a);
-      box-shadow:var(--shadow);
-      color:var(--navy-2);
-      cursor:pointer;user-select:none;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    .wrap{max-width:1100px; margin:32px auto; padding:12px}
+    .grid{
+      display:grid; gap:28px; grid-template-columns: 1fr; align-items:start;
     }
-    .launcher-btn:hover{ transform:translateY(-2px); box-shadow:0 2px 10px rgba(0,0,0,.08), 0 16px 40px rgba(21,58,90,.18) }
-
-    .launcher-btn svg{width:36px;height:36px}
-
-    /* Balloon */
-    .balloon{
-      position:absolute; top:92px; /* below the button */
-      width:min(780px, 92vw);
-      padding:14px 14px 6px; 
-      background:var(--card);
-      border:1px solid var(--ring);
-      border-radius:24px; box-shadow:var(--shadow);
-      display:grid; gap:10px; opacity:0; pointer-events:none;
-      transform:translateY(-10px) scale(.98);
-      transition:opacity .22s ease, transform .22s ease;
+    @media (min-width: 900px){
+      .grid{grid-template-columns: 1fr 1fr}
     }
-
-    .balloon::before{ /* little tail */
-      content:""; position:absolute; top:-10px; left:calc(50% - 10px);
-      width:20px; height:20px; background:var(--card);
-      border-left:1px solid var(--ring); border-top:1px solid var(--ring);
-      transform:rotate(45deg);
+    .card{
+      background:var(--bg); border-radius:var(--radius); padding:24px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.05);
     }
-
-    .launcher-wrap.open .balloon{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto }
-
-    .options{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
-
-    .opt{
-      display:grid; place-items:center; gap:8px; text-decoration:none; color:inherit;
-      border:1px solid var(--ring); background:linear-gradient(180deg,#fff,#fafafa);
-      border-radius:16px; padding:14px 8px; transition:transform .18s ease,border-color .18s ease, box-shadow .18s ease;
+    .card-inner{
+      background:var(--card); border-radius:16px; padding:22px; box-shadow: var(--shadow);
     }
-    .opt:hover{ transform:translateY(-2px); border-color:rgba(21,58,90,.28); box-shadow:0 6px 22px rgba(21,58,90,.12) }
-    .opt svg{ width:28px; height:28px; color:var(--navy-2) }
-    .opt span{ font-weight:600 }
+    .title{font-size:28px; font-weight:800; margin:0 0 8px}
+    .subtitle{font-size:14px; color:var(--muted); line-height:1.4; margin:0}
 
-    @media (max-width:760px){ .options{ grid-template-columns:repeat(3,1fr) } }
-    @media (max-width:480px){ .options{ grid-template-columns:repeat(2,1fr) } }
-
-    /* ===================== TICKET PANEL ===================== */
-    .ticket-panel{
-      margin-top:24px; background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
-      box-shadow:var(--shadow); overflow:hidden; display:none;
+    .row{display:flex; gap:16px; align-items:center}
+    .icon{
+      width:64px; height:64px; border-radius:12px; background:#f1f5f9; display:grid; place-items:center;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
     }
-    .ticket-panel.active{ display:block; animation:slideIn .28s ease both }
-    @keyframes slideIn{ from{ opacity:0; transform:translateY(-6px) } to{ opacity:1; transform:translateY(0) } }
+    .btn{
+      appearance:none; border:0; background:#fff; color:#111; padding:10px 16px; border-radius:999px; box-shadow: var(--shadow);
+      cursor:pointer; font-weight:600; transition: all .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.12)}
+    .btn.secondary{background:#111827; color:#fff}
 
-    .ticket-head{ display:flex; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--ring); background:#ffffffb3; backdrop-filter:saturate(110%) blur(4px) }
-    .ticket-head .ico{ width:22px; height:22px; color:var(--navy-2) }
-    .ticket-head h2{ margin:0; font-size:1.15rem }
+    /* Popovers (balões flutuantes) */
+    .popover{ position: fixed; inset:auto auto auto auto; z-index:50; background:#fff; border-radius:14px; box-shadow:0 12px 36px rgba(0,0,0,.18); padding:10px; width:min(320px, calc(100% - 24px)); border:1px solid rgba(0,0,0,.06);}
+    .popover.hidden{ display:none }
+    .popover h4{ margin:6px 8px 8px; font-size:14px; color:#374151 }
+    .list{ list-style:none; margin:0; padding:6px}
+    .list li{ display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; cursor:pointer }
+    .list li:hover{ background:#f3f4f6 }
 
-    form.ticket{ display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:16px 18px }
-    form.ticket .full{ grid-column:1 / -1 }
-    label{ font-size:.92rem; color:var(--muted); display:block; margin:4px 0 6px }
-    input[type=text], input[type=email], select, textarea{
-      width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--ring);
-      background:#fff; color:var(--navy); outline:none; transition:border-color .15s ease, box-shadow .15s ease
+    /* Modal */
+    .backdrop{ position:fixed; inset:0; background:rgba(17,24,39,.5); display:none; z-index:60 }
+    .modal{ position:fixed; inset:auto; left:50%; top:50%; transform: translate(-50%, -50%); width:min(720px, calc(100% - 24px)); background:#fff; border-radius:16px; box-shadow:0 24px 64px rgba(0,0,0,.32); padding:20px; display:none; z-index:70 }
+    .modal header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px }
+    .modal header h3{ margin:0; font-size:20px }
+    .close{ background:transparent; border:0; font-size:22px; cursor:pointer; padding:6px; border-radius:8px }
+    .close:hover{ background:#f3f4f6 }
+    form.grid{ grid-template-columns: 1fr; gap:14px }
+    @media (min-width: 680px){ form.grid{ grid-template-columns: 1fr 1fr } .span-2{ grid-column: span 2 } }
+    label{ font-size:13px; color:#4b5563; display:block; margin-bottom:6px }
+    input[type="text"], input[type="email"], select, textarea{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid #d1d5db; outline:none; font: inherit; background:#fff
     }
     textarea{ min-height:120px; resize:vertical }
-    input:focus, select:focus, textarea:focus{ border-color:rgba(47,111,149,.6); box-shadow:0 0 0 4px rgba(47,111,149,.12) }
+    .helper{ font-size:12px; color:#6b7280 }
 
-    .actions{ display:flex; gap:10px; align-items:center; margin-top:4px }
-    .btn{ appearance:none; border:1px solid transparent; background:var(--navy-2); color:#fff; padding:12px 16px; border-radius:12px; cursor:pointer; font-weight:600; box-shadow:var(--shadow); transition:background .15s ease, transform .15s ease }
-    .btn:hover{ background:#0e3a5c; transform:translateY(-1px) }
-    .btn.subtle{ background:#eaf2f8; color:var(--navy-2); border-color:rgba(21,58,90,.18) }
-    .btn.subtle:hover{ background:#dfeaf2 }
+    /* Newsletter */
+    .nl-card{ background:#fff; border-radius:18px; padding:16px; box-shadow: var(--shadow) }
+    .nl-title{ font-size:34px; font-weight:800; margin:8px 0 12px }
+    .nl-list{ list-style:none; margin:0; padding:0 }
+    .nl-item{ display:flex; justify-content:space-between; align-items:center; padding:12px 8px; border-radius:10px; cursor:pointer }
+    .nl-item:hover{ background:#f3f4f6 }
+    .divider{ height:2px; background:#d1d5db; border-radius:1px; margin:10px 0 8px }
+    .muted{ color:#6b7280 }
 
-    /* ===================== NEWSLETTER ===================== */
-    .newsletter{ margin-top:42px }
-    .newsletter h2{
-      margin:0 0 12px; font-weight:800; font-size:clamp(1.6rem, 2vw + 1rem, 2.4rem);
-      letter-spacing:.04em; text-transform:uppercase; color:var(--navy-2);
-      text-shadow:0 2px 0 rgba(15,39,66,.06), 0 12px 24px rgba(15,39,66,.16);
-    }
-
-    .news-card{
-      background:linear-gradient(180deg,#ffffff,#fbfbfb); border:1px solid var(--ring);
-      border-radius:22px; box-shadow:var(--shadow); padding:14px 16px 8px
-    }
-    .news-list{ list-style:none; padding:0; margin:0; display:grid; gap:8px }
-    .news-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 10px; border-radius:14px; transition:background .15s ease, transform .15s ease }
-    .news-row:hover{ background:#f3f7fb; transform:translateY(-1px) }
-    .news-row .title{ font-weight:600 }
-    .news-row .meta{ color:var(--muted); font-size:.92rem }
-
-    .download-link{ color:var(--accent); text-decoration:none; font-weight:700 }
-    .download-link:hover{ text-decoration:underline }
-
-    /* ===================== FOOTER ===================== */
-    footer{ text-align:center; color:var(--muted); font-size:.92rem; margin:28px 0 0 }
+    /* Footer note */
+    .note{ font-size:12px; color:#6b7280; margin-top:8px }
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <!-- ============== SUPPORT LAUNCHER ============== -->
-    <section aria-label="Support launcher">
-      <div class="launcher-wrap" id="launcher">
-        <button class="launcher-btn" id="launcherBtn" aria-expanded="false" aria-controls="balloon" title="Need support?">
-          <!-- life-buoy icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
-        </button>
-
-        <div class="balloon" id="balloon" role="region" aria-label="Need support options">
-          <div style="padding:0 8px 6px 8px;color:var(--muted);font-size:.95rem">Need support? Choose a category below.</div>
-          <div class="options">
-            <a href="#" class="opt" data-category="House" aria-label="House support">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11L12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
-              <span>House</span>
-            </a>
-            <a href="#" class="opt" data-category="Car" aria-label="Car support">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2.5-6A2 2 0 0 1 7.3 6h9.4a2 2 0 0 1 1.8 1L21 13"/><rect x="2.5" y="13" width="19" height="6" rx="2"/><circle cx="7.5" cy="16.5" r="1.2"/><circle cx="16.5" cy="16.5" r="1.2"/></svg>
-              <span>Car</span>
-            </a>
-            <a href="#" class="opt" data-category="Health" aria-label="Health support">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 1 0-7.1 7.1l8.1 8.1a1 1 0 0 0 1.4 0l8.1-8.1a5 5 0 0 0 0-7.1z"/><path d="M12 7v6"/><path d="M9 10h6"/></svg>
-              <span>Health</span>
-            </a>
-            <a href="#" class="opt" data-category="Documents" aria-label="Documents support">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z"/><path d="M14 2v7h7"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
-              <span>Documents</span>
-            </a>
-            <a href="#" class="opt" data-category="Other support" aria-label="Other support">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M8 12h8"/><circle cx="12" cy="12" r="10"/></svg>
-              <span>Other support</span>
-            </a>
+  <div class="wrap">
+    <div class="grid" aria-label="layout em 2 colunas">
+      <!-- Coluna Esquerda -->
+      <section class="card" aria-labelledby="tit-suporte">
+        <div class="row">
+          <div class="icon" aria-hidden="true">
+            <!-- coração em mãos -->
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.716-4.347-8.485-7.071A5 5 0 1 1 12 6a5 5 0 1 1 8.485 7.929C18.716 16.653 12 21 12 21z"/></svg>
+          </div>
+          <div>
+            <h2 id="tit-suporte" class="title">Need support?</h2>
+            <p class="subtitle">Aqui você pode solicitar qualquer assistência de forma rápida e simples. Estamos aqui para facilitar sua vida!</p>
           </div>
         </div>
-      </div>
-
-      <!-- Ticket panel (hidden until a category is chosen) -->
-      <div class="ticket-panel" id="ticketPanel">
-        <div class="ticket-head">
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M8 12h8"/><circle cx="12" cy="12" r="10"/></svg>
-          <h2 id="ticketTitle">Open a ticket</h2>
+        <div class="card-inner" style="margin-top:16px">
+          <button id="btn-suporte" class="btn secondary" aria-haspopup="dialog" aria-controls="popover-suporte">Abrir opções de suporte</button>
+          <p class="note">Clique para escolher: House, Documents, Health, Car ou Other support.</p>
         </div>
-        <form class="ticket" id="ticketForm" onsubmit="event.preventDefault(); alert('Ticket submitted!');">
-          <div class="full">
-            <label for="category">Category</label>
-            <input type="text" id="category" name="category" readonly />
-          </div>
-          <div>
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Your full name" required />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="you@example.com" required />
-          </div>
-          <div>
-            <label for="priority">Priority</label>
-            <select id="priority">
-              <option>Normal</option>
-              <option>High</option>
-              <option>Urgent</option>
-            </select>
-          </div>
-          <div>
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" placeholder="Short summary" />
-          </div>
-          <div class="full">
-            <label for="desc">Description</label>
-            <textarea id="desc" placeholder="Describe the request..."></textarea>
-          </div>
-          <div>
-            <label for="file">Attachment</label>
-            <input type="file" id="file" />
-          </div>
-          <div class="actions">
-            <button class="btn" type="submit">Submit ticket</button>
-            <button class="btn subtle" type="button" id="resetTicket">Clear</button>
-          </div>
-        </form>
-      </div>
-    </section>
 
-    <!-- ============== NEWSLETTER (BOTTOM) ============== -->
-    <section class="newsletter" aria-label="Newsletter downloads">
-      <h2 style="font-family: 'Trebuchet MS', 'Gill Sans', Inter, system-ui, sans-serif; letter-spacing:.12em">Newsletter</h2>
-      <div class="news-card">
-        <ul class="news-list">
-          <li class="news-row">
-            <div>
-              <div class="title">Community Services Update</div>
-              <div class="meta">Apr 12, 2026 • PDF</div>
-            </div>
-            <a class="download-link" href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAyIDAgUj4+CmVuZG9iagoyIDAgb2JqCjw8L1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgMzAwIDE0NF0gL0NvbnRlbnRzIDQgMCBSIC9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNTU+PnN0cmVhbQpCVCAvRjEgMjQgVGYgNzIgMTAwIFRqIChOZXdzbGV0dGVyKSBFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwvVHlwZSAvRm9udCAvU3VidHlwZSAvVHlwZTEgL0Jhc2VGb250IC9IZWx2ZXRpY2E+PgplbmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDExNiAwMDAwMCBuIAowMDAwMDAwMjc0IDAwMDAwIG4gCjAwMDAwMDAzOTAgMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDYgL1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKNDUzCgolJUVPRgo=" download="Community-Services-Update.pdf">Download</a>
-          </li>
-          <li class="news-row">
-            <div>
-              <div class="title">Tips for Homeowners</div>
-              <div class="meta">Mar 28, 2026 • PDF</div>
-            </div>
-            <a class="download-link" href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAyIDAgUj4+CmVuZG9iagoyIDAgb2JqCjw8L1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgMzAwIDE0NF0gL0NvbnRlbnRzIDQgMCBSIC9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNjA+PnN0cmVhbQpCVCAvRjEgMjQgVGYgNTAgMTAwIFRqIChIb21lb3duZXJzIFRpcHMpIEVUCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYT4+CmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDExNiAwMDAwMCBuIAowMDAwMDAwMzI4IDAwMDAwIG4gCjAwMDAwMDA0NDQgMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDYgL1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKNDUzCgolJUVPRgo=" download="Tips-for-Homeowners.pdf">Download</a>
-          </li>
-          <li class="news-row">
-            <div>
-              <div class="title">Healthcare Benefits Explained</div>
-              <div class="meta">Mar 02, 2026 • PDF</div>
-            </div>
-            <a class="download-link" href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAyIDAgUj4+CmVuZG9iagoyIDAgb2JqCjw8L1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgMzAwIDE0NF0gL0NvbnRlbnRzIDQgMCBSIC9SZXNvdXJjZXM8PC9Gb250PDwvRjEgNSAwIFI+Pj4+PgplbmRvYmoKNCAwIG9iago8PC9MZW5ndGggNzAgPj5zdHJlYW0KQlQgL0YxIDI0IFRmIDQwIDEwMCBUaiAoSGVhbHRoY2FyZSBCZW5lZml0cykgRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8L1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhPj4KZW5kb2JqCnhyZWYKMCA2CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAxMCAwMDAwMCBuIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTYgMDAwMDAgbiAKMDAwMDAwMDM1MyAwMDAwMCBuIAowMDAwMDAwNDY5IDAwMDAwIG4gCnRyYWlsZXIKPDwvU2l6ZSA2IC9Sb290IDEgMCBSPj4Kc3RhcnR4cmVmCjQ1MwoKJSVFT0Y=" download="Healthcare-Benefits-Explained.pdf">Download</a>
-          </li>
-        </ul>
-      </div>
-    </section>
+        <div style="margin-top:18px">
+          <button class="btn" id="btn-faq" title="Perguntas frequentes">FAQ</button>
+        </div>
 
-    <footer>Built with ❤️ — cream & dark-blue modern UI.</footer>
+        <div class="card-inner" style="margin-top:16px">
+          <div class="row">
+            <div class="icon" aria-hidden="true">
+              <!-- megafone -->
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v-1a4 4 0 0 1 4-4h1l11-3v16l-11-3H7a4 4 0 0 1-4-4Z"/><path d="M7 21a3 3 0 0 0 3-3v-3"/></svg>
+            </div>
+            <div>
+              <h3 class="title" style="font-size:22px">Feedback</h3>
+              <p class="subtitle">Envie seu feedback facilmente e nos ajude a melhorar!</p>
+              <button class="btn" id="btn-feedback">Enviar feedback</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coluna Direita -->
+      <section class="card" aria-labelledby="tit-nl">
+        <div class="row">
+          <div class="icon" aria-hidden="true">
+            <!-- jornal -->
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V5a2 2 0 0 1 2-2h13a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3Z"/><path d="M7 8h7M7 12h10M7 16h6"/></svg>
+          </div>
+          <div>
+            <h2 id="tit-nl" class="title">NewsLetter</h2>
+            <p class="subtitle">Todas as newsletters em um só lugar. Clique no mês para baixar o PDF correspondente.</p>
+          </div>
+        </div>
+
+        <div class="nl-card" style="margin-top:16px">
+          <h3 class="nl-title">Most Recent</h3>
+          <ul id="nl-recentes" class="nl-list" aria-live="polite"></ul>
+          <div class="divider"></div>
+          <ul id="nl-antigos" class="nl-list"></ul>
+          <div style="display:flex; justify-content:flex-end; margin-top:10px">
+            <button id="btn-outros-nl" class="btn" aria-haspopup="dialog" aria-controls="popover-outros-nl">Other</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- POPOVER: Suporte -->
+  <div id="popover-suporte" class="popover hidden" role="dialog" aria-modal="false" aria-label="Escolher categoria de suporte">
+    <h4>Escolha o assunto:</h4>
+    <ul class="list">
+      <li data-cat="House">🏠 House</li>
+      <li data-cat="Documents">📄 Documents</li>
+      <li data-cat="Health">🩺 Health</li>
+      <li data-cat="Car">🚗 Car</li>
+      <li data-cat="Other support">✨ Other support</li>
+    </ul>
+  </div>
+
+  <!-- POPOVER: Outros Newsletters -->
+  <div id="popover-outros-nl" class="popover hidden" role="dialog" aria-modal="false" aria-label="Todas as newsletters">
+    <h4>Todos os meses</h4>
+    <ul id="lista-outros" class="list" style="max-height: 50vh; overflow:auto"></ul>
+  </div>
+
+  <!-- BACKDROP + MODAL: Formulário de Chamado -->
+  <div id="backdrop" class="backdrop" aria-hidden="true"></div>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <header>
+      <h3 id="modal-title">Abrir chamado</h3>
+      <button class="close" id="close-modal" aria-label="Fechar">✕</button>
+    </header>
+    <form id="form-chamado" class="grid">
+      <div>
+        <label for="nome">Seu nome</label>
+        <input id="nome" name="nome" type="text" placeholder="Ex.: Ana Silva" required />
+      </div>
+      <div>
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" placeholder="voce@empresa.com" required />
+      </div>
+      <div>
+        <label for="categoria">Categoria</label>
+        <input id="categoria" name="categoria" type="text" readonly />
+        <div class="helper">Preenchido automaticamente a partir da opção escolhida.</div>
+      </div>
+      <div>
+        <label for="prioridade">Prioridade</label>
+        <select id="prioridade" name="prioridade">
+          <option>Baixa</option>
+          <option>Média</option>
+          <option>Alta</option>
+          <option>Crítica</option>
+        </select>
+      </div>
+      <div class="span-2">
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" placeholder="Descreva o problema/solicitação com detalhes" required></textarea>
+      </div>
+      <div>
+        <label for="anexo">Anexo (opcional)</label>
+        <input id="anexo" name="anexo" type="file" />
+      </div>
+      <div class="span-2" style="display:flex; gap:10px; justify-content:flex-end">
+        <button type="button" class="btn" id="cancelar">Cancelar</button>
+        <button type="submit" class="btn secondary">Enviar chamado</button>
+      </div>
+      <p class="span-2 helper">Sem backend? O formulário salva localmente e baixa um arquivo JSON do chamado para você encaminhar por e-mail. Você pode integrar com uma API depois (veja o código).</p>
+    </form>
   </div>
 
   <script>
-    // Toggle balloon
-    const launcher = document.getElementById('launcher');
-    const btn = document.getElementById('launcherBtn');
-    const balloon = document.getElementById('balloon');
-    const panel = document.getElementById('ticketPanel');
-    const ticketTitle = document.getElementById('ticketTitle');
-    const categoryInput = document.getElementById('category');
-    const resetBtn = document.getElementById('resetTicket');
+    // =============== Dados de exemplo ===============
+    // Atualize os arquivos PDF conforme sua pasta/servidor
+    const NEWSLETTERS = [
+      { label: 'March - 2026', file: 'newsletters/2026-03.pdf' },
+      { label: 'February - 2026', file: 'newsletters/2026-02.pdf' },
+      { label: 'January - 2026', file: 'newsletters/2026-01.pdf' },
+      { label: 'December - 2025', file: 'newsletters/2025-12.pdf' },
+      { label: 'November - 2025', file: 'newsletters/2025-11.pdf' }
+    ];
 
-    btn.addEventListener('click', () => {
-      const open = launcher.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(open));
-      // When opening, bring attention to the top
-      if(open){ window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    });
+    // =============== Utilidades UI ===============
+    const $ = (sel)=>document.querySelector(sel);
+    const byId = (id)=>document.getElementById(id);
 
-    // Handle category selection
-    balloon.querySelectorAll('.opt').forEach(opt => {
-      opt.addEventListener('click', (e) => {
-        e.preventDefault();
-        const cat = opt.dataset.category || 'General';
-        ticketTitle.textContent = `Open a ticket — ${cat}`;
-        categoryInput.value = cat;
-        panel.classList.add('active');
-        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
+    function placePopover(pop, anchor){
+      const r = anchor.getBoundingClientRect();
+      const top = r.bottom + 8 + window.scrollY;
+      const left = Math.min(
+        Math.max(12, r.left + window.scrollX),
+        window.scrollX + document.documentElement.clientWidth - pop.offsetWidth - 12
+      );
+      pop.style.top = top + 'px';
+      pop.style.left = left + 'px';
+    }
 
-    // Clear form
-    resetBtn.addEventListener('click', () => {
-      document.getElementById('ticketForm').reset();
-      categoryInput.value = '';
-    });
-
-    // Close balloon if user clicks outside
-    document.addEventListener('click', (e) => {
-      if(!launcher.contains(e.target)){
-        launcher.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
+    function showPopover(pop, anchor){
+      pop.classList.remove('hidden');
+      placePopover(pop, anchor);
+      // fecha ao clicar fora
+      const onClickOutside = (ev)=>{
+        if(!pop.contains(ev.target) && ev.target !== anchor){ hidePopover(pop); document.removeEventListener('mousedown', onClickOutside); }
       }
+      setTimeout(()=>document.addEventListener('mousedown', onClickOutside),0);
+    }
+
+    function hidePopover(pop){ pop.classList.add('hidden'); }
+
+    function showModal(){
+      byId('backdrop').style.display='block';
+      byId('modal').style.display='block';
+      byId('modal').focus();
+    }
+    function hideModal(){
+      byId('backdrop').style.display='none';
+      byId('modal').style.display='none';
+    }
+
+    // =============== Suporte ===============
+    const btnSuporte = byId('btn-suporte');
+    const popSuporte = byId('popover-suporte');
+
+    btnSuporte.addEventListener('click', ()=>{
+      if(popSuporte.classList.contains('hidden')) showPopover(popSuporte, btnSuporte); else hidePopover(popSuporte);
     });
+
+    popSuporte.addEventListener('click', (e)=>{
+      const li = e.target.closest('li');
+      if(!li) return;
+      const categoria = li.getAttribute('data-cat');
+      // Preenche e abre modal
+      byId('categoria').value = categoria;
+      showModal();
+      hidePopover(popSuporte);
+    });
+
+    // =============== Formulário ===============
+    byId('close-modal').addEventListener('click', hideModal);
+    byId('cancelar').addEventListener('click', hideModal);
+    byId('backdrop').addEventListener('click', hideModal);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ hideModal(); hidePopover(popSuporte); hidePopover(byId('popover-outros-nl')); } });
+
+    byId('form-chamado').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const payload = Object.fromEntries(fd.entries());
+
+      // Se tiver arquivo, apenas o nome (para esta demo)
+      if(payload.anexo && payload.anexo.name){ payload.anexo = payload.anexo.name; }
+      payload.dt_envio = new Date().toISOString();
+
+      // Salva em localStorage (histórico local)
+      const hist = JSON.parse(localStorage.getItem('chamados')||'[]');
+      hist.push(payload);
+      localStorage.setItem('chamados', JSON.stringify(hist));
+
+      // Baixa um JSON do chamado (sem backend)
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `chamado_${Date.now()}.json`;
+      document.body.appendChild(a); a.click(); a.remove();
+
+      alert('Chamado registrado localmente. Um arquivo JSON foi baixado.');
+      e.target.reset();
+      hideModal();
+
+      // Integração futura: envie "payload" para uma API
+      // fetch('/sua-api/chamados', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
+      //  .then(r=>r.json()).then(console.log).catch(console.error);
+    });
+
+    // =============== Newsletter ===============
+    function itemNewsletterTpl(item){
+      const li = document.createElement('li');
+      li.className = 'nl-item';
+      li.innerHTML = `<span>${item.label}</span><span class="muted">Baixar PDF ⤓</span>`;
+      li.role = 'button';
+      li.tabIndex = 0;
+      const go = ()=>downloadNewsletter(item.file);
+      li.addEventListener('click', go);
+      li.addEventListener('keydown', (e)=>{ if(e.key==='Enter') go(); });
+      return li;
+    }
+
+    function renderNews(){
+      const recentes = byId('nl-recentes');
+      const antigos = byId('nl-antigos');
+      recentes.innerHTML = '';
+      antigos.innerHTML = '';
+      const top = NEWSLETTERS.slice(0,2);
+      const rest = NEWSLETTERS.slice(2);
+      top.forEach(i=>recentes.appendChild(itemNewsletterTpl(i)));
+      rest.forEach(i=>antigos.appendChild(itemNewsletterTpl(i)));
+
+      // Também preenche popover "Other"
+      const listaOutros = byId('lista-outros');
+      listaOutros.innerHTML = '';
+      NEWSLETTERS.forEach(i=>{
+        const li = document.createElement('li');
+        li.textContent = i.label;
+        li.addEventListener('click', ()=>{ downloadNewsletter(i.file); hidePopover(byId('popover-outros-nl')); });
+        listaOutros.appendChild(li);
+      });
+    }
+
+    function downloadNewsletter(path){
+      // Tenta baixar diretamente. Se o arquivo não existir, o navegador mostrará erro padrão; adicionamos um alerta suave.
+      const a = document.createElement('a');
+      a.href = path; a.download = path.split('/').pop();
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    // Abrir popover Outros NL
+    const btnOutros = byId('btn-outros-nl');
+    const popOutros = byId('popover-outros-nl');
+    btnOutros.addEventListener('click', ()=>{
+      if(popOutros.classList.contains('hidden')) showPopover(popOutros, btnOutros); else hidePopover(popOutros);
+    });
+
+    // Ações não implementadas (FAQ/Feedback) – personalize conforme necessário
+    byId('btn-faq').addEventListener('click', ()=>{
+      alert('Abrir página/arquivo de FAQ. Substitua este alerta por um link real.');
+    });
+    byId('btn-feedback').addEventListener('click', ()=>{
+      alert('Abrir formulário de feedback. Você pode reutilizar o modal de chamado, trocar o título e os campos.');
+    });
+
+    // Inicializa
+    renderNews();
   </script>
 </body>
 </html>
