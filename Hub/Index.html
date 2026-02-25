@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hub – Consultas e Recursos</title>
+  <meta name="description" content="Hub funcional com navegação por hotspots sobre imagens. Rotas: Home, PI > Consultas, Campinas > Ortopedista." />
+  <link rel="preload" as="image" href="hub1.0 (1).png">
+  <link rel="preload" as="image" href="CONSULTAS PI.png">
+  <link rel="preload" as="image" href="CONSULTAS CA.png">
+  <style>
+    :root{
+      --brand:#20aee6;
+      --brand-2:#5bd0ff;
+      --ink:#0f2a3a;
+      --bg:#0a1520;
+      --focus:#ffbf47;
+      --chip:#e7f6ff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;
+      background:#07131d;
+      color:#08334a;
+      display:grid; place-items:center;
+    }
+
+    .app{width:min(100vw,1280px); aspect-ratio:16/9; position:relative;}
+
+    /* Cena */
+    .scene{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:drop-shadow(0 8px 24px rgba(0,0,0,.25));
+      opacity:0; transform:scale(1.01);
+      transition:opacity .5s ease, transform .6s ease;
+    }
+    .scene.ready{opacity:1; transform:scale(1);}
+
+    /* Brilho animado (movimento suave) */
+    .gloss{position:absolute; inset:0; pointer-events:none; mix-blend-mode:soft-light; opacity:.35}
+    .gloss::before{content:""; position:absolute; inset:-10% -30%;
+      background:linear-gradient(115deg, transparent 0 40%, rgba(255,255,255,.2) 50%, transparent 60% 100%);
+      animation:shine 9s linear infinite;
+    }
+    @keyframes shine{from{transform:translateX(-30%) rotate(2deg)} to{transform:translateX(30%) rotate(2deg)}}
+
+    /* Hotspots */
+    .hotspots{position:absolute; inset:0;}
+    .hotspot{position:absolute; outline:none; border:0; background:transparent; cursor:pointer;}
+
+    /* Chips visuais */
+    .chip{position:absolute; display:flex; align-items:center; justify-content:center; gap:.5rem; padding:.35rem .75rem; border-radius:999px;
+      background:linear-gradient(180deg, var(--brand-2), var(--brand)); color:white; font-weight:700; letter-spacing:.4px; text-shadow:0 1px 1px rgba(0,0,0,.2);
+      box-shadow:0 8px 20px rgba(32,174,230,.28), inset 0 1px 0 rgba(255,255,255,.35);
+      transform:translateZ(0); transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+      will-change:transform;
+    }
+    .chip.small{font-size:.8rem; padding:.3rem .6rem}
+    .chip:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 10px 24px rgba(32,174,230,.35), inset 0 1px 0 rgba(255,255,255,.4)}
+    .chip:active{transform:translateY(0) scale(.98)}
+    .chip:focus-visible{outline:3px solid var(--focus); outline-offset:3px}
+
+    /* Flutuação */
+    .float{animation:float 5.5s ease-in-out infinite}
+    .float:nth-child(odd){animation-duration:6.5s}
+    @keyframes float{0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)}}
+
+    /* Ripple ao clicar */
+    .ripple{position:absolute; border-radius:50%; transform:scale(0); animation:ripple .6s ease-out; background:rgba(255,255,255,.55)}
+    @keyframes ripple{to{transform:scale(8); opacity:0}}
+
+    /* Toast */
+    .toast{position:absolute; left:50%; bottom:3%; transform:translateX(-50%) translateY(120%); background:#0b2a3b; color:#eaffff; padding:.6rem .9rem; border-radius:.75rem; box-shadow:0 10px 28px rgba(0,0,0,.35);
+      display:flex; align-items:center; gap:.5rem; font-weight:600; opacity:0; transition:transform .35s ease, opacity .35s ease}
+    .toast.show{transform:translateX(-50%) translateY(0); opacity:1}
+
+    /* Debug */
+    .debug .hotspot{outline:2px dashed rgba(255,100,100,.6)}
+
+    /* Acessibilidade de movimento */
+    @media (prefers-reduced-motion: reduce){
+      .scene{transition:none}
+      .gloss{display:none}
+      .chip, .float{animation:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="app" aria-live="polite">
+    <img id="scene" class="scene" src="" alt="Tela atual do hub" />
+    <div class="gloss" aria-hidden="true"></div>
+    <div id="hotspots" class="hotspots" aria-label="Áreas clicáveis"></div>
+    <div id="toast" class="toast" role="status" aria-live="assertive">Em breve…</div>
+  </div>
+
+  <script>
+  // ------- Hotspot engine (SPA) -------
+  /**
+   * Hotspot em %: { x, y, w, h }, ação: route|url|tel|mailto|toast
+   */
+  const ROUTES = {
+    home: {
+      image: "hub1.0 (1).png",
+      alt: "Página inicial com botões SP, PI, Expatriados, Consulta Médica e atalhos inferiores",
+      hotspots: [
+        // PI > Consulta Médica
+        { label: "PI · Consulta Médica", x: 73, y: 46, w: 22, h: 8, action:{ type:"route", to:"pi-consultas" }, float:true, alt:"Abrir Consultas Médicas de PI" },
+        // (Opcional) PI > Expatriados
+        { label: "PI · Expatriados", x: 73, y: 35, w: 22, h: 8, action:{ type:"toast", msg:"Link de Expatriados (PI) — defina o destino" }, alt:"Expatriados PI" },
+        // (Opcional) SP > Consultas
+        { label: "SP · Consulta Médica", x: 5, y: 46, w: 22, h: 8, action:{ type:"toast", msg:"Tela de Consultas SP — ainda não fornecida" }, alt:"Consulta Médica SP" },
+        // (Opcional) SP > Expatriados
+        { label: "SP · Expatriados", x: 5, y: 35, w: 22, h: 8, action:{ type:"toast", msg:"Link de Expatriados (SP) — defina o destino" }, alt:"Expatriados SP" },
+        // Atalhos inferiores
+        { label: "Newsletter", x: 28, y: 86, w: 14, h: 8, action:{ type:"toast", msg:"Newsletter — defina a URL" }, small:true, float:true, alt:"Abrir Newsletter" },
+        { label: "Docs",       x: 45, y: 86, w: 10, h: 8, action:{ type:"toast", msg:"Docs — defina a URL" }, small:true, float:true, alt:"Abrir Docs" },
+        { label: "Guias",      x: 58, y: 86, w: 12, h: 8, action:{ type:"toast", msg:"Guias — defina a URL" }, small:true, float:true, alt:"Abrir Guias" },
+        { label: "Planilhas",  x: 72, y: 86, w: 16, h: 8, action:{ type:"toast", msg:"Planilhas — defina a URL" }, small:true, float:true, alt:"Abrir Planilhas" },
+      ]
+    },
+    "pi-consultas": {
+      image: "CONSULTAS PI.png",
+      alt: "Consultas médicas PI com colunas Campinas e Pira e botão Voltar",
+      hotspots: [
+        // Campinas – Ortopedia -> rota
+        { label: "Campinas · Ortopedia", x: 6, y: 28, w: 22, h: 7.5, action:{ type:"route", to:"campinas-ortopedia" }, alt:"Abrir Ortopedia em Campinas" },
+        // Outras especialidades (placeholders)
+        { label: "Campinas · Dermatologia", x: 6, y: 36.5, w: 22, h: 7, action:{ type:"toast", msg:"Dermatologia Campinas — defina o destino" }, alt:"Dermatologia Campinas" },
+        { label: "Campinas · Urologia", x: 6, y: 45, w: 22, h: 7, action:{ type:"toast", msg:"Urologia Campinas — defina o destino" }, alt:"Urologia Campinas" },
+        { label: "Campinas · Odontologia", x: 6, y: 53.5, w: 22, h: 7, action:{ type:"toast", msg:"Odontologia Campinas — defina o destino" }, alt:"Odontologia Campinas" },
+        { label: "Campinas · Cardiologia", x: 6, y: 62, w: 22, h: 7, action:{ type:"toast", msg:"Cardiologia Campinas — defina o destino" }, alt:"Cardiologia Campinas" },
+        { label: "Campinas · Pediatria", x: 6, y: 70.5, w: 22, h: 7, action:{ type:"toast", msg:"Pediatria Campinas — defina o destino" }, alt:"Pediatria Campinas" },
+        { label: "Campinas · Laboratoriais", x: 6, y: 79, w: 22, h: 7, action:{ type:"toast", msg:"Laboratoriais Campinas — defina o destino" }, alt:"Laboratoriais Campinas" },
+        // Pira (placeholders)
+        { label: "Pira · Ortopedia", x: 72, y: 28, w: 22, h: 7.5, action:{ type:"toast", msg:"Ortopedia Pira — defina o destino" }, alt:"Ortopedia Pira" },
+        { label: "Pira · Dermatologia", x: 72, y: 36.5, w: 22, h: 7, action:{ type:"toast", msg:"Dermatologia Pira — defina o destino" }, alt:"Dermatologia Pira" },
+        { label: "Pira · Urologia", x: 72, y: 45, w: 22, h: 7, action:{ type:"toast", msg:"Urologia Pira — defina o destino" }, alt:"Urologia Pira" },
+        { label: "Pira · Odontologia", x: 72, y: 53.5, w: 22, h: 7, action:{ type:"toast", msg:"Odontologia Pira — defina o destino" }, alt:"Odontologia Pira" },
+        { label: "Pira · Cardiologia", x: 72, y: 62, w: 22, h: 7, action:{ type:"toast", msg:"Cardiologia Pira — defina o destino" }, alt:"Cardiologia Pira" },
+        { label: "Pira · Pediatria", x: 72, y: 70.5, w: 22, h: 7, action:{ type:"toast", msg:"Pediatria Pira — defina o destino" }, alt:"Pediatria Pira" },
+        { label: "Pira · Laboratoriais", x: 72, y: 79, w: 22, h: 7, action:{ type:"toast", msg:"Laboratoriais Pira — defina o destino" }, alt:"Laboratoriais Pira" },
+        // Voltar (base central)
+        { label: "Voltar", x: 42, y: 85.2, w: 16, h: 8, action:{ type:"route", to:"home" }, small:true, alt:"Voltar para a tela inicial" },
+      ]
+    },
+    "campinas-ortopedia": {
+      image: "CONSULTAS CA.png",
+      alt: "Campinas Ortopedista com lista de médicos e quadro à direita",
+      hotspots: [
+        // Médicos (placeholders)
+        { label: "Lucas Gonzaga Piovesana", x: 6, y: 22, w: 25, h: 7.5, action:{ type:"toast", msg:"Defina contato/URL do Dr. Lucas Gonzaga Piovesana" }, alt:"Lucas Gonzaga Piovesana" },
+        { label: "Lucas Prado", x: 6, y: 31, w: 25, h: 7.5, action:{ type:"toast", msg:"Defina contato/URL do Dr. Lucas Prado" }, alt:"Lucas Prado" },
+        { label: "Evaldo Hirashima", x: 6, y: 40, w: 25, h: 7.5, action:{ type:"toast", msg:"Defina contato/URL do Dr. Evaldo Hirashima" }, alt:"Evaldo Hirashima" },
+        { label: "Rodolpho Marques", x: 6, y: 49, w: 25, h: 7.5, action:{ type:"toast", msg:"Defina contato/URL do Dr. Rodolpho Marques" }, alt:"Rodolpho Marques" },
+        // Botão X no quadro (voltar)
+        { label: "Fechar", x: 62, y: 10.5, w: 3.5, h: 6, action:{ type:"route", to:"pi-consultas" }, small:true, alt:"Voltar para consultas PI" },
+      ]
+    }
+  };
+
+  const app = document.querySelector('.app');
+  const scene = document.getElementById('scene');
+  const hs   = document.getElementById('hotspots');
+  const toast = document.getElementById('toast');
+  let historyStack = [];
+
+  // Preload
+  Object.values(ROUTES).forEach(r=>{ const im = new Image(); im.src = r.image; });
+
+  function showToast(msg='Em breve…', ms=1600){
+    toast.textContent = msg; toast.classList.add('show');
+    clearTimeout(showToast.t);
+    showToast.t = setTimeout(()=> toast.classList.remove('show'), ms);
+  }
+
+  function setRoute(name, push=true){
+    const route = ROUTES[name];
+    if(!route) return;
+    if(push){ historyStack.push(name); }
+
+    // Atualiza imagem
+    scene.classList.remove('ready');
+    scene.setAttribute('alt', route.alt || 'Tela');
+    const nextSrc = route.image;
+    const tmp = new Image();
+    tmp.onload = ()=>{ scene.src = nextSrc; requestAnimationFrame(()=> scene.classList.add('ready')); };
+    tmp.src = nextSrc;
+
+    // Render hotspots
+    hs.innerHTML='';
+    for(const h of route.hotspots){
+      const btn = document.createElement('button');
+      btn.className = 'hotspot';
+      btn.style.left = h.x + '%';
+      btn.style.top  = h.y + '%';
+      btn.style.width= h.w + '%';
+      btn.style.height= h.h + '%';
+      btn.setAttribute('aria-label', h.alt || h.label || 'Área clicável');
+
+      const chip = document.createElement('div'); chip.className = 'chip' + (h.small?' small':'');
+      if(h.float) chip.classList.add('float');
+      chip.textContent = h.label || '';
+      chip.style.position='absolute'; chip.style.left='50%'; chip.style.top='50%'; chip.style.transform='translate(-50%,-50%)';
+      btn.appendChild(chip);
+
+      btn.addEventListener('click', (ev)=>{
+        ripple(ev, btn);
+        runAction(h.action);
+      });
+      btn.addEventListener('keydown', (ev)=>{
+        if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); runAction(h.action);}
+      });
+
+      hs.appendChild(btn);
+    }
+  }
+
+  function runAction(action){
+    if(!action) return;
+    switch(action.type){
+      case 'route': location.hash = '#' + action.to; break;
+      case 'url': window.open(action.href, '_blank', 'noreferrer'); break;
+      case 'tel': location.href = 'tel:' + action.number; break;
+      case 'mailto': location.href = 'mailto:' + action.email; break;
+      case 'toast': default: showToast(action.msg || 'Em breve…');
+    }
+  }
+
+  function ripple(ev, el){
+    const r = document.createElement('span'); r.className='ripple';
+    const rect = el.getBoundingClientRect();
+    const x = (ev.clientX - rect.left); const y = (ev.clientY - rect.top);
+    r.style.left = (x-8) + 'px'; r.style.top = (y-8) + 'px'; r.style.width = r.style.height = '16px';
+    el.appendChild(r); setTimeout(()=> r.remove(), 600);
+  }
+
+  // Hash routing
+  function onHash(){
+    const name = (location.hash||'').slice(1) || 'home';
+    const push = historyStack[historyStack.length-1] !== name;
+    setRoute(name, push);
+  }
+  window.addEventListener('hashchange', onHash);
+
+  // Teclado
+  window.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape'){
+      if(historyStack.length>1){ historyStack.pop(); const prev = historyStack.pop(); location.hash = '#' + (prev||'home'); }
+      else{ location.hash = '#home'; }
+    }
+    if(e.key.toLowerCase()==='h') document.body.classList.toggle('debug');
+  });
+
+  // Init
+  onHash();
+  </script>
+</body>
+</html>
